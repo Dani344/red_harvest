@@ -76,6 +76,7 @@ public class Character : MonoBehaviour
         Debug.Log("Health: "  + _generalStats.Health + "mana: " + _generalStats.Mana);
     }
     
+    //MEJORAR LOS TAKE DAMAGE!!!!
     
     //Tenemos en cuenta el armor
     protected void TakePhysicDamage(int damage)
@@ -86,6 +87,8 @@ public class Character : MonoBehaviour
             _currentHp -= realDamage;
             if (_currentHp < 1)
             {
+                _currentHp = 0f;
+                HpBarUpdate();
                 Die();
                 return;
             }
@@ -137,6 +140,7 @@ public class Character : MonoBehaviour
     
     //CUIDADO CON LOS VALORES ASOCIADOS EN EL INSPECTOR
     //ES PROTECTED POR QUE LOS ENEMIGOS LA DEBEN USAR EN EL START.
+    //EVITAR QUE ACTUALICE HP Y MIRE A LA CAMARA (DOS FUNCIONES DISTINTAS MEJOR)))
     protected void HpBarUpdate()
     {
         var temp = _currentHp / _generalStats.Health;

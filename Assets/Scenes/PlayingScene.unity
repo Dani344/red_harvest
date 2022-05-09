@@ -1061,6 +1061,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 278159700}
     m_Modifications:
+    - target: {fileID: 439383477627823176, guid: 4b102182b4094d248a70f72dc6c0e2c9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 857629878538066483, guid: 4b102182b4094d248a70f72dc6c0e2c9,
         type: 3}
       propertyPath: m_RootOrder
@@ -1074,7 +1079,7 @@ PrefabInstance:
     - target: {fileID: 857629878538066483, guid: 4b102182b4094d248a70f72dc6c0e2c9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 857629878538066483, guid: 4b102182b4094d248a70f72dc6c0e2c9,
         type: 3}
@@ -1116,10 +1121,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 857629878538066486, guid: 4b102182b4094d248a70f72dc6c0e2c9,
+        type: 3}
+      propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 857629878538066486, guid: 4b102182b4094d248a70f72dc6c0e2c9,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 857629878538066487, guid: 4b102182b4094d248a70f72dc6c0e2c9,
         type: 3}
       propertyPath: m_Name
-      value: Dummy (5)
+      value: DummyTocado
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809414644986713676, guid: 4b102182b4094d248a70f72dc6c0e2c9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.57
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b102182b4094d248a70f72dc6c0e2c9, type: 3}
@@ -1190,12 +1210,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_AoE
       objectReference: {fileID: 0}
-    - target: {fileID: 2883527305646580835, guid: 8a8e38b8be346c64cb48f26046ca8ee9,
-        type: 3}
-      propertyPath: _AoE_Prefab
-      value: 
-      objectReference: {fileID: 4963530644820999887, guid: a08f476bfac8425408d4ceb11c44e77c,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a8e38b8be346c64cb48f26046ca8ee9, type: 3}
 --- !u!1 &963194225

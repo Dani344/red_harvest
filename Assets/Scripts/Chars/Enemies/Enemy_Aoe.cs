@@ -25,7 +25,7 @@ public class Enemy_Aoe : Enemy
 
     private void Start()
     {
-        NormalSetUp("DUMMY", 100, 300,5.5f,11f, 25f,30f,
+        NormalSetUp("DUMMYAOE", 100, 300,5.5f,11f, 25f,30f,
             56f, 1.75f, 10, 0, 4,
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
         
@@ -40,10 +40,7 @@ public class Enemy_Aoe : Enemy
 
     private void Update()
     {
-        if (!_isActive)
-        {
-            return;
-        }
+        if (!_isActive) return;
         
         CheckTargetInRange();
         _newPathCount += Time.deltaTime;

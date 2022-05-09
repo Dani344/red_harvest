@@ -23,9 +23,9 @@ public class EnemyRangeActive : MonoBehaviour
         {
             _rangeCollider.enabled = false;
             
-            
-            
+           
             _enemy.ActiveEnemy(other.gameObject);
+            
         }
         
     }
