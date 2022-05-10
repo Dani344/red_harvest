@@ -10,6 +10,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BaseCentral.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="28w8JXGP5jTyVglWXMotQHxhVe3" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -53,6 +56,8 @@
       <option name="presentableId" value="Default" />
       <updated>1652116241798</updated>
       <workItem from="1652116254590" duration="2637000" />
+      <workItem from="1652192682562" duration="8525000" />
+      <workItem from="1652203458240" duration="963000" />
     </task>
     <servers />
   </component>

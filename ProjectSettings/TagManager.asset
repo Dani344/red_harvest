@@ -10,12 +10,13 @@ TagManager:
   - Recolectable
   - Debuff
   - PowerUp
-  - Spawn
-  - Shield
   - Missil
   - AbilitiesIcons
   - Projectil
   - Walls
+  - SpawnPlayer
+  - SpawnEnemy
+  - Shield
   layers:
   - Default
   - TransparentFX

@@ -369,7 +369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5384242906223569583}
   - component: {fileID: 491631863732238812}
-  - component: {fileID: 98106620}
+  - component: {fileID: 1090579875237489494}
   m_Layer: 0
   m_Name: RangeDetection
   m_TagString: Untagged
@@ -404,7 +404,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &98106620
+--- !u!114 &1090579875237489494
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -495,6 +495,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3e5325c249f0cf443a30ae2055e22621,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f78e3a1761db8045ad5c09584729b57, type: 2}
     - target: {fileID: 919132149155446097, guid: 3e5325c249f0cf443a30ae2055e22621,
         type: 3}
       propertyPath: m_Name

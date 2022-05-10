@@ -1,15 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy_Aoe : Enemy
 {
     [SerializeField] private GameObject _AoE_Prefab;
-    
-    
     //Tiene que detectar Player para activarse
-    
     //Una vez activado, cada X segundos invocará area al jugador
     //El propio area gestionará el daño (pasado un tiempo, explosion)
 
@@ -28,8 +27,8 @@ public class Enemy_Aoe : Enemy
         NormalSetUp("DUMMYAOE", 100, 300,5.5f,11f, 25f,30f,
             56f, 1.75f, 10, 0, 4,
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
-        
-        _hpBarTextNumber.text = _currentHp + " / " + _generalStats.Health;
+        ShowCharacterInformation();
+        //_hpBarTextNumber.text = _currentHp + " / " + _generalStats.Health;
         
         HpBarUpdate();
 
@@ -54,7 +53,6 @@ public class Enemy_Aoe : Enemy
                 _navMesh.SetDestination(_targetPos);
             }
             _newPathCount = 0f;
-            //CheckTargetInRange();
         }
 
         if (_isRange)

@@ -18,13 +18,15 @@ public class EnemyRangeActive : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("DETECTO PLAYER DESDE ENEMIGORANGEACTIVE");
+        //Debug.Log("DETECTO PLAYER DESDE ENEMIGORANGEACTIVE");
         if (other.CompareTag("Player"))
         {
-            _rangeCollider.enabled = false;
+            if (_enemy.isEnemyActive()) return;
             
-           
-            _enemy.ActiveEnemy(other.gameObject);
+            var _player = other.gameObject;
+            _enemy.ActiveEnemy(_player);
+            //_rangeCollider.enabled = false;
+            
             
         }
         

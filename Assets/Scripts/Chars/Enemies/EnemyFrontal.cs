@@ -8,13 +8,8 @@ using UnityEngine.AI;
 public class EnemyFrontal : Enemy
 {
     
-    //private Vector3 _targetPosition;
-    //public bool _isInRange;
-    //public bool _hasDetectedPlayer;
-    
-    
     [SerializeField] private GameObject _projectilPrefab;
-    //[SerializeField] private float _attackSpeed;
+    
     private float _count;
     
     private void Awake()
@@ -29,13 +24,11 @@ public class EnemyFrontal : Enemy
     }
     
     private void Start()
-    {
+    { 
         NormalSetUp("DUMMY", 100, 300,5.5f,11f, 25f,30f,
             56f, 1.75f, 10, 0, 4,
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
         ShowCharacterInformation();
-        
-        _hpBarTextNumber.text = _currentHp + " / " + _generalStats.Health;
         
         HpBarUpdate();
 
@@ -45,17 +38,34 @@ public class EnemyFrontal : Enemy
         //Maybe no es necesario esta linea.
         //_targetPosition = Vector3.zero;
         
-        
-        
         //FUNCION PARA VER SI HACE EL IDIOTA EL MOB
         //_navMesh.isPathStale
-        
+        SetSpawnPoint();
+        AggroHPBarColor(Color.yellow);
     }
 
 
     private void Update()
     {
+        //TEST//
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ReturnSpawnPoint();
+        }
+        
+        //END TEST///
+        
         if (!_isActive) return;
+        if (_isActive && _isReturning)
+        {
+            if (_navMesh.remainingDistance < 0.25f)
+            {
+                _isReturning = false;
+                _isActive = false;
+            }
+            return;
+        }
         
         CheckTargetInRange();
         _newPathCount += Time.deltaTime;
@@ -69,7 +79,6 @@ public class EnemyFrontal : Enemy
                 _navMesh.SetDestination(_targetPos);
             }
             _newPathCount = 0f;
-           //CheckTargetInRange();
         }
         
         
@@ -112,11 +121,13 @@ public class EnemyFrontal : Enemy
         //_navMesh.SetDestination(_targetPos);
         //_navMesh.SetDestination(new Vector3(50,0,50));
     }*/
+    
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("COLLISION ENEMYFRONTAL");
         }
-    }
+    }*/
 }

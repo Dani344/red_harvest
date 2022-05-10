@@ -35,7 +35,7 @@ public class Ball : Projectil
         
         if (other.CompareTag("Enemy"))
         {
-            var temp = other.gameObject.GetComponent<Character>();
+            var temp = other.gameObject.GetComponent<Enemy>();
             if (temp)
             {
                 temp.TakeDamage((int) _dmg, 0);

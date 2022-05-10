@@ -56,6 +56,7 @@ public class PlayerMovement : Character
         
         ///ZONA SHIELD
         _shield = GameObject.FindWithTag("Shield");
+
         _shieldCol = _shield.GetComponent<Collider>();
         _shieldRender = _shield.GetComponent<MeshRenderer>();
         ///ENDZONA SHIELD

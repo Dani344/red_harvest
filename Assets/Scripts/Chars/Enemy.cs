@@ -15,12 +15,25 @@ public class Enemy : Character
     [SerializeField] protected bool _isRange;
 
     [SerializeField] protected GameObject _playerTarget;
-    
-    
+
+    [SerializeField] private Vector3 _spawnPoint;
+
+    [SerializeField] protected bool _isReturning = false;
+
+
     protected float _newPathCount;
     protected float _timeForUpdatePath = 2f;
     
     //CUIDADO POR QUE SOLO CONTEMPLAMOS AL PLAYER
+
+    protected void SetSpawnPoint()
+    {
+        var pos = gameObject.transform.position;
+        var pos2 = GetComponent<Transform>().position;
+        _spawnPoint = pos2;
+    }
+    
+    
     public void ActiveEnemy(GameObject miTarget)
     {
         //SetPlayerTargetReference();
@@ -32,7 +45,7 @@ public class Enemy : Character
             _targetPos = newTargetPlayer;
             transform.LookAt(_targetPos);
             FollowTarget(_targetPos);
-            AggroHPBarColor();
+            AggroHPBarColor(Color.red);
         }
         //SetTarget();
         //_navMesh.SetDestination(_targetPos);
@@ -81,12 +94,33 @@ public class Enemy : Character
         return _isRange;
     }
 
-    private void AggroHPBarColor()
+    public void AggroHPBarColor(Color color)
     {
-        _healthBar.color = Color.red;
+        _healthBar.color = color;
     }
     
     
-    
-    
+    public void ReturnSpawnPoint()
+    {
+        _navMesh.SetDestination(_spawnPoint);
+        _isReturning = true;
+        AggroHPBarColor(Color.yellow);
+        //Recuperar la vida.
+    }
+
+    public bool isEnemyActive()
+    {
+        return _isActive;
+    }
+
+    public void EnemyTakeDamage(int dmg, int what)
+    {
+        
+        TakeDamage(dmg, what);
+        if (!isEnemyActive())
+        {
+            
+        }
+        
+    }
 }

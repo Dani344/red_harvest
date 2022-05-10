@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 857629878538066481}
   - component: {fileID: 857629878538066486}
   - component: {fileID: 2035387743723010946}
-  - component: {fileID: 2056123837}
   - component: {fileID: 5500999480608946112}
   - component: {fileID: 8071228700065002173}
+  - component: {fileID: 2056123837}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Enemy
@@ -120,32 +120,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2056123837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857629878538066487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ce027f2a1772342a27a218c84332a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentSpeed: 0
-  _currentHp: 0
-  _currentMana: 0
-  _anim: {fileID: 0}
-  _rb: {fileID: 0}
-  _healthBar: {fileID: 0}
-  _hpBarTextNumber: {fileID: 6265292936746214826}
-  _navMesh: {fileID: 0}
-  _isActive: 0
-  _targetPos: {x: 0, y: 0, z: 0}
-  _isRange: 0
-  _playerTarget: {fileID: 0}
-  _projectilPrefab: {fileID: 2604597369965400599, guid: 54d023a535c3f244897672c363140ec9,
-    type: 3}
 --- !u!195 &5500999480608946112
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -184,6 +158,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &2056123837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857629878538066487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ce027f2a1772342a27a218c84332a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentSpeed: 0
+  _currentHp: 0
+  _currentMana: 0
+  _anim: {fileID: 0}
+  _rb: {fileID: 0}
+  _healthBar: {fileID: 0}
+  _hpBarTextNumber: {fileID: 6265292936746214826}
+  _navMesh: {fileID: 0}
+  _isActive: 0
+  _targetPos: {x: 0, y: 0, z: 0}
+  _isRange: 0
+  _playerTarget: {fileID: 0}
+  _projectilPrefab: {fileID: 2604597369965400599, guid: 54d023a535c3f244897672c363140ec9,
+    type: 3}
 --- !u!1 &978744340084965826
 GameObject:
   m_ObjectHideFlags: 0
