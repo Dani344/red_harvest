@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
     //Barra de salud
     [SerializeField] protected SpriteRenderer _healthBar;
 
-    [SerializeField] protected TextMesh _hpBarTextNumber;
+    [SerializeField] protected TMP_Text _hpBarTextNumber;
     
     
     //Comportamiento de métodos generales
