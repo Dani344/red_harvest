@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //FALTA IMPLEMENTAR EL TEXTMESH PRO
-    //FALTA CREAR LAS COINS Y EL CANVAS
-    //FALTA HACER EL COMPORTAMIENTO DE LA ZONA
+    
     //FALTA GESTIONAR QUE LOS ENEMIGOS SEPAN QUE EL PLAYER SE MUERE
+
     //FALTA GESTIONAR EL ARRAY DE ENEMIGOS
     //FALTA CREAR UN CONTADOR DE MAPA??
     
@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
 
     #region PlayerInterfaceInfo
 
-    [SerializeField] private int _playerCoins;
+    [SerializeField] private int _totalPlayerCoins;
+    [SerializeField] private TMP_Text _coinText;
     [SerializeField] private bool _playerDead;
 
     #endregion
@@ -46,6 +47,10 @@ public class GameManager : MonoBehaviour
     {
         SpawnPlayer();
         SpawnEnemies();
+
+        var temp = "Coins: 0";
+        _coinText.text = temp;
+        _totalPlayerCoins = 0;
     }
     
     /*
@@ -83,6 +88,13 @@ public class GameManager : MonoBehaviour
             }
             
         }
+    }
+
+    public void RecolectCoin(int ammount)
+    {
+        _totalPlayerCoins += ammount;
+        var newCoinsText = "Coins: " + _totalPlayerCoins;
+        _coinText.text = newCoinsText;
     }
     
     

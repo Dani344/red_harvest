@@ -12,6 +12,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BaseCentral.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Coin.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="28w8JXGP5jTyVglWXMotQHxhVe3" />
   <component name="ProjectViewState">
@@ -59,6 +60,7 @@
       <workItem from="1652192682562" duration="8525000" />
       <workItem from="1652203458240" duration="963000" />
       <workItem from="1652279512980" duration="1900000" />
+      <workItem from="1652368842746" duration="4591000" />
     </task>
     <servers />
   </component>

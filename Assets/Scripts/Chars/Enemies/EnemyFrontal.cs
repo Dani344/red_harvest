@@ -18,9 +18,6 @@ public class EnemyFrontal : Enemy
         _anim = GetComponent<Animator>();
         _healthBar = GetComponentInChildren<SpriteRenderer>();
         _navMesh = GetComponent<NavMeshAgent>();
-        //_rb = GetComponent<Rigidbody>();
-
-
     }
     
     private void Start()
@@ -43,8 +40,9 @@ public class EnemyFrontal : Enemy
         SetSpawnPoint();
         AggroHPBarColor(Color.yellow);
     }
-
-
+    //_____________
+    //HAY QUE ARREGLAR QUE CUANDO ESTA EN RANGO EL PLAYER VUELVA CORRECTAMENTE A SU POSITION.
+    //_____________
     private void Update()
     {
         //TEST//
@@ -53,7 +51,8 @@ public class EnemyFrontal : Enemy
         {
             ReturnSpawnPoint();
         }
-        
+
+
         //END TEST///
         
         if (!_isActive) return;
@@ -96,6 +95,15 @@ public class EnemyFrontal : Enemy
         
         _healthBar.transform.forward = _camera.transform.forward;
         _targetPos = _playerTarget.transform.position;
+        
+        //Checkea que no esté en la base el player
+        if (_playerScript)
+        {
+            if (_playerScript.isPlayerSafeZone() || !_playerScript.isPlayerAlive())
+            {
+                ReturnSpawnPoint();
+            }
+        }
     }
 
 

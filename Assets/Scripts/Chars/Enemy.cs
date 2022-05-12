@@ -15,6 +15,7 @@ public class Enemy : Character
     [SerializeField] protected bool _isRange;
 
     [SerializeField] protected GameObject _playerTarget;
+    [SerializeField] protected PlayerMovement _playerScript;
 
     [SerializeField] private Vector3 _spawnPoint;
 
@@ -28,6 +29,8 @@ public class Enemy : Character
 
     protected void SetSpawnPoint()
     {
+        //PREGUNTAR POR QUE LA PRIMERA LINEA SE ACTUALIZA CON EL MOVIMIENTO Y LA SEGUNDA NO
+        
         var pos = gameObject.transform.position;
         var pos2 = GetComponent<Transform>().position;
         _spawnPoint = pos2;
@@ -43,6 +46,9 @@ public class Enemy : Character
             _isActive = true;
             var newTargetPlayer = _playerTarget.transform.position;
             _targetPos = newTargetPlayer;
+
+            _playerScript = _playerTarget.GetComponent<PlayerMovement>();
+
             transform.LookAt(_targetPos);
             FollowTarget(_targetPos);
             AggroHPBarColor(Color.red);
@@ -113,6 +119,9 @@ public class Enemy : Character
         return _isActive;
     }
 
+    
+    
+    
     public void EnemyTakeDamage(int dmg, int what)
     {
         

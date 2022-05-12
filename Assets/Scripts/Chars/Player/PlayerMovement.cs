@@ -34,8 +34,12 @@ public class PlayerMovement : Character
     private bool _isOnCoolDownQ, _isOnCoolDownW, _isOnCoolDownE, _isOnCoolDownR;
     
     #endregion
+
+    [SerializeField] private bool _isSafeZone;
+    [SerializeField] private bool _isPlayerAlive;
     
-    //private Transform _healthTransIni;
+    
+    
     private void Awake()
     {
        _camera = Camera.main;
@@ -91,6 +95,8 @@ public class PlayerMovement : Character
         _currentSpeed = _generalStats.MoveSpeed;
         _shieldCol.enabled = false;
         _shieldRender.enabled = false;
+
+        _isPlayerAlive = true;
     }
     private void Update()
     {
@@ -352,7 +358,25 @@ public class PlayerMovement : Character
         _healthBar.transform.LookAt(camTrans);
         //_healthTransIni = _healthBar.GetComponent<Transform>();
     }
-    
+
+    public bool isPlayerSafeZone()
+    {
+        return _isSafeZone;
+    }
+
+    public bool isPlayerAlive()
+    {
+        return _isPlayerAlive;
+    }
+
+    public void PlayerDeath()
+    {
+        _isPlayerAlive = false;
+    }
+    public void SetPlayerSafe(bool safe)
+    {
+        _isSafeZone = safe;
+    }
     private IEnumerator CoolDown()
     {
         Debug.Log("CUENTA ATRAS INICIADA");
