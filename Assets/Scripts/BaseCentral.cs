@@ -9,7 +9,11 @@ public class BaseCentral : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //Activamos la cura OP del player.
+            var player = other.GetComponent<PlayerMovement>();
+            if (!player.isPlayerSafeZone())
+            {
+                player.SetPlayerSafe(true);
+            }
         }
     }
 
@@ -18,6 +22,12 @@ public class BaseCentral : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //Quitamos la cura/mana reg OP del player
+            var player = other.GetComponent<PlayerMovement>();
+            if (player.isPlayerSafeZone())
+            {
+                player.SetPlayerSafe(false);
+            }
+            
         }
     }
 }
