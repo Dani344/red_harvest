@@ -261,8 +261,9 @@ public class PlayerMovement : Character
         }
         else
         {
-            return Vector3.zero;
             Debug.Log("Error con algun lanzamiento");
+            return Vector3.zero;
+            
         }
     }
     private void AbilityQ()
