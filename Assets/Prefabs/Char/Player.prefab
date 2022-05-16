@@ -1084,10 +1084,13 @@ MonoBehaviour:
     type: 3}
   _abilityR: {fileID: 5801633643478369091, guid: eda2d843a803e4949aa6b49f38d3d557,
     type: 3}
+  _healthBarMain: {fileID: 0}
   _coolDownQ: 1
   _coolDownW: 4
   _coolDownE: 7
   _coolDownR: 10
+  _isSafeZone: 0
+  _isPlayerAlive: 0
 --- !u!1 &3021701589120056927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2490,7 +2493,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 3, y: 0.2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

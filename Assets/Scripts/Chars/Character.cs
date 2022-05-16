@@ -27,6 +27,7 @@ public class Character : MonoBehaviour
     //Poco más
 
     protected GeneralStats _generalStats;
+    protected GameManager _gm;
 
 
     protected void NormalSetUp(string name, int health, int mana, float healthReg, float manaReg, float armor,
@@ -158,6 +159,7 @@ public class Character : MonoBehaviour
         _anim.SetTrigger("Die");
         if (!gameObject.CompareTag("Player"))
         {
+            _gm.EnemyKilled();
             Destroy(gameObject);
         }
     }

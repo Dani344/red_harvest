@@ -11,6 +11,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BaseCentral.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Coin.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -61,6 +62,7 @@
       <workItem from="1652203458240" duration="963000" />
       <workItem from="1652279512980" duration="1900000" />
       <workItem from="1652368842746" duration="4591000" />
+      <workItem from="1652711947643" duration="7486000" />
     </task>
     <servers />
   </component>
@@ -71,5 +73,24 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Chars/Player/PlayerMovement.cs</url>
+          <line>199</line>
+          <properties documentPath="C:\Alumnos\Daniel Carrillo\ProyectosCurso\red_harvest\Assets\Scripts\Chars\Player\PlayerMovement.cs" initialLine="196" containingFunctionPresentation="method 'AttacksInputs'">
+            <startOffsets>
+              <option value="6086" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6087" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

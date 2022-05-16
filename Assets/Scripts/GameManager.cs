@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -33,10 +34,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int _totalPlayerCoins;
     [SerializeField] private TMP_Text _coinText;
+    [SerializeField] private float _inGameProgress = 0f;
+    [SerializeField] private TMP_Text _progressText;
     [SerializeField] private bool _playerDead;
+
+    [SerializeField] private TMP_Text _totalGameTimeText;
 
     #endregion
 
+    [SerializeField] private int _totalNumEnemies = 0;
+    [SerializeField] private int _currentNumEnemies = 0;
+
+    private float _totalGameTime = 0f;
+    private float _count = 0f;
     private void Awake()
     {
         _cameraMove = FindObjectOfType<CameraMovement>();
@@ -45,17 +55,34 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        SpawnPlayer();
-        SpawnEnemies();
-
+        _totalNumEnemies = 0;
+        _currentNumEnemies = 0;
+        
         var temp = "Coins: 0";
         _coinText.text = temp;
         _totalPlayerCoins = 0;
+        _inGameProgress = 0f;
+        _totalGameTime = 0f;
+        _count = 0f;
+        
+        SpawnPlayer();
+        SpawnEnemies();
+        
+        ProgressInGame();
     }
     
+    
+    //CONTADOR TIMER TOTAL
     /*
     private void Update()
     {
+        _count += Time.deltaTime;
+        if (_count > 1f)
+        {
+            _totalGameTime += _count;
+            _count = 0f;
+            TimerGameText();
+        }
         
     }*/
 
@@ -84,10 +111,12 @@ public class GameManager : MonoBehaviour
             {
                 //TENER EN CUENTA SI EL SETUP LO HACEMOS AQUI SI QUEREMOS ALGO ESPECIAL??
                 Instantiate(_enemiesPrefabs[0], _enemiesSpawns[i].transform.position, Quaternion.identity);
-                
+                _totalNumEnemies += 1;
             }
             
         }
+
+        _currentNumEnemies = _totalNumEnemies;
     }
 
     public void RecolectCoin(int ammount)
@@ -96,6 +125,39 @@ public class GameManager : MonoBehaviour
         var newCoinsText = "Coins: " + _totalPlayerCoins;
         _coinText.text = newCoinsText;
     }
+
+    public void ProgressInGame()
+    {
+        //Debug.Log(_currentNumEnemies + "CURRENT E");
+        var porcentajeRestante = (float) _currentNumEnemies / _totalNumEnemies;
+        _inGameProgress = (1f - porcentajeRestante) * 100f;
+        //Debug.Log(_inGameProgress + "PROG");
+        var texto = _inGameProgress + " %";
+        _progressText.text = texto;
+    }
+
+    public void EnemyKilled()
+    {
+        _currentNumEnemies -= 1;
+        if (_currentNumEnemies == 0)
+        {
+            Debug.Log("NO QUEDAN ENEMIGOS EN EL MAPA");
+        }
+        
+        ProgressInGame();
+    }
+
+    private void TimerGameText()
+    {
+        var totalTime = Mathf.RoundToInt(_totalGameTime);
+        _totalGameTimeText.text = totalTime.ToString();
+    }
+    
+    
+    
+    
+    
+    
     
     
 }
