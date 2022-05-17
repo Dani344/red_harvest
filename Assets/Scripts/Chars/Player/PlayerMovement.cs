@@ -29,6 +29,7 @@ public class PlayerMovement : Character
     #region CoolDownsAndUI
 
     [SerializeField] private Image _abilityQ, _abilityW, _abilityE, _abilityR;
+    [SerializeField] private Image _healthBarMain;
     [SerializeField] private float _coolDownQ, _coolDownW, _coolDownE, _coolDownR;
 
     private bool _isOnCoolDownQ, _isOnCoolDownW, _isOnCoolDownE, _isOnCoolDownR;
@@ -47,6 +48,10 @@ public class PlayerMovement : Character
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         _healthBar = GetComponentInChildren<SpriteRenderer>();
+    
+        //MAIN HP BAR REFEERENCE
+        var mainHp = GameObject.FindWithTag("MainHpBar");
+        _healthBarMain = mainHp.GetComponent<Image>();
 
         //ZONA COOLDOWN INIT/UI
         var icons = GameObject.FindGameObjectsWithTag("AbilitiesIcons");
@@ -90,7 +95,8 @@ public class PlayerMovement : Character
         
         ShowCharacterInformation();
 
-        _hpBarTextNumber.text = _currentHp + " / " + _generalStats.Health;
+        //_hpBarTextNumber.text = _currentHp + " / " + _generalStats.Health;
+        HpBarUpdate();
 
         _currentSpeed = _generalStats.MoveSpeed;
         _shieldCol.enabled = false;
@@ -162,6 +168,9 @@ public class PlayerMovement : Character
         //ATTACK ZONE
         AttacksInputs();
         UtilityInput();
+        
+        //PORQUE EL VALOR BASE DE LA IMAGEN DE ENCIMA DEL CHARACTER ES 3 por eso * 0.33f.
+        _healthBarMain.fillAmount = _healthBar.size.x * 0.33f;
     }
 
     private float DistanceToPoint(Vector3 destination)
@@ -369,7 +378,8 @@ public class PlayerMovement : Character
     {
         return _isPlayerAlive;
     }
-
+    
+    //se utiliza como evento en la animacion de la muerte del jugador!!!
     public void PlayerDeath()
     {
         _isPlayerAlive = false;
@@ -378,6 +388,8 @@ public class PlayerMovement : Character
     {
         _isSafeZone = safe;
     }
+    
+    
     private IEnumerator CoolDown()
     {
         Debug.Log("CUENTA ATRAS INICIADA");

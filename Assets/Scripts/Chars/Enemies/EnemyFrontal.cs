@@ -18,6 +18,7 @@ public class EnemyFrontal : Enemy
         _anim = GetComponent<Animator>();
         _healthBar = GetComponentInChildren<SpriteRenderer>();
         _navMesh = GetComponent<NavMeshAgent>();
+        _gm = FindObjectOfType<GameManager>();
     }
     
     private void Start()
@@ -41,7 +42,7 @@ public class EnemyFrontal : Enemy
         AggroHPBarColor(Color.yellow);
     }
     //_____________
-    //HAY QUE ARREGLAR QUE CUANDO ESTA EN RANGO EL PLAYER VUELVA CORRECTAMENTE A SU POSITION.
+    //COMPROBAR CODIGO INNECESARIO!!!! SOBRETODO CON LOS ISSTOPPED.... 
     //_____________
     private void Update()
     {
@@ -51,13 +52,13 @@ public class EnemyFrontal : Enemy
         {
             ReturnSpawnPoint();
         }
-
-
+        
         //END TEST///
         
         if (!_isActive) return;
         if (_isActive && _isReturning)
         {
+            _navMesh.isStopped = false;
             if (_navMesh.remainingDistance < 0.25f)
             {
                 _isReturning = false;
@@ -65,7 +66,7 @@ public class EnemyFrontal : Enemy
             }
             return;
         }
-        
+
         CheckTargetInRange();
         _newPathCount += Time.deltaTime;
 

@@ -21,8 +21,10 @@ public class EnemyRangeActive : MonoBehaviour
         //Debug.Log("DETECTO PLAYER DESDE ENEMIGORANGEACTIVE");
         if (other.CompareTag("Player"))
         {
-            if (_enemy.isEnemyActive()) return;
             
+            if (_enemy.isEnemyActive()) return;
+            if (_enemy.isEnemyReturning()) return;
+            Debug.Log("BUSCA PLAYER");
             var _player = other.gameObject;
             _enemy.ActiveEnemy(_player);
             //_rangeCollider.enabled = false;

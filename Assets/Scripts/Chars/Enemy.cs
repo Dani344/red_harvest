@@ -118,7 +118,10 @@ public class Enemy : Character
     {
         return _isActive;
     }
-
+    
+    public bool isEnemyReturning(){
+        return _isReturning;
+    }
     
     
     
