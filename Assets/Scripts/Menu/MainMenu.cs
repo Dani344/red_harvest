@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayButton(){
+    
+    //TEMPORALMENTE
+    //IMPLEMENTAR CODIGO PARA HACERLO CORRECTAMENTE POSTERIORMENTE
+    public void PlayButton()
+    {
         SceneManager.LoadScene("PlayingScene");
     }
 
-    public void ExitButton(){
+    public void QuitButton()
+    {
+        Debug.Log("QUEREMOS SALIR DEL JUEGO");
         Application.Quit();
     }
+    
 }

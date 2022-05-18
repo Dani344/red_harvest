@@ -810,7 +810,9 @@ MonoBehaviour:
   _enemiesPrefabs:
   - {fileID: 857629878538066487, guid: 4b102182b4094d248a70f72dc6c0e2c9, type: 3}
   - {fileID: 857629878538066487, guid: 8a8e38b8be346c64cb48f26046ca8ee9, type: 3}
-  _boss: {fileID: 0}
+  _bossPrefab: {fileID: 857629878538066487, guid: f1f4948418a25ea4e96f0dbc0fd072e2,
+    type: 3}
+  _bossSpawn: {fileID: 743218079}
   _totalPlayerCoins: 0
   _coinText: {fileID: 1847170083}
   _inGameProgress: 0
@@ -1210,6 +1212,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &743218078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 743218079}
+  m_Layer: 0
+  m_Name: BossSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &743218079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743218078}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 82.2, y: 0, z: 69.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1847985280}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &863451958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1542,7 +1574,7 @@ MonoBehaviour:
   _movementSpeed: 8
   _hScreenPercentage: 0.1
   _vScreenPercentage: 0.1
-  _angle: 50
+  _angle: 53
   _distance: 13
 --- !u!1 &1036435494
 GameObject:
@@ -2631,6 +2663,7 @@ Transform:
   - {fileID: 648514156}
   - {fileID: 186578355}
   - {fileID: 1878355400}
+  - {fileID: 743218079}
   m_Father: {fileID: 2098725256}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

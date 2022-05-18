@@ -151,6 +151,11 @@ public class Character : MonoBehaviour
         
         _hpBarTextNumber.text = mitexto;
         
+        HpBarLookCamera();
+    }
+
+    protected void HpBarLookCamera()
+    {
         _healthBar.transform.forward = _camera.transform.forward;
     }
     

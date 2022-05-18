@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,7 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] _enemiesSpawns;
     [SerializeField] private GameObject[] _enemiesPrefabs;
     
-    [SerializeField] private GameObject _boss;
+    [SerializeField] private GameObject _bossPrefab;
+    [SerializeField] private Transform _bossSpawn;
     #endregion
 
     #region PlayerInterfaceInfo
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
         
         SpawnPlayer();
         SpawnEnemies();
+        SpawnBoss();
         
         ProgressInGame();
     }
@@ -119,6 +122,16 @@ public class GameManager : MonoBehaviour
         _currentNumEnemies = _totalNumEnemies;
     }
 
+    private void SpawnBoss()
+    {
+        if (_bossPrefab)
+        {
+            
+            var boss = Instantiate(_bossPrefab, _bossSpawn.position, Quaternion.identity);
+            boss.transform.localScale = new Vector3(2f, 2f, 2f);
+
+        }
+    }
     public void RecolectCoin(int ammount)
     {
         _totalPlayerCoins += ammount;
@@ -151,6 +164,11 @@ public class GameManager : MonoBehaviour
     {
         var totalTime = Mathf.RoundToInt(_totalGameTime);
         _totalGameTimeText.text = totalTime.ToString();
+    }
+
+    public void FinishGame()
+    {
+        SceneManager.LoadScene("GameResume");
     }
     
     

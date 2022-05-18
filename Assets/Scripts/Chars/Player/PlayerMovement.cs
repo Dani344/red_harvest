@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 //using UnityEngine.UIElements;
@@ -38,6 +39,10 @@ public class PlayerMovement : Character
 
     [SerializeField] private bool _isSafeZone;
     [SerializeField] private bool _isPlayerAlive;
+
+    [SerializeField] private bool _isGoingBase = false;
+
+    //private GameManager _gm;
     
     
     
@@ -69,6 +74,8 @@ public class PlayerMovement : Character
         _shieldCol = _shield.GetComponent<Collider>();
         _shieldRender = _shield.GetComponent<MeshRenderer>();
         ///ENDZONA SHIELD
+
+        _gm = FindObjectOfType<GameManager>();
 
     }
     
@@ -106,15 +113,38 @@ public class PlayerMovement : Character
     }
     private void Update()
     {
+        //No permitimos los controles si esta muerto
+        if (!_isPlayerAlive) return;
+        
+        //Iría a base only.
+        //if (_isGoingBase) return;
+        
         //Boton izquierdo raton
         if (Input.GetMouseButtonDown(0))
         {
-            //Tirar raycast
-            //Si es enemigo, seleccionarlo ¿?
-            //Si es terreno, no hacer nada.
-            //Si es objeto, informar qué es.
-            //Si es player, mostrar info tmb.??
-            Debug.Log("FALTA PROGRAMAR ESTE BOTON");
+            //EL problema es que el collider del RangeActiveEnemy está por allá.
+            //Gestionar Layers del terreno y seleccionables vs layers que dan igual y/o colliders/tags.
+            RaycastHit hit;
+            //LayerMask mask = LayerMask.GetMask("Ground");
+            var ray = _camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, _distanceRaycast))
+            {
+                //Si es enemigo, seleccionarlo ¿?
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    Debug.Log("Selecciono Enemy");
+                }
+                //Si es terreno, no hacer nada.
+
+                if (hit.collider.CompareTag("Ground"))
+                {
+                    Debug.Log("TERRENO CLICK IZQ");
+                }
+                
+                //Si es objeto, informar qué es.
+                //Si es player, mostrar info tmb.??
+                
+            }
         }
         
         //Boton derecho raton
@@ -125,6 +155,7 @@ public class PlayerMovement : Character
             var ray = _camera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, _distanceRaycast, mask))
             {
+                //_isGoingBase = false;
                 
                 //Segun el tag nos moveremos/atacaremos o seleccionaremos algo.
                 
@@ -145,7 +176,7 @@ public class PlayerMovement : Character
                 //-- atacarle con basic attack teniendo en cuenta el rango?? Si no está a rango, avanzar hasta estar en rango.
             }
         }
-        
+        //_________________________________________________
         //Mechanical Test for Dmg
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -153,8 +184,20 @@ public class PlayerMovement : Character
             
             Debug.Log("Vida Actual: " + _currentHp);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            TestFinishGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            _isGoingBase = true;
+            Debug.Log("QUIERO VOLVER A BASE");
+        }
         
         
+        //_____________________________________________________
         //Comprobamos si ha llegado al destino del click
         if (DistanceToPoint(_destination) > 0.05f)
         {
@@ -276,9 +319,8 @@ public class PlayerMovement : Character
         }
         else
         {
-            Debug.Log("Error con algun lanzamiento");
             return Vector3.zero;
-            
+            Debug.Log("Error con algun lanzamiento");
         }
     }
     private void AbilityQ()
@@ -378,7 +420,7 @@ public class PlayerMovement : Character
     {
         return _isPlayerAlive;
     }
-    
+
     //se utiliza como evento en la animacion de la muerte del jugador!!!
     public void PlayerDeath()
     {
@@ -403,6 +445,11 @@ public class PlayerMovement : Character
         yield return new WaitForSeconds(cooldownTime);
     }
     //Global cooldown ??
+
+    public void TestFinishGame()
+    {
+        _gm.FinishGame();
+    }
     
     
     
