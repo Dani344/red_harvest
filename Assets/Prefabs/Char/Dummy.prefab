@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 98106620}
   m_Layer: 0
   m_Name: RangeDetection
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
