@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class Enemy : Character
     [SerializeField] protected GameObject _playerTarget;
     [SerializeField] protected PlayerMovement _playerScript;
 
-    [SerializeField] private Vector3 _spawnPoint;
+    [SerializeField] protected Vector3 _spawnPoint;
 
     [SerializeField] protected bool _isReturning = false;
 
@@ -27,19 +28,17 @@ public class Enemy : Character
     
     //CUIDADO POR QUE SOLO CONTEMPLAMOS AL PLAYER
 
-    protected void SetSpawnPoint()
+
+  protected void SetSpawnPoint()
     {
-        //PREGUNTAR POR QUE LA PRIMERA LINEA SE ACTUALIZA CON EL MOVIMIENTO Y LA SEGUNDA NO
-        
-        var pos = gameObject.transform.position;
-        var pos2 = GetComponent<Transform>().position;
-        _spawnPoint = pos2;
+        var pos = transform.position;
+        _spawnPoint = pos;
     }
     
     
     public void ActiveEnemy(GameObject miTarget)
     {
-        //SetPlayerTargetReference();
+        
         _playerTarget = miTarget;
         if (_playerTarget)
         {

@@ -1,9 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
-//using UnityEngine.UIElements;
 using UnityEngine.UI;
 
 public class PlayerMovement : Character
@@ -32,15 +29,21 @@ public class PlayerMovement : Character
     [SerializeField] private Image _abilityQ, _abilityW, _abilityE, _abilityR;
     [SerializeField] private Image _healthBarMain;
     [SerializeField] private float _coolDownQ, _coolDownW, _coolDownE, _coolDownR;
-
+    
+    [SerializeField] private Image _castBar;
+    [SerializeField] private bool _isGoingBase = false;
+    
     private bool _isOnCoolDownQ, _isOnCoolDownW, _isOnCoolDownE, _isOnCoolDownR;
     
     #endregion
 
+    [SerializeField] private GameObject _baseParticlePrefab;
+    [SerializeField] private GameObject _AoePrefab;
+
     [SerializeField] private bool _isSafeZone;
     [SerializeField] private bool _isPlayerAlive;
 
-    [SerializeField] private bool _isGoingBase = false;
+    
 
     //private GameManager _gm;
     
@@ -57,6 +60,9 @@ public class PlayerMovement : Character
         //MAIN HP BAR REFEERENCE
         var mainHp = GameObject.FindWithTag("MainHpBar");
         _healthBarMain = mainHp.GetComponent<Image>();
+
+        var castBar = GameObject.FindWithTag("CastBar");
+        _castBar = castBar.GetComponent<Image>();
 
         //ZONA COOLDOWN INIT/UI
         var icons = GameObject.FindGameObjectsWithTag("AbilitiesIcons");
@@ -104,7 +110,7 @@ public class PlayerMovement : Character
 
         //_hpBarTextNumber.text = _currentHp + " / " + _generalStats.Health;
         HpBarUpdate();
-
+        _castBar.fillAmount = 0f;
         _currentSpeed = _generalStats.MoveSpeed;
         _shieldCol.enabled = false;
         _shieldRender.enabled = false;
@@ -150,6 +156,7 @@ public class PlayerMovement : Character
         //Boton derecho raton
         if (Input.GetMouseButtonDown(1))
         {
+            _isGoingBase = false;
             RaycastHit hit;
             LayerMask mask = LayerMask.GetMask("Ground");
             var ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -170,8 +177,7 @@ public class PlayerMovement : Character
                 
                 //Controlar que solo mire a la camara una vez se haya centrado.
                 _healthBar.transform.forward = _camera.transform.forward;
-
-
+                
                 //Caso de que sea enemigo
                 //-- atacarle con basic attack teniendo en cuenta el rango?? Si no está a rango, avanzar hasta estar en rango.
             }
@@ -185,6 +191,11 @@ public class PlayerMovement : Character
             Debug.Log("Vida Actual: " + _currentHp);
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            var temp = Instantiate(_AoePrefab, transform.position, Quaternion.identity);
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             TestFinishGame();
@@ -193,8 +204,28 @@ public class PlayerMovement : Character
         if (Input.GetKeyDown(KeyCode.B))
         {
             _isGoingBase = true;
-            Debug.Log("QUIERO VOLVER A BASE");
+            
+            StopMove();
+            var particle = Instantiate(_baseParticlePrefab, transform.position, Quaternion.identity);
+            
         }
+
+        if (_isGoingBase)
+        {
+            _castBar.fillAmount += Time.deltaTime / 5; //quiero que sean 3 segundos aprox de casteo
+            if (_castBar.fillAmount > 0.99f)
+            {
+                //var particle = Instantiate(_baseParticlePrefab, transform.position, Quaternion.identity);
+                _isGoingBase = false;
+                _castBar.fillAmount = 0f;
+                RespawnBase();
+                StopMove();
+                _healthBar.transform.forward = _camera.transform.forward;
+            }
+        }
+        
+        
+        
         
         
         //_____________________________________________________
@@ -450,7 +481,13 @@ public class PlayerMovement : Character
     {
         _gm.FinishGame();
     }
-    
+
+    private void RespawnBase()
+    {
+        transform.position = _gm._playerSpawnPoint.position;
+        var temp = _camera.GetComponent<CameraMovement>();
+        temp.Center();
+    }
     
     
 }

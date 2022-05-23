@@ -18,6 +18,7 @@ TagManager:
   - SpawnEnemy
   - Shield
   - MainHpBar
+  - CastBar
   layers:
   - Default
   - TransparentFX

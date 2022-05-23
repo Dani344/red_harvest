@@ -56,17 +56,25 @@ public class EnemyFrontal : Enemy
         //END TEST///
         
         if (!_isActive) return;
+        
         if (_isActive && _isReturning)
         {
             _navMesh.isStopped = false;
             //NO OPTIMO PERO DE ES TEMPORAL
             HpBarLookCamera();
+
+            _isActive = (_navMesh.remainingDistance < 0.25f);
+            _isReturning = _isActive;
+            return;
+            
+            /*
             if (_navMesh.remainingDistance < 0.25f)
             {
                 _isReturning = false;
                 _isActive = false;
             }
             return;
+            */
         }
 
         CheckTargetInRange();

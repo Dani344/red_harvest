@@ -1089,6 +1089,13 @@ MonoBehaviour:
   _coolDownW: 4
   _coolDownE: 7
   _coolDownR: 10
+  _castBar: {fileID: 3026313823209568062, guid: 5a336363a4566b54faa1e50bd11cea4c,
+    type: 3}
+  _isGoingBase: 0
+  _baseParticlePrefab: {fileID: 1149436831323858933, guid: 4410dc9aad25c604b9e47e1371b856e7,
+    type: 3}
+  _AoePrefab: {fileID: 6023937025087150159, guid: 25a726d59dbe1fe41ac52f285f2b665b,
+    type: 3}
   _isSafeZone: 0
   _isPlayerAlive: 0
 --- !u!1 &3021701589120056927

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] private float _angle;
     [SerializeField] private float _distance;
+
+    private float _distanceMin = 5f;
+    private float _distanceMax = 20f; 
     
     // private void Awake(){
         
@@ -26,6 +30,26 @@ public class CameraMovement : MonoBehaviour
             CenterAtPlayer();
         }
         MoveCamera();
+
+        
+        var scrollMouse = Input.mouseScrollDelta;
+
+        if (scrollMouse.y < 0f)
+        {
+            _distance += Time.deltaTime * 10f;
+        }
+        else if (scrollMouse.y > 0f)
+        {
+            _distance -= Time.deltaTime * 10f;
+        }
+
+        _distance = Mathf.Clamp(_distance, _distanceMin, _distanceMax);
+        Debug.Log(_distance);
+        
+        
+        
+        
+        
     }
     // private void FixedUpdate(){
     //     //MoveCamera();

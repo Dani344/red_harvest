@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _map;
 
     [SerializeField] private GameObject _player;
-    [SerializeField] private Transform _playerSpawnPoint;
+    [SerializeField] public Transform _playerSpawnPoint;
     
     [SerializeField] private GameObject[] _enemiesSpawns;
     [SerializeField] private GameObject[] _enemiesPrefabs;
