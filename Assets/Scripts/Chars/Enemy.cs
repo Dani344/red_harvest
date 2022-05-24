@@ -123,7 +123,7 @@ public class Enemy : Character
     }
     
     
-    
+    //Para plantear que se active si recibe daño -> probablemente evento.
     public void EnemyTakeDamage(int dmg, int what)
     {
         

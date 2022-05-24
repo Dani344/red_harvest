@@ -7,7 +7,7 @@ public class BaseCentral : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(PaperConstants.TAG_PLAYER))
         {
             var player = other.GetComponent<PlayerMovement>();
             if (!player.isPlayerSafeZone())
@@ -19,7 +19,7 @@ public class BaseCentral : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(PaperConstants.TAG_PLAYER))
         {
             //Quitamos la cura/mana reg OP del player
             var player = other.GetComponent<PlayerMovement>();

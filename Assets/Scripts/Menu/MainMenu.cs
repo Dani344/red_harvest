@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     //IMPLEMENTAR CODIGO PARA HACERLO CORRECTAMENTE POSTERIORMENTE
     public void PlayButton()
     {
-        SceneManager.LoadScene("PlayingScene");
+        SceneManager.LoadScene(PaperConstants.SCENE_PLAYING);
     }
 
     public void QuitButton()

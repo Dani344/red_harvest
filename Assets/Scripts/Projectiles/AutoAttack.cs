@@ -26,13 +26,13 @@ public class AutoAttack : Projectil
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Walls"))
+        if (other.CompareTag(PaperConstants.TAG_WALLS))
         {
             Die();
         }
         
         
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(PaperConstants.TAG_PLAYER))
         {
             var temp = other.gameObject.GetComponent<Character>();
             if (temp)

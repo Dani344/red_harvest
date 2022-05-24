@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2035387743723010946}
   - component: {fileID: 5500999480608946112}
   - component: {fileID: 8071228700065002173}
-  - component: {fileID: 2056123837}
+  - component: {fileID: 1050238504279902248}
   m_Layer: 0
   m_Name: Boss_Dummy
   m_TagString: Enemy
@@ -158,7 +158,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!114 &2056123837
+--- !u!114 &1050238504279902248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 857629878538066487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ce027f2a1772342a27a218c84332a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f999a2f388568346953f908c0925410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _currentSpeed: 0
@@ -185,8 +185,8 @@ MonoBehaviour:
   _playerScript: {fileID: 0}
   _spawnPoint: {x: 0, y: 0, z: 0}
   _isReturning: 0
-  _projectilPrefab: {fileID: 2604597369965400599, guid: 54d023a535c3f244897672c363140ec9,
-    type: 3}
+  _balls: {fileID: 0}
+  _meteo: {fileID: 0}
 --- !u!1 &2260129794535968603
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 5}
+  m_SizeDelta: {x: 25, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &3582003537722943815
 MeshRenderer:

@@ -58,14 +58,14 @@ public class PlayerMovement : Character
         _healthBar = GetComponentInChildren<SpriteRenderer>();
     
         //MAIN HP BAR REFEERENCE
-        var mainHp = GameObject.FindWithTag("MainHpBar");
+        var mainHp = GameObject.FindWithTag(PaperConstants.TAG_MAIN_HPBAR);
         _healthBarMain = mainHp.GetComponent<Image>();
 
-        var castBar = GameObject.FindWithTag("CastBar");
+        var castBar = GameObject.FindWithTag(PaperConstants.TAG_CAST_BAR);
         _castBar = castBar.GetComponent<Image>();
 
         //ZONA COOLDOWN INIT/UI
-        var icons = GameObject.FindGameObjectsWithTag("AbilitiesIcons");
+        var icons = GameObject.FindGameObjectsWithTag(PaperConstants.TAG_ABILITIES_ICONS);
 
         _abilityQ = icons[0].GetComponent<Image>();
         _abilityW = icons[1].GetComponent<Image>();
@@ -75,7 +75,7 @@ public class PlayerMovement : Character
         
         
         ///ZONA SHIELD
-        _shield = GameObject.FindWithTag("Shield");
+        _shield = GameObject.FindWithTag(PaperConstants.TAG_SHIELD);
 
         _shieldCol = _shield.GetComponent<Collider>();
         _shieldRender = _shield.GetComponent<MeshRenderer>();
@@ -136,13 +136,13 @@ public class PlayerMovement : Character
             if (Physics.Raycast(ray, out hit, _distanceRaycast))
             {
                 //Si es enemigo, seleccionarlo ¿?
-                if (hit.collider.CompareTag("Enemy"))
+                if (hit.collider.CompareTag(PaperConstants.TAG_ENEMY))
                 {
                     Debug.Log("Selecciono Enemy");
                 }
                 //Si es terreno, no hacer nada.
 
-                if (hit.collider.CompareTag("Ground"))
+                if (hit.collider.CompareTag(PaperConstants.TAG_GROUND))
                 {
                     Debug.Log("TERRENO CLICK IZQ");
                 }
@@ -158,7 +158,7 @@ public class PlayerMovement : Character
         {
             _isGoingBase = false;
             RaycastHit hit;
-            LayerMask mask = LayerMask.GetMask("Ground");
+            LayerMask mask = LayerMask.GetMask(PaperConstants.LAYER_GROUND);
             var ray = _camera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, _distanceRaycast, mask))
             {
@@ -335,7 +335,7 @@ public class PlayerMovement : Character
     private Vector3 AbilityDirection()
     {
         RaycastHit hit;
-        LayerMask mask = LayerMask.GetMask("Ground");
+        LayerMask mask = LayerMask.GetMask(PaperConstants.LAYER_GROUND);
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 500f, mask))
         {
@@ -388,7 +388,7 @@ public class PlayerMovement : Character
             {
                 RaycastHit hit;
                 var ray = _camera.ScreenPointToRay(Input.mousePosition);
-                LayerMask mask = LayerMask.GetMask("Ground");
+                LayerMask mask = LayerMask.GetMask(PaperConstants.LAYER_GROUND);
                     
                 if (Physics.Raycast(ray, out hit, _distanceRaycast, mask))
                 {
@@ -465,7 +465,6 @@ public class PlayerMovement : Character
     
     private IEnumerator CoolDown()
     {
-        Debug.Log("CUENTA ATRAS INICIADA");
         yield return new WaitForSeconds(5f);
         _shieldCol.enabled = false;
         _shieldRender.enabled = false;

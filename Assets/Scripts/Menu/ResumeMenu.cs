@@ -8,7 +8,7 @@ public class ResumeMenu : MonoBehaviour
     public void ReturnMainMenu()
     {
         Debug.Log("Vamos al menu principal");
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(PaperConstants.SCENE_MAIN_MENU);
     }
 
     public void OtroButton()

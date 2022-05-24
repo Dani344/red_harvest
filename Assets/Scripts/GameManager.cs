@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
     
     private void SpawnEnemies()
     {
-        var temp = GameObject.FindGameObjectsWithTag("SpawnEnemy");
+        var temp = GameObject.FindGameObjectsWithTag(PaperConstants.TAG_SPAWN_ENEMY);
         _enemiesSpawns = temp;
 
         for (int i = 0; i < _enemiesSpawns.Length; i++)
@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
-        SceneManager.LoadScene("GameResume");
+        SceneManager.LoadScene(PaperConstants.SCENE_RESUME);
     }
     
     

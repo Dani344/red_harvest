@@ -28,12 +28,12 @@ public class Ball : Projectil
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Walls"))
+        if (other.CompareTag(PaperConstants.TAG_WALLS))
         {
             Die();
         }
         
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag(PaperConstants.TAG_ENEMY))
         {
             var temp = other.gameObject.GetComponent<Enemy>();
             if (temp)

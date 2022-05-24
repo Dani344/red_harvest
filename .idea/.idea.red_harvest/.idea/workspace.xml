@@ -19,8 +19,10 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PaperConstants.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BaseParticleTime.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Menu/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Chars/Enemies/Enemy_Boss.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BaseCentral.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Coin.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -74,6 +76,7 @@
       <workItem from="1652711947643" duration="7486000" />
       <workItem from="1652882533845" duration="2137000" />
       <workItem from="1653316869883" duration="6809000" />
+      <workItem from="1653401397556" duration="9418000" />
     </task>
     <servers />
   </component>
@@ -84,24 +87,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Chars/Player/PlayerMovement.cs</url>
-          <line>273</line>
-          <properties documentPath="C:\Alumnos\Daniel Carrillo\ProyectosCurso\red_harvest\Assets\Scripts\Chars\Player\PlayerMovement.cs" initialLine="242" containingFunctionPresentation="method 'AttacksInputs'">
-            <startOffsets>
-              <option value="8604" />
-            </startOffsets>
-            <endOffsets>
-              <option value="8605" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

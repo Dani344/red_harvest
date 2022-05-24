@@ -31,6 +31,9 @@ public class DebuffAoeBehaviour : MonoBehaviour
     }
     
     
+    
+    
+    //CUIDADO QUE NO ES RECOMENDABLE EL CONTADOR Y GETEAR CHARACTER TOh EL RATO....
     private void OnTriggerStay(Collider other)
     {
         //var temp = other.GetComponent<Collider>();

@@ -15,6 +15,8 @@ public class CameraMovement : MonoBehaviour
     private float _distanceMin = 5f;
     private float _distanceMax = 20f; 
     
+    
+    
     // private void Awake(){
         
     // }
@@ -30,25 +32,22 @@ public class CameraMovement : MonoBehaviour
             CenterAtPlayer();
         }
         MoveCamera();
-
         
         var scrollMouse = Input.mouseScrollDelta;
 
         if (scrollMouse.y < 0f)
         {
-            _distance += Time.deltaTime * 10f;
+            _distance += Time.deltaTime * PaperConstants.ZOOM_CAMERA_SENSIVITY;
         }
         else if (scrollMouse.y > 0f)
         {
-            _distance -= Time.deltaTime * 10f;
+            _distance -= Time.deltaTime * PaperConstants.ZOOM_CAMERA_SENSIVITY;
         }
 
-        _distance = Mathf.Clamp(_distance, _distanceMin, _distanceMax);
+        _distance = Mathf.Clamp(_distance, PaperConstants.ZOOM_CAMERA_MIN_DISTANCE, PaperConstants.ZOOM_CAMERA_MAX_DISTANCE);
+        
+        
         Debug.Log(_distance);
-        
-        
-        
-        
         
     }
     // private void FixedUpdate(){
@@ -64,22 +63,22 @@ public class CameraMovement : MonoBehaviour
         //Debug.Log(mousePos.x + "," + mousePos.y);
         
         //Horizontal
-        if (mousePos.x < w * _hScreenPercentage){
-            transform.position -= new Vector3(0f,0f,1f) * _movementSpeed * Time.deltaTime;
-        }else if (mousePos.x > w - (w * _hScreenPercentage)){
-                transform.position += new Vector3 (0f, 0f, 1f) * _movementSpeed * Time.deltaTime;
+        if (mousePos.x < w * PaperConstants.HIGH_SCREEN_PERCENTAGE){
+            transform.position -=  Vector3.forward * _movementSpeed * Time.deltaTime;
+        }else if (mousePos.x > w - (w * PaperConstants.HIGH_SCREEN_PERCENTAGE)){
+                transform.position += Vector3.forward * _movementSpeed * Time.deltaTime;
         }
 
         //Vertical
-        if (mousePos.y < h * _vScreenPercentage){
-            transform.position += new Vector3(1f, 0f, 0f) * _movementSpeed * Time.deltaTime;
-        }else if (mousePos.y > h - (h * _vScreenPercentage)){
-                transform.position -= new Vector3(1f, 0f, 0f) * _movementSpeed * Time.deltaTime;
+        if (mousePos.y < h * PaperConstants.VERTICAL_SCREEN_PERCENTAGE){
+            transform.position += Vector3.right * _movementSpeed * Time.deltaTime;
+        }else if (mousePos.y > h - (h * PaperConstants.VERTICAL_SCREEN_PERCENTAGE)){
+                transform.position -= Vector3.right * _movementSpeed * Time.deltaTime;
         }
     }
 
     private void CenterAtPlayer(){
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag(PaperConstants.TAG_PLAYER);
 
         float angleRad = Mathf.Deg2Rad * (90 - _angle);
 
