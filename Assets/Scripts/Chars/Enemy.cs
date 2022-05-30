@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal;
+﻿
 using UnityEngine;
-using UnityEngine.AI;
+
 
 public class Enemy : Character
 {
     
     //FALTA QUE LOS ENEMIGOS SEPAN QUE EL JUGADOR O TARGET MUERE PARA DEJAR
     //DE DISPARAR!"!!!!
+    /*
     [SerializeField] protected NavMeshAgent _navMesh;
     [SerializeField] protected bool _isActive;
     [SerializeField] protected Vector3 _targetPos;
     [SerializeField] protected bool _isRange;
 
-    [SerializeField] protected GameObject _playerTarget;
+    [SerializeField] protected GameObject _targetGO;
     [SerializeField] protected PlayerMovement _playerScript;
 
     [SerializeField] protected Vector3 _spawnPoint;
-
+    */
     [SerializeField] protected bool _isReturning = false;
 
 
@@ -39,14 +37,14 @@ public class Enemy : Character
     public void ActiveEnemy(GameObject miTarget)
     {
         
-        _playerTarget = miTarget;
-        if (_playerTarget)
+        _targetGO = miTarget;
+        if (_targetGO)
         {
             _isActive = true;
-            var newTargetPlayer = _playerTarget.transform.position;
+            var newTargetPlayer = _targetGO.transform.position;
             _targetPos = newTargetPlayer;
 
-            _playerScript = _playerTarget.GetComponent<PlayerMovement>();
+            _playerScript = _targetGO.GetComponent<PlayerMovement>();
 
             transform.LookAt(_targetPos);
             FollowTarget(_targetPos);
@@ -59,7 +57,7 @@ public class Enemy : Character
 
     private void SetPlayerTargetReference()
     {
-        _playerTarget = GameObject.FindWithTag("Player");
+        _targetGO = GameObject.FindWithTag("Player");
     }
     
     

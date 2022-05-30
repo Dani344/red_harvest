@@ -68,7 +68,7 @@ public class Enemy_Healer : Enemy
         }
         
         _healthBar.transform.forward = _camera.transform.forward;
-        _targetPos = _playerTarget.transform.position;
+        _targetPos = _targetGO.transform.position;
     }
 
     private void HealEnemy()

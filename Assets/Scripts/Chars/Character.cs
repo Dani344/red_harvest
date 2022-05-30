@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UIElements;
+using UnityEngine.AI;
+
 
 public class Character : MonoBehaviour
 {
@@ -21,6 +19,21 @@ public class Character : MonoBehaviour
     [SerializeField] protected SpriteRenderer _healthBar;
 
     [SerializeField] protected TMP_Text _hpBarTextNumber;
+
+    #region newChanges
+    
+    [SerializeField] protected NavMeshAgent _navMesh;
+    [SerializeField] protected bool _isActive;
+    [SerializeField] protected Vector3 _targetPos;
+    [SerializeField] protected bool _isRange;
+
+    [SerializeField] protected GameObject _targetGO;
+    [SerializeField] protected PlayerMovement _playerScript;
+
+    [SerializeField] protected Vector3 _spawnPoint;
+
+    #endregion
+    
     
     
     //Comportamiento de métodos generales

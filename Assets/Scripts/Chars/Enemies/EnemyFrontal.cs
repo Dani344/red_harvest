@@ -106,7 +106,7 @@ public class EnemyFrontal : Enemy
         }
         
         _healthBar.transform.forward = _camera.transform.forward;
-        _targetPos = _playerTarget.transform.position;
+        _targetPos = _targetGO.transform.position;
         
         //Checkea que no esté en la base el player
         if (_playerScript)

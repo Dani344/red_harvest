@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PaperConstants
 {
+    //===== DEBUG LOG =====
+    public const string SCREEN_MSG = "Error de variable";
+    
+    
+    
     //===== SCENES =====
     public const string SCENE_MAIN_MENU = "MainMenu";
     public const string SCENE_PLAYING = "PlayingScene";

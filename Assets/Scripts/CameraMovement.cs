@@ -47,7 +47,7 @@ public class CameraMovement : MonoBehaviour
         _distance = Mathf.Clamp(_distance, PaperConstants.ZOOM_CAMERA_MIN_DISTANCE, PaperConstants.ZOOM_CAMERA_MAX_DISTANCE);
         
         
-        Debug.Log(_distance);
+        //Debug.Log(_distance);
         
     }
     // private void FixedUpdate(){

@@ -82,6 +82,9 @@ public class PlayerMovement : Character
         ///ENDZONA SHIELD
 
         _gm = FindObjectOfType<GameManager>();
+        
+        //ZONA NEW
+        _navMesh = GetComponent<NavMeshAgent>();
 
     }
     
@@ -107,8 +110,7 @@ public class PlayerMovement : Character
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
         
         ShowCharacterInformation();
-
-        //_hpBarTextNumber.text = _currentHp + " / " + _generalStats.Health;
+        
         HpBarUpdate();
         _castBar.fillAmount = 0f;
         _currentSpeed = _generalStats.MoveSpeed;
@@ -128,8 +130,6 @@ public class PlayerMovement : Character
         //Boton izquierdo raton
         if (Input.GetMouseButtonDown(0))
         {
-            //EL problema es que el collider del RangeActiveEnemy está por allá.
-            //Gestionar Layers del terreno y seleccionables vs layers que dan igual y/o colliders/tags.
             RaycastHit hit;
             //LayerMask mask = LayerMask.GetMask("Ground");
             var ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -153,10 +153,13 @@ public class PlayerMovement : Character
             }
         }
         
+        
+        
         //Boton derecho raton
         if (Input.GetMouseButtonDown(1))
         {
             _isGoingBase = false;
+            _castBar.fillAmount = 0f;
             RaycastHit hit;
             LayerMask mask = LayerMask.GetMask(PaperConstants.LAYER_GROUND);
             var ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -168,11 +171,31 @@ public class PlayerMovement : Character
                 
                 //Caso de movimiento cuando hit sea Ground/el terreno.
                 //Debug.Log(hit.collider.CompareTag("Ground"));
+                
                 _destination = new Vector3(hit.point.x, 0f, hit.point.z);
                 _direction = _destination - transform.position;
-                _direction.y = 0f;
-                _direction.Normalize();
+
+                if (CheckAngleNewDestination(transform.forward, _direction) > 45f)
+                {
+                    StopMove();
+                    Debug.Log("SE APLICA STOP MOVE");
+                    
+                }
+                
+                
+                
+                
+                //_direction = _destination - transform.position;
+                //_direction.y = 0f;
+                //_direction.Normalize();
+                
+                //DEBERIAMOS LEERPEARLA
                 transform.LookAt(_destination);
+
+                //StopMove();
+                
+                _navMesh.SetDestination(_destination);
+                _anim.SetFloat("isMoving", 1f);
                 
                 
                 //Controlar que solo mire a la camara una vez se haya centrado.
@@ -226,8 +249,21 @@ public class PlayerMovement : Character
         
         
         
+        ///SOLO PARA LA ANIMATION DE MOMENTO
+        if (_navMesh.remainingDistance < 0.1f)
+        {
+            //StopMove();
+            _anim.SetFloat("isMoving", 0f);
+        }
+        else
+        {
+            _anim.SetFloat("isMoving", 1f);
+        }
         
         
+        
+        
+        /*
         //_____________________________________________________
         //Comprobamos si ha llegado al destino del click
         if (DistanceToPoint(_destination) > 0.05f)
@@ -238,7 +274,9 @@ public class PlayerMovement : Character
             //Hacer un lerp en caso de necesidad
             _anim.SetFloat("isMoving", 0f);
         }
-
+        */
+        
+        
         //ATTACK ZONE
         AttacksInputs();
         UtilityInput();
@@ -433,12 +471,24 @@ public class PlayerMovement : Character
 
     private void StopMove()
     {
-        _destination = new Vector3(transform.position.x, 0f, transform.position.z);
+        //_destination = new Vector3(transform.position.x, 0f, transform.position.z);
+        _navMesh.SetDestination(transform.position);
+        _navMesh.velocity = Vector3.zero;
+    }
+
+    private float CheckAngleNewDestination(Vector3 currentDestination, Vector3 newDestination)
+    {
+        var angle = Vector3.Angle(currentDestination, newDestination);
+        
+        Debug.Log(angle);
+        
+        return angle;
     }
 
     public void HealthBarLookCamera(Transform camTrans)
     {
         _healthBar.transform.LookAt(camTrans);
+        //_healthBar.transform.forward = _camera.transform.forward;
         //_healthTransIni = _healthBar.GetComponent<Transform>();
     }
 
@@ -486,6 +536,7 @@ public class PlayerMovement : Character
         transform.position = _gm._playerSpawnPoint.position;
         var temp = _camera.GetComponent<CameraMovement>();
         temp.Center();
+        
     }
     
     
