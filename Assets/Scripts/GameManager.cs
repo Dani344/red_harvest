@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -76,7 +74,7 @@ public class GameManager : MonoBehaviour
     
     
     //CONTADOR TIMER TOTAL
-    /*
+    
     private void Update()
     {
         _count += Time.deltaTime;
@@ -87,7 +85,7 @@ public class GameManager : MonoBehaviour
             TimerGameText();
         }
         
-    }*/
+    }
 
 
 

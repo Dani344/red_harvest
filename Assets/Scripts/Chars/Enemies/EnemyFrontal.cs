@@ -61,7 +61,7 @@ public class EnemyFrontal : Enemy
         {
             _navMesh.isStopped = false;
             //NO OPTIMO PERO DE ES TEMPORAL
-            HpBarLookCamera();
+            //HpBarLookCamera();
 
             
             //_isActive = (_navMesh.remainingDistance < 0.25f);
@@ -105,7 +105,7 @@ public class EnemyFrontal : Enemy
             }
         }
         
-        _healthBar.transform.forward = _camera.transform.forward;
+        //_healthBar.transform.forward = _camera.transform.forward;
         _targetPos = _targetGO.transform.position;
         
         //Checkea que no esté en la base el player

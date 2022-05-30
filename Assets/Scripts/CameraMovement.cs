@@ -94,8 +94,8 @@ public class CameraMovement : MonoBehaviour
     public void Center()
     {
         CenterAtPlayer();
-        var temp = FindObjectOfType<PlayerMovement>();
-        temp.HealthBarLookCamera(transform);
+        //var temp = FindObjectOfType<PlayerMovement>();
+        //temp.HealthBarLookCamera(transform);
     }
 
 }

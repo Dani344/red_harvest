@@ -7,20 +7,7 @@ public class Enemy : Character
     
     //FALTA QUE LOS ENEMIGOS SEPAN QUE EL JUGADOR O TARGET MUERE PARA DEJAR
     //DE DISPARAR!"!!!!
-    /*
-    [SerializeField] protected NavMeshAgent _navMesh;
-    [SerializeField] protected bool _isActive;
-    [SerializeField] protected Vector3 _targetPos;
-    [SerializeField] protected bool _isRange;
-
-    [SerializeField] protected GameObject _targetGO;
-    [SerializeField] protected PlayerMovement _playerScript;
-
-    [SerializeField] protected Vector3 _spawnPoint;
-    */
     [SerializeField] protected bool _isReturning = false;
-
-
     protected float _newPathCount;
     protected float _timeForUpdatePath = 2f;
     

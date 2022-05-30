@@ -43,10 +43,7 @@ public class PlayerMovement : Character
     [SerializeField] private bool _isSafeZone;
     [SerializeField] private bool _isPlayerAlive;
 
-    
-
     //private GameManager _gm;
-    
     
     
     private void Awake()
@@ -112,6 +109,7 @@ public class PlayerMovement : Character
         ShowCharacterInformation();
         
         HpBarUpdate();
+        
         _castBar.fillAmount = 0f;
         _currentSpeed = _generalStats.MoveSpeed;
         _shieldCol.enabled = false;
@@ -199,7 +197,7 @@ public class PlayerMovement : Character
                 
                 
                 //Controlar que solo mire a la camara una vez se haya centrado.
-                _healthBar.transform.forward = _camera.transform.forward;
+                //_healthBar.transform.forward = _camera.transform.forward;
                 
                 //Caso de que sea enemigo
                 //-- atacarle con basic attack teniendo en cuenta el rango?? Si no está a rango, avanzar hasta estar en rango.
@@ -243,7 +241,7 @@ public class PlayerMovement : Character
                 _castBar.fillAmount = 0f;
                 RespawnBase();
                 StopMove();
-                _healthBar.transform.forward = _camera.transform.forward;
+                //_healthBar.transform.forward = _camera.transform.forward;
             }
         }
         
@@ -259,23 +257,6 @@ public class PlayerMovement : Character
         {
             _anim.SetFloat("isMoving", 1f);
         }
-        
-        
-        
-        
-        /*
-        //_____________________________________________________
-        //Comprobamos si ha llegado al destino del click
-        if (DistanceToPoint(_destination) > 0.05f)
-        {
-            transform.position += new Vector3(_direction.x * _currentSpeed * Time.deltaTime, 0f, _direction.z * _currentSpeed * Time.deltaTime);
-            _anim.SetFloat("isMoving", 1f);
-        }else{
-            //Hacer un lerp en caso de necesidad
-            _anim.SetFloat("isMoving", 0f);
-        }
-        */
-        
         
         //ATTACK ZONE
         AttacksInputs();
@@ -381,7 +362,7 @@ public class PlayerMovement : Character
             var mousePosition = hit.point;
             
             transform.LookAt(hit.point);
-            _healthBar.transform.forward = _camera.transform.forward;
+            //_healthBar.transform.forward = _camera.transform.forward;
             
             var abilityDire = mousePosition - transform.position;
             return abilityDire;
@@ -484,13 +465,7 @@ public class PlayerMovement : Character
         
         return angle;
     }
-
-    public void HealthBarLookCamera(Transform camTrans)
-    {
-        _healthBar.transform.LookAt(camTrans);
-        //_healthBar.transform.forward = _camera.transform.forward;
-        //_healthTransIni = _healthBar.GetComponent<Transform>();
-    }
+    
 
     public bool isPlayerSafeZone()
     {

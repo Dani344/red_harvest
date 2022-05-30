@@ -181,7 +181,7 @@ MonoBehaviour:
   _isActive: 0
   _targetPos: {x: 0, y: 0, z: 0}
   _isRange: 0
-  _playerTarget: {fileID: 0}
+  _targetGO: {fileID: 0}
   _playerScript: {fileID: 0}
   _spawnPoint: {x: 0, y: 0, z: 0}
   _isReturning: 0
@@ -373,6 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2809414644986713676}
   - component: {fileID: 4020067964752191970}
+  - component: {fileID: 7190732442755962045}
   m_Layer: 0
   m_Name: HpBar
   m_TagString: Untagged
@@ -445,6 +446,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7190732442755962045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5836176959140619292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfb745ec491c2544959d9b4782bdfb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7487452549040068361
 GameObject:
   m_ObjectHideFlags: 0

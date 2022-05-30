@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected Animator _anim;
     [SerializeField] protected Rigidbody _rb;
 
-    //Barra de salud
+    //Barra de salud --> CAMBIAR POR EL NEW SCRIPT
     [SerializeField] protected SpriteRenderer _healthBar;
 
     [SerializeField] protected TMP_Text _hpBarTextNumber;
@@ -164,13 +164,14 @@ public class Character : MonoBehaviour
         
         _hpBarTextNumber.text = mitexto;
         
-        HpBarLookCamera();
+        //HpBarLookCamera();
     }
 
+    /*
     protected void HpBarLookCamera()
     {
         _healthBar.transform.forward = _camera.transform.forward;
-    }
+    }*/
     
     private void Die()
     {
