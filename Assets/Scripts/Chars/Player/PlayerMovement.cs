@@ -177,8 +177,6 @@ public class PlayerMovement : Character
                 }
                 
                 
-                
-                
                 //_direction = _destination - transform.position;
                 //_direction.y = 0f;
                 //_direction.Normalize();

@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _totalNumEnemies = 0;
     [SerializeField] private int _currentNumEnemies = 0;
 
+    [SerializeField] private int _monolitesActivated = 0;
+
     private float _totalGameTime = 0f;
     private float _count = 0f;
     private void Awake()
@@ -64,6 +66,8 @@ public class GameManager : MonoBehaviour
         _inGameProgress = 0f;
         _totalGameTime = 0f;
         _count = 0f;
+
+        _monolitesActivated = 0;
         
         SpawnPlayer();
         SpawnEnemies();
@@ -168,9 +172,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(PaperConstants.SCENE_RESUME);
     }
-    
-    
-    
+
+    public void MonoliteActivated()
+    {
+        _monolitesActivated += 1;
+    }
     
     
     
