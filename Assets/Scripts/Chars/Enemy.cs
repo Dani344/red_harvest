@@ -12,15 +12,13 @@ public class Enemy : Character
     protected float _timeForUpdatePath = 2f;
     
     //CUIDADO POR QUE SOLO CONTEMPLAMOS AL PLAYER
-
-
+    
   protected void SetSpawnPoint()
     {
         var pos = transform.position;
         _spawnPoint = pos;
     }
-    
-    
+  
     public void ActiveEnemy(GameObject miTarget)
     {
         
@@ -35,18 +33,12 @@ public class Enemy : Character
 
             transform.LookAt(_targetPos);
             FollowTarget(_targetPos);
-            AggroHPBarColor(Color.red);
+            _barManagement.BarUpdateColor(PaperConstants.HP_BAR_COMBAT);
         }
         //SetTarget();
         //_navMesh.SetDestination(_targetPos);
         
     }
-
-    private void SetPlayerTargetReference()
-    {
-        _targetGO = GameObject.FindWithTag("Player");
-    }
-    
     
     protected float GetDistanceToTarget(Vector3 target)
     {
@@ -83,18 +75,12 @@ public class Enemy : Character
 
         return _isRange;
     }
-
-    public void AggroHPBarColor(Color color)
-    {
-        _healthBar.color = color;
-    }
-    
     
     public void ReturnSpawnPoint()
     {
-        _navMesh.SetDestination(_spawnPoint);
         _isReturning = true;
-        AggroHPBarColor(Color.yellow);
+        _navMesh.SetDestination(_spawnPoint);
+        _barManagement.BarUpdateColor(PaperConstants.HP_BAR_NEUTRAL);
         //Recuperar la vida.
     }
 

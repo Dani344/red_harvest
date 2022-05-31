@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PaperConstants
@@ -47,6 +49,12 @@ public class PaperConstants
     
     //Animation
     public const string ANIM_Q = "asdhfjsdf";
+    
+    //Colors NPGs HPsBars
+    public const int HP_BAR_NEUTRAL = 0;
+    public const int HP_BAR_COMBAT = 1;
+    public const int HP_BAR_FRIENDLY = 2;
+    
     
     //===== CAMERA =====
     public const float HIGH_SCREEN_PERCENTAGE = 0.1f;

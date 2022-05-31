@@ -20,7 +20,6 @@ public class Enemy_Boss : Enemy
     {
         _camera = Camera.main;
         _anim = GetComponent<Animator>();
-        _healthBar = GetComponentInChildren<SpriteRenderer>();
         _navMesh = GetComponent<NavMeshAgent>();
         //_gm = FindObjectOfType<GameManager>();
     }
@@ -33,10 +32,10 @@ public class Enemy_Boss : Enemy
         
         ShowCharacterInformation();
         
-        HpBarUpdate();
+        //HpBarUpdate();
         
         SetSpawnPoint();
-        AggroHPBarColor(Color.yellow);
+        //AggroHPBarColor(Color.yellow);
     }
     
 

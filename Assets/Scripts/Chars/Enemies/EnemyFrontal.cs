@@ -9,16 +9,15 @@ public class EnemyFrontal : Enemy
 {
     
     [SerializeField] private GameObject _projectilPrefab;
-    
     private float _count;
     
     private void Awake()
     {
         _camera = Camera.main;
         _anim = GetComponent<Animator>();
-        _healthBar = GetComponentInChildren<SpriteRenderer>();
         _navMesh = GetComponent<NavMeshAgent>();
         _gm = FindObjectOfType<GameManager>();
+        _barManagement = GetComponentInChildren<SpriteBarManagement>();
     }
     
     private void Start()
@@ -28,7 +27,8 @@ public class EnemyFrontal : Enemy
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
         ShowCharacterInformation();
         
-        HpBarUpdate();
+        _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_NEUTRAL);
+        
 
         _count = 0f;
         _isRange = false;
@@ -39,11 +39,9 @@ public class EnemyFrontal : Enemy
         //FUNCION PARA VER SI HACE EL IDIOTA EL MOB
         //_navMesh.isPathStale
         SetSpawnPoint();
-        AggroHPBarColor(Color.yellow);
+        
     }
-    //_____________
-    //COMPROBAR CODIGO INNECESARIO!!!! SOBRETODO CON LOS ISSTOPPED.... 
-    //_____________
+    
     private void Update()
     {
         //TEST//
@@ -60,16 +58,12 @@ public class EnemyFrontal : Enemy
         if (_isActive && _isReturning)
         {
             _navMesh.isStopped = false;
-            //NO OPTIMO PERO DE ES TEMPORAL
-            //HpBarLookCamera();
-
-            
             //_isActive = (_navMesh.remainingDistance < 0.25f);
             //_isReturning = _isActive;
             //return;
             
             
-            if (_navMesh.remainingDistance < 0.25f)
+            if (_navMesh.remainingDistance < 0.15f)
             {
                 _isReturning = false;
                 _isActive = false;
@@ -83,7 +77,6 @@ public class EnemyFrontal : Enemy
 
         if (_newPathCount > _timeForUpdatePath)
         {
-            //Debug.Log("ACTUALIZAS");
             if (!_isRange)
             {
                 _navMesh.isStopped = false;
@@ -105,7 +98,6 @@ public class EnemyFrontal : Enemy
             }
         }
         
-        //_healthBar.transform.forward = _camera.transform.forward;
         _targetPos = _targetGO.transform.position;
         
         //Checkea que no esté en la base el player
@@ -121,27 +113,20 @@ public class EnemyFrontal : Enemy
 
     private void Shoot()
     {
-        
         if (_projectilPrefab)
         {
             var temp = Instantiate(_projectilPrefab, transform.position, Quaternion.identity);
             var newProjectil = temp.GetComponent<Projectil>();
             //COMPROBAR EL DAÑO YA QUE DE MOMENTO ES CONSTANTE
             transform.LookAt(_targetPos);
-            _healthBar.transform.forward = _camera.transform.forward;
+            //_healthBar.transform.forward = _camera.transform.forward;
             var dire = _targetPos - transform.position;
             dire.Normalize();
             newProjectil.ProjectilSetUp(dire, _generalStats.MissileSpeed, 50f);
         }
         
     }
-    /*
-    private void FollowTarget()
-    {
-        //_navMesh.SetDestination(_targetPos);
-        //_navMesh.SetDestination(new Vector3(50,0,50));
-    }*/
-    
+
     /*
     private void OnTriggerEnter(Collider other)
     {

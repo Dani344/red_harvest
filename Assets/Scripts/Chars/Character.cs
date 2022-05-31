@@ -6,43 +6,31 @@ using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
-
-    protected Camera _camera;
     
     [SerializeField] protected float _currentSpeed;
     [SerializeField] protected float _currentHp;
     [SerializeField] protected float _currentMana;
-    [SerializeField] protected Animator _anim;
-    [SerializeField] protected Rigidbody _rb;
-
-    //Barra de salud --> CAMBIAR POR EL NEW SCRIPT
-    [SerializeField] protected SpriteRenderer _healthBar;
-
-    [SerializeField] protected TMP_Text _hpBarTextNumber;
-
-    #region newChanges
-    
-    [SerializeField] protected NavMeshAgent _navMesh;
-    [SerializeField] protected bool _isActive;
-    [SerializeField] protected Vector3 _targetPos;
     [SerializeField] protected bool _isRange;
-
+    [SerializeField] protected bool _isActive;
     [SerializeField] protected GameObject _targetGO;
-    [SerializeField] protected PlayerMovement _playerScript;
-
-    [SerializeField] protected Vector3 _spawnPoint;
-
-    #endregion
     
     
+    #region ReferencesComponents
     
-    //Comportamiento de métodos generales
-    //Poco más
-
+    protected Camera _camera;
+    protected Animator _anim;
+    protected Rigidbody _rb;
+    protected SpriteBarManagement _barManagement;
+    protected NavMeshAgent _navMesh;
+    protected PlayerMovement _playerScript;
     protected GeneralStats _generalStats;
     protected GameManager _gm;
-
-
+    
+    #endregion
+    
+    protected Vector3 _targetPos;
+    protected Vector3 _spawnPoint;
+    
     protected void NormalSetUp(string name, int health, int mana, float healthReg, float manaReg, float armor,
         float magicResist, float attackDamage, float critDamage, int attackRange, int abilityPower, int moveSpeed, float baseAttackSpeed,
         float attackWinUp, float asratio, float bonusAS, int missileSpeed, int level, int neededExp, int xp)
@@ -91,7 +79,6 @@ public class Character : MonoBehaviour
     }
     
     //MEJORAR LOS TAKE DAMAGE!!!!
-    
     //Tenemos en cuenta el armor
     protected void TakePhysicDamage(int damage)
     {
@@ -102,11 +89,9 @@ public class Character : MonoBehaviour
             if (_currentHp < 1)
             {
                 _currentHp = 0f;
-                HpBarUpdate();
                 Die();
                 return;
             }
-            HpBarUpdate();
         }
     }
 
@@ -122,7 +107,7 @@ public class Character : MonoBehaviour
                 Die();
                 
             }
-            HpBarUpdate();
+            //HpBarUpdate();
         }
     }
 
@@ -137,7 +122,7 @@ public class Character : MonoBehaviour
                 Die();
                 return;
             }
-            HpBarUpdate();
+            //HpBarUpdate();
         }
     }
 
@@ -150,28 +135,6 @@ public class Character : MonoBehaviour
             _currentHp = _generalStats.Health;
         }
     }
-
-    
-    //CUIDADO CON LOS VALORES ASOCIADOS EN EL INSPECTOR
-    //ES PROTECTED POR QUE LOS ENEMIGOS LA DEBEN USAR EN EL START.
-    //EVITAR QUE ACTUALICE HP Y MIRE A LA CAMARA (DOS FUNCIONES DISTINTAS MEJOR)))
-    protected void HpBarUpdate()
-    {
-        var temp = _currentHp / _generalStats.Health;
-        temp *= 3f;
-        _healthBar.size = new Vector2(temp, 0.2f);
-        var mitexto = _currentHp + " / " + _generalStats.Health;
-        
-        _hpBarTextNumber.text = mitexto;
-        
-        //HpBarLookCamera();
-    }
-
-    /*
-    protected void HpBarLookCamera()
-    {
-        _healthBar.transform.forward = _camera.transform.forward;
-    }*/
     
     private void Die()
     {
@@ -205,6 +168,7 @@ public class Character : MonoBehaviour
                 break;
         }
         //TakePhysicDamage(dmg);
+        _barManagement.UpdateLifeBar(_currentHp, _generalStats.Health);
     }
     
 

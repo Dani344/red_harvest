@@ -5,32 +5,36 @@ using UnityEngine.UI;
 
 public class PlayerMovement : Character
 {
-    //private Camera _camera;
     [SerializeField] private float _distanceRaycast = 200f;
     
     [SerializeField] private Vector3 _direction;
     [SerializeField] private Vector3 _destination;
-    //[SerializeField] private Rigidbody _rb;
 
-    #region Attack
-    
+    #region AttackPrefabs
+
+    [SerializeField] private GameObject _aaPrefab;
     [SerializeField] private GameObject _ballPrefab, _poisonPrefab;
+    [SerializeField] private GameObject _AoePrefab;
     [SerializeField] private GameObject _ultiPrefab;
     
     #endregion
-
+    
+    #region Shield
+    
     //Temporalmente
     [SerializeField] private GameObject _shield;
-    [SerializeField] private Collider _shieldCol;
-    [SerializeField] private MeshRenderer _shieldRender;
-
+    private Collider _shieldCol;
+    private MeshRenderer _shieldRender;
+    
+    #endregion
+    
     #region CoolDownsAndUI
 
-    [SerializeField] private Image _abilityQ, _abilityW, _abilityE, _abilityR;
-    [SerializeField] private Image _healthBarMain;
-    [SerializeField] private float _coolDownQ, _coolDownW, _coolDownE, _coolDownR;
+    private Image _abilityQ, _abilityW, _abilityE, _abilityR;
+    private Image _healthBarMain;
+    private float _coolDownQ, _coolDownW, _coolDownE, _coolDownR;
     
-    [SerializeField] private Image _castBar;
+    private Image _castBar;
     [SerializeField] private bool _isGoingBase = false;
     
     private bool _isOnCoolDownQ, _isOnCoolDownW, _isOnCoolDownE, _isOnCoolDownR;
@@ -38,22 +42,18 @@ public class PlayerMovement : Character
     #endregion
 
     [SerializeField] private GameObject _baseParticlePrefab;
-    [SerializeField] private GameObject _AoePrefab;
-
     [SerializeField] private bool _isSafeZone;
     [SerializeField] private bool _isPlayerAlive;
-
-    //private GameManager _gm;
-    
     
     private void Awake()
     {
-       _camera = Camera.main;
-        
+        _camera = Camera.main;
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
-        _healthBar = GetComponentInChildren<SpriteRenderer>();
-    
+        
+        //HP BAR CHILDREN
+        _barManagement = GetComponentInChildren<SpriteBarManagement>();
+        
         //MAIN HP BAR REFEERENCE
         var mainHp = GameObject.FindWithTag(PaperConstants.TAG_MAIN_HPBAR);
         _healthBarMain = mainHp.GetComponent<Image>();
@@ -89,7 +89,6 @@ public class PlayerMovement : Character
     {
         _direction = Vector3.zero;
         _destination = transform.position;
-        
         //------ABILITIES-----
         _abilityQ.fillAmount = 0f;
         _abilityW.fillAmount = 0f;
@@ -97,10 +96,7 @@ public class PlayerMovement : Character
         _abilityR.fillAmount = 0f;
 
         _isOnCoolDownQ = false;
-        
         //!!!!!//
-        
-        
         //this.SetUpDefaultForTest();
         this.NormalSetUp("DK", 500, 300,5.5f,11f, 25f,30f,
             56f, 1.75f, 450, 0, 4,
@@ -108,7 +104,7 @@ public class PlayerMovement : Character
         
         ShowCharacterInformation();
         
-        HpBarUpdate();
+        _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_FRIENDLY);
         
         _castBar.fillAmount = 0f;
         _currentSpeed = _generalStats.MoveSpeed;
@@ -194,11 +190,7 @@ public class PlayerMovement : Character
                 
                 _navMesh.SetDestination(_destination);
                 _anim.SetFloat("isMoving", 1f);
-                
-                
-                //Controlar que solo mire a la camara una vez se haya centrado.
-                //_healthBar.transform.forward = _camera.transform.forward;
-                
+
                 //Caso de que sea enemigo
                 //-- atacarle con basic attack teniendo en cuenta el rango?? Si no está a rango, avanzar hasta estar en rango.
             }
@@ -241,11 +233,8 @@ public class PlayerMovement : Character
                 _castBar.fillAmount = 0f;
                 RespawnBase();
                 StopMove();
-                //_healthBar.transform.forward = _camera.transform.forward;
             }
         }
-        
-        
         
         ///SOLO PARA LA ANIMATION DE MOMENTO
         if (_navMesh.remainingDistance < 0.1f)
@@ -263,7 +252,7 @@ public class PlayerMovement : Character
         UtilityInput();
         
         //PORQUE EL VALOR BASE DE LA IMAGEN DE ENCIMA DEL CHARACTER ES 3 por eso * 0.33f.
-        _healthBarMain.fillAmount = _healthBar.size.x * 0.33f;
+        _healthBarMain.fillAmount = _barManagement.GetSizeBar();
     }
 
     private float DistanceToPoint(Vector3 destination)

@@ -1083,48 +1083,27 @@ MonoBehaviour:
   _currentSpeed: 8
   _currentHp: 0
   _currentMana: 0
-  _anim: {fileID: 0}
-  _rb: {fileID: 0}
-  _healthBar: {fileID: 0}
-  _hpBarTextNumber: {fileID: 8542443359113600208}
-  _navMesh: {fileID: 0}
-  _isActive: 0
-  _targetPos: {x: 0, y: 0, z: 0}
   _isRange: 0
+  _isActive: 0
   _targetGO: {fileID: 0}
-  _playerScript: {fileID: 0}
-  _spawnPoint: {x: 0, y: 0, z: 0}
   _distanceRaycast: 200
   _direction: {x: 0, y: 0, z: 0}
   _destination: {x: 0, y: 0, z: 0}
+  _aaPrefab: {fileID: 1177342855393498579, guid: 1c610df7f2589bc4ab7c2baf3e042661,
+    type: 3}
   _ballPrefab: {fileID: 5050768572940834299, guid: 20e69858dd78789408f7d43b49a8f94a,
     type: 3}
   _poisonPrefab: {fileID: 1036220808351886883, guid: 7a50c51bec29dba47a0667613d1ba09f,
+    type: 3}
+  _AoePrefab: {fileID: 6023937025087150159, guid: 25a726d59dbe1fe41ac52f285f2b665b,
     type: 3}
   _ultiPrefab: {fileID: 3676826003120861624, guid: edfc37de5ac6e4449b5bf2563b8951b4,
     type: 3}
   _shield: {fileID: 0}
   _shieldCol: {fileID: 0}
   _shieldRender: {fileID: 0}
-  _abilityQ: {fileID: 6967898364435936321, guid: 5869dca3b66389641a62f4f7d9c33f86,
-    type: 3}
-  _abilityW: {fileID: 392578830436784956, guid: b0ac32b555629344bafaf6df4c21c91b,
-    type: 3}
-  _abilityE: {fileID: 8830628166803348154, guid: 9d38580516fb8e845ac5574eb0deed6d,
-    type: 3}
-  _abilityR: {fileID: 5801633643478369091, guid: eda2d843a803e4949aa6b49f38d3d557,
-    type: 3}
-  _healthBarMain: {fileID: 0}
-  _coolDownQ: 1
-  _coolDownW: 4
-  _coolDownE: 7
-  _coolDownR: 10
-  _castBar: {fileID: 3026313823209568062, guid: 5a336363a4566b54faa1e50bd11cea4c,
-    type: 3}
   _isGoingBase: 0
   _baseParticlePrefab: {fileID: 1149436831323858933, guid: 4410dc9aad25c604b9e47e1371b856e7,
-    type: 3}
-  _AoePrefab: {fileID: 6023937025087150159, guid: 25a726d59dbe1fe41ac52f285f2b665b,
     type: 3}
   _isSafeZone: 0
   _isPlayerAlive: 0

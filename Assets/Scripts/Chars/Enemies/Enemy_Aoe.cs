@@ -18,7 +18,6 @@ public class Enemy_Aoe : Enemy
     {
         _camera = Camera.main;
         _anim = GetComponent<Animator>();
-        _healthBar = GetComponentInChildren<SpriteRenderer>();
         _navMesh = GetComponent<NavMeshAgent>();
     }
 
@@ -28,9 +27,8 @@ public class Enemy_Aoe : Enemy
             56f, 1.75f, 10, 0, 4,
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
         ShowCharacterInformation();
-        //_hpBarTextNumber.text = _currentHp + " / " + _generalStats.Health;
         
-        HpBarUpdate();
+        _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_NEUTRAL);
 
         _count = 0f;
         _isRange = false;
@@ -69,7 +67,7 @@ public class Enemy_Aoe : Enemy
             }
         }
         
-        _healthBar.transform.forward = _camera.transform.forward;
+        //_healthBar.transform.forward = _camera.transform.forward;
         _targetPos = _targetGO.transform.position;
     }
 
