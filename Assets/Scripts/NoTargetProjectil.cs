@@ -19,9 +19,7 @@ public class NoTargetProjectil : Projectil
         {
             Die();
         }
-        
-       ProjectilMovement();
-        
+        ProjectilMovement();
     }
     
     private void OnTriggerEnter(Collider other)

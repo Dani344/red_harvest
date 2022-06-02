@@ -139,10 +139,18 @@ public class Character : MonoBehaviour
     private void Die()
     {
         _anim.SetTrigger("Die");
+        
         if (!gameObject.CompareTag("Player"))
         {
             _gm.EnemyKilled();
             Destroy(gameObject);
+        }
+        else
+        {
+            var player = gameObject.GetComponent<PlayerMovement>();
+            player.StopMove();
+            player.PlayerDeath();
+            //player.Die();
         }
     }
 

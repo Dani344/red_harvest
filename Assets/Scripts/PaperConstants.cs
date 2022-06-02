@@ -47,11 +47,24 @@ public class PaperConstants
     
     //Animation
     public const string ANIM_Q = "asdhfjsdf";
+    public const string ANIM_W = "jlasdfjasdf";
+    
+    //COOLDOWNS PLAYER
+    public const float COOLDOWN_Q = 0.5f;
+    public const float COOLDOWN_W = 5f;
+    public const float COOLDOWN_E = 7f;
+    public const float COOLDOWN_R = 11f;
+
+    public const float COOLDOWN_D = 20f;
+    public const float COOLDOWN_F = 300f;
     
     //Projectils
     public const int PHYSIC_DAMAGE = 0;
     public const int MAGIC_DAMAGE = 1;
     public const int TRUE_DAMAGE = 2;
+
+    public const float LIFE_TIME_PROJECTILS = 5f;
+    public const float TARGET_UPDATE = 1f;
 
 
     //Colors NPGs HPsBars

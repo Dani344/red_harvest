@@ -30,7 +30,7 @@ public class PlayerMovement : Character
     
     #region CoolDownsAndUI
 
-    [SerializeField] private Image _abilityQ, _abilityW, _abilityE, _abilityR;
+    private Image _abilityQ, _abilityW, _abilityE, _abilityR;
     private Image _healthBarMain;
     private float _coolDownQ, _coolDownW, _coolDownE, _coolDownR;
     
@@ -89,29 +89,7 @@ public class PlayerMovement : Character
     {
         _direction = Vector3.zero;
         _destination = transform.position;
-        //------ABILITIES-----
-        _abilityQ.fillAmount = 0f;
-        _abilityW.fillAmount = 0f;
-        _abilityE.fillAmount = 0f;
-        _abilityR.fillAmount = 0f;
-
-        _isOnCoolDownQ = false;
-        //!!!!!//
-        //this.SetUpDefaultForTest();
-        this.NormalSetUp("DK", 500, 300,5.5f,11f, 25f,30f,
-            56f, 1.75f, 450, 0, 4,
-            0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
-        
-        ShowCharacterInformation();
-        
-        _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_FRIENDLY);
-        
-        _castBar.fillAmount = 0f;
-        _currentSpeed = _generalStats.MoveSpeed;
-        _shieldCol.enabled = false;
-        _shieldRender.enabled = false;
-
-        _isPlayerAlive = true;
+        InitPlayer();
     }
     private void Update()
     {
@@ -253,6 +231,40 @@ public class PlayerMovement : Character
         _healthBarMain.fillAmount = _barManagement.GetSizeBar();
     }
 
+    private void InitPlayer()
+    {
+        //------ABILITIES-----
+        _abilityQ.fillAmount = 0f;
+        _abilityW.fillAmount = 0f;
+        _abilityE.fillAmount = 0f;
+        _abilityR.fillAmount = 0f;
+
+        _isOnCoolDownQ = false;
+        //!!!!!//
+        //this.SetUpDefaultForTest();
+        this.NormalSetUp("DK", 500, 300,5.5f,11f, 25f,30f,
+            56f, 1.75f, 450, 0, 4,
+            0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
+
+        _coolDownQ = PaperConstants.COOLDOWN_Q;
+        _coolDownW = PaperConstants.COOLDOWN_W;
+        _coolDownE = PaperConstants.COOLDOWN_E;
+        _coolDownR = PaperConstants.COOLDOWN_R;
+        
+        
+        ShowCharacterInformation();
+        
+        _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_FRIENDLY);
+        
+        _castBar.fillAmount = 0f;
+        _currentSpeed = _generalStats.MoveSpeed;
+        _shieldCol.enabled = false;
+        _shieldRender.enabled = false;
+
+        _isPlayerAlive = true;
+    }
+    
+    
     private float DistanceToPoint(Vector3 destination)
     {
         var temp = destination - transform.position;
@@ -367,6 +379,7 @@ public class PlayerMovement : Character
         {
             _isOnCoolDownQ = true;
             _abilityQ.fillAmount = 1f;
+            Debug.Log("HOLA");
             if (_ballPrefab)
             {
                 var spellQ = Instantiate(_ballPrefab, transform.position + new Vector3(0f, 0.5f, 0f), Quaternion.identity);
@@ -437,7 +450,7 @@ public class PlayerMovement : Character
         }
     }
 
-    private void StopMove()
+    public void StopMove()
     {
         //_destination = new Vector3(transform.position.x, 0f, transform.position.z);
         _navMesh.SetDestination(transform.position);
