@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
     
     #endregion
     
-    protected Vector3 _targetPos;
+    protected Transform _targetPos;
     protected Vector3 _spawnPoint;
     
     protected void NormalSetUp(string name, int health, int mana, float healthReg, float manaReg, float armor,

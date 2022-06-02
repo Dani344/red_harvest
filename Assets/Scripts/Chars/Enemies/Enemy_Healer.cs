@@ -44,7 +44,7 @@ public class Enemy_Healer : Enemy
             if (!_isRange)
             {
                 _navMesh.isStopped = false;
-                _navMesh.SetDestination(_targetPos);
+                //_navMesh.SetDestination(_targetPos);
             }
             _newPathCount = 0f;
             //CheckTargetInRange();
@@ -64,7 +64,7 @@ public class Enemy_Healer : Enemy
             }
         }
         
-        _targetPos = _targetGO.transform.position;
+        //_targetPos = _targetGO.transform.position;
     }
 
     private void HealEnemy()

@@ -80,7 +80,7 @@ public class EnemyFrontal : Enemy
             if (!_isRange)
             {
                 _navMesh.isStopped = false;
-                _navMesh.SetDestination(_targetPos);
+                _navMesh.SetDestination(_targetPos.position);
             }
             _newPathCount = 0f;
         }
@@ -98,7 +98,7 @@ public class EnemyFrontal : Enemy
             }
         }
         
-        _targetPos = _targetGO.transform.position;
+        _targetPos = _targetGO.transform;
         
         //Checkea que no esté en la base el player
         if (_playerScript)
@@ -120,9 +120,10 @@ public class EnemyFrontal : Enemy
             //COMPROBAR EL DAÑO YA QUE DE MOMENTO ES CONSTANTE
             transform.LookAt(_targetPos);
             //_healthBar.transform.forward = _camera.transform.forward;
-            var dire = _targetPos - transform.position;
+            var dire = _targetPos.position - transform.position;
             dire.Normalize();
-            newProjectil.ProjectilSetUp(dire, _generalStats.MissileSpeed, 50f);
+            var targetProj = _targetPos;
+            newProjectil.ProjectilTargetSetUp(dire, _generalStats.MissileSpeed, 50f, 3f, true, _targetPos);
         }
         
     }

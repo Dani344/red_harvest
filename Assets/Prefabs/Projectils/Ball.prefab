@@ -110,6 +110,10 @@ MonoBehaviour:
   _speed: 5
   _maxTimeLife: 5
   _dmg: 5
+  _rotSpeed: 0
+  _isEnemyProjectil: 0
+  rotSpeed: 1
+  _target: {fileID: 0}
 --- !u!1 &6157344231839491781
 GameObject:
   m_ObjectHideFlags: 0

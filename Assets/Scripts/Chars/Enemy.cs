@@ -26,13 +26,13 @@ public class Enemy : Character
         if (_targetGO)
         {
             _isActive = true;
-            var newTargetPlayer = _targetGO.transform.position;
+            var newTargetPlayer = _targetGO.transform;
             _targetPos = newTargetPlayer;
 
             _playerScript = _targetGO.GetComponent<PlayerMovement>();
 
             transform.LookAt(_targetPos);
-            FollowTarget(_targetPos);
+            FollowTarget(_targetPos.position);
             _barManagement.BarUpdateColor(PaperConstants.HP_BAR_COMBAT);
         }
         //SetTarget();
@@ -63,7 +63,7 @@ public class Enemy : Character
 
     protected bool CheckTargetInRange()
     {
-        if (GetDistanceToTarget(_targetPos) < _generalStats.AttackRange)
+        if (GetDistanceToTarget(_targetPos.position) < _generalStats.AttackRange)
         {
             _isRange = true;
             StopFollow();

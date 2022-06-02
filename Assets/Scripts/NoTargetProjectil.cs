@@ -19,7 +19,7 @@ public class NoTargetProjectil : Projectil
         {
             Die();
         }
-        ProjectilMovement();
+        MovementNoTarget();
     }
     
     private void OnTriggerEnter(Collider other)
@@ -29,18 +29,42 @@ public class NoTargetProjectil : Projectil
             Die();
         }
         
-        if (other.CompareTag(PaperConstants.TAG_ENEMY))
+        if (other.CompareTag(PaperConstants.TAG_PLAYER))
         {
-            var temp = other.gameObject.GetComponent<Enemy>();
-            if (temp)
+            if (_isEnemyProjectil)
             {
-                temp.TakeDamage((int) _dmg, 0);
+                var temp = other.gameObject.GetComponent<Character>();
+                if (temp)
+                {
+                    temp.TakeDamage((int) _dmg, 0);
+                }
+                else
+                {
+                    Debug.Log("ERROR EN ALGO BALL SCRIPT");
+                }
+                Die();
             }
-            else
-            {
-                Debug.Log("ERROR EN ALGO BALL SCRIPT");
-            }
-            Die();
         }
+        else
+        {
+            if (other.CompareTag(PaperConstants.TAG_ENEMY))
+            {
+                if (!_isEnemyProjectil)
+                {
+                    var temp = other.gameObject.GetComponent<Character>();
+                    if (temp)
+                    {
+                        temp.TakeDamage((int) _dmg, 0);
+                    }
+                    else
+                    {
+                        Debug.Log("ERROR EN ALGO BALL SCRIPT");
+                    }
+                    Die();
+                }
+            }
+        }
+        
+        
     }
 }

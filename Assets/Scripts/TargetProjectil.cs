@@ -5,11 +5,10 @@ using UnityEngine;
 public class TargetProjectil : Projectil
 {
     
-    [SerializeField] private Transform _target;
-    private bool _hasTarget;
-    [SerializeField] private float fff = 1;
+    //[SerializeField] private Transform _target;
+    //[SerializeField] private float fff = 1;
 
-    [SerializeField] private float rotSpeed = 1f;
+    //[SerializeField] protected float rotSpeed = 1f;
     //HAY QUE CONTEMPLAR QUE SIEMPRE MIRE AL OBJETIVO
     //HAY QUE CONTROlAR QUE EL PROJECTIL QUE PUEDES ESQUIVAR LO hAGA BIEN
     //INCORPORAR TIMER EN CASO DE QUE NUNCA DE.
@@ -25,30 +24,12 @@ public class TargetProjectil : Projectil
         
         if (!_hasTarget) return;
 
-        //OPCION DE TARGET AAA QUE NUNCA FALLA Y QUE CONTROLAMOS VELOCIDAD CON EL FACTOR POR VALOR (fff) test.
-        //_dire = _target.position - transform.position;
-        //_dire.Normalize();
-
-        //ProjectilMovement(fff);
-        
-        /*
-        _dire = Vector3.MoveTowards(transform.position, _target.position, fff);
-        _dire.Normalize();
-        Movement();
-        Debug.Log(_dire);
-        */
-        
-        MovementEliptic();
-    }
-
-
-    public void SetTarget(Transform target){
-        _hasTarget = true;
-        _target = target;
+        MovementTarget();
     }
 
     
-    private void MovementEliptic()
+    
+    private void MovementTarget()
     {
         _dire = _target.position - transform.position;
         _dire.Normalize();
@@ -68,18 +49,40 @@ public class TargetProjectil : Projectil
             Die();
         }
         
-        if (other.CompareTag(PaperConstants.TAG_ENEMY))
+        if (other.CompareTag(PaperConstants.TAG_PLAYER))
         {
-            var temp = other.gameObject.GetComponent<Enemy>();
-            if (temp)
+            if (_isEnemyProjectil)
             {
-                temp.TakeDamage((int) _dmg, 0);
+                var temp = other.gameObject.GetComponent<Character>();
+                if (temp)
+                {
+                    temp.TakeDamage((int) _dmg, 0);
+                }
+                else
+                {
+                    Debug.Log("ERROR EN ALGO BALL SCRIPT");
+                }
+                Die();
             }
-            else
+        }
+        else
+        {
+            if (other.CompareTag(PaperConstants.TAG_ENEMY))
             {
-                Debug.Log("ERROR EN ALGO BALL SCRIPT");
+                if (!_isEnemyProjectil)
+                {
+                    var temp = other.gameObject.GetComponent<Character>();
+                    if (temp)
+                    {
+                        temp.TakeDamage((int) _dmg, 0);
+                    }
+                    else
+                    {
+                        Debug.Log("ERROR EN ALGO BALL SCRIPT");
+                    }
+                    Die();
+                }
             }
-            Die();
         }
     
     }

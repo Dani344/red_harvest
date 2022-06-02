@@ -388,7 +388,7 @@ public class PlayerMovement : Character
                 //Falta calibrar el daño que enviamos al projectil
                 var dire = AbilityDirection();
                 StopMove();
-                temp.ProjectilSetUp(dire, _generalStats.MissileSpeed, 50f);
+                temp.ProjectilNoTargetSetUp(dire, _generalStats.MissileSpeed, 50f, false);
                 //temp.ProjectilSetUp(transform.forward, _generalStats.MissileSpeed, 50f);
                 
             }
@@ -445,7 +445,7 @@ public class PlayerMovement : Character
                 var temp = ulti.GetComponent<Projectil>();
             
                 //Falta gestionar el daño que le enviaremos al projectil
-                temp.ProjectilSetUp(transform.forward, _generalStats.MissileSpeed, 10);
+                temp.ProjectilNoTargetSetUp(transform.forward, _generalStats.MissileSpeed, 10, false);
             }
         }
     }

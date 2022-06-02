@@ -48,7 +48,7 @@ public class Enemy_Aoe : Enemy
             if (!_isRange)
             {
                 _navMesh.isStopped = false;
-                _navMesh.SetDestination(_targetPos);
+                //_navMesh.SetDestination(_targetPos);
             }
             _newPathCount = 0f;
         }
@@ -68,7 +68,7 @@ public class Enemy_Aoe : Enemy
         }
         
         //_healthBar.transform.forward = _camera.transform.forward;
-        _targetPos = _targetGO.transform.position;
+        //_targetPos = _targetGO.transform.position;
     }
 
 
@@ -76,7 +76,7 @@ public class Enemy_Aoe : Enemy
     //AoE instanciation
     private void Attack()
     {
-        var aoe = Instantiate(_AoE_Prefab, _targetPos, Quaternion.identity);
+        //var aoe = Instantiate(_AoE_Prefab, _targetPos, Quaternion.identity);
         
     }
 

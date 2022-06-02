@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7070874396180416629}
   - component: {fileID: 7028997483056304291}
   - component: {fileID: 6682580780682583698}
-  - component: {fileID: 99649079049645380}
+  - component: {fileID: 5309150799893497615}
+  - component: {fileID: 380787138465353462}
   m_Layer: 0
   m_Name: ProjectilAA
   m_TagString: Projectil
@@ -94,7 +95,26 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &99649079049645380
+--- !u!114 &5309150799893497615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604597369965400599}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c08769d6ff4674eb5924e9b0034201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  _maxTimeLife: 5
+  _dmg: 5
+  _rotSpeed: 0
+  _isEnemyProjectil: 0
+  rotSpeed: 1
+  _target: {fileID: 0}
+--- !u!114 &380787138465353462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,9 +123,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2604597369965400599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 990ab347d220273449f1ade3575e2af9, type: 3}
+  m_Script: {fileID: 11500000, guid: d5961f1b73d02c24eb5b1b234a70128a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  _maxTimeLife: 5
-  _dmg: 5
+  _speed: 0
+  _maxTimeLife: 0
+  _dmg: 0
+  _rotSpeed: 0
+  _isEnemyProjectil: 0
+  rotSpeed: 1
+  _target: {fileID: 0}
