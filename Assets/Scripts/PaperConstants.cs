@@ -9,8 +9,6 @@ public class PaperConstants
     //===== DEBUG LOG =====
     public const string SCREEN_MSG = "Error de variable";
     
-    
-    
     //===== SCENES =====
     public const string SCENE_MAIN_MENU = "MainMenu";
     public const string SCENE_PLAYING = "PlayingScene";
@@ -50,6 +48,12 @@ public class PaperConstants
     //Animation
     public const string ANIM_Q = "asdhfjsdf";
     
+    //Projectils
+    public const int PHYSIC_DAMAGE = 0;
+    public const int MAGIC_DAMAGE = 1;
+    public const int TRUE_DAMAGE = 2;
+
+
     //Colors NPGs HPsBars
     public const int HP_BAR_NEUTRAL = 0;
     public const int HP_BAR_COMBAT = 1;

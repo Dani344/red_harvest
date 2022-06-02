@@ -7,6 +7,7 @@ public class Projectil : MonoBehaviour
     [SerializeField] protected float _speed;
     [SerializeField] protected float _maxTimeLife;
     [SerializeField] protected float _dmg;
+    protected int _dmgType;
     protected float _count;
     protected Vector3 _dire;
     
@@ -31,6 +32,10 @@ public class Projectil : MonoBehaviour
     }
     
     
+    protected void ProjectilMovement(){
+        transform.position += new Vector3(_dire.x * _speed * Time.deltaTime, 0f, _dire.z * _speed * Time.deltaTime);
+    }
+
     protected void Die()
     {
         Destroy(gameObject);

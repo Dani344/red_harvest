@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AA : MonoBehaviour
+public class AA : TargetProjectil
 {
     // Start is called before the first frame update
     void Start()
@@ -10,7 +10,6 @@ public class AA : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

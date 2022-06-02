@@ -30,7 +30,7 @@ public class PlayerMovement : Character
     
     #region CoolDownsAndUI
 
-    private Image _abilityQ, _abilityW, _abilityE, _abilityR;
+    [SerializeField] private Image _abilityQ, _abilityW, _abilityE, _abilityR;
     private Image _healthBarMain;
     private float _coolDownQ, _coolDownW, _coolDownE, _coolDownR;
     
@@ -448,7 +448,7 @@ public class PlayerMovement : Character
     {
         var angle = Vector3.Angle(currentDestination, newDestination);
         
-        Debug.Log(angle);
+        //Debug.Log(angle);
         
         return angle;
     }

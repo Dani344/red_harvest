@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : Projectil
+public class NoTargetProjectil : Projectil
 {
-    
     private void Start()
     {
         _count = 0f;
@@ -13,6 +11,7 @@ public class Ball : Projectil
         //Faltaria inicializar el tipo de daño que hace este projectil.
     }
 
+    
     private void Update()
     {
         _count += Time.deltaTime;
@@ -21,7 +20,7 @@ public class Ball : Projectil
             Die();
         }
         
-        transform.position += new Vector3(_dire.x * _speed * Time.deltaTime, 0f, _dire.z * _speed * Time.deltaTime);
+       ProjectilMovement();
         
     }
     
