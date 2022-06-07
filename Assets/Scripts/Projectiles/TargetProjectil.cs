@@ -4,28 +4,11 @@ using UnityEngine;
 
 public class TargetProjectil : Projectil
 {
-    
-    //[SerializeField] private Transform _target;
-    //[SerializeField] private float fff = 1;
-
-    //[SerializeField] protected float rotSpeed = 1f;
-    //HAY QUE CONTEMPLAR QUE SIEMPRE MIRE AL OBJETIVO
-    //HAY QUE CONTROlAR QUE EL PROJECTIL QUE PUEDES ESQUIVAR LO hAGA BIEN
-    //INCORPORAR TIMER EN CASO DE QUE NUNCA DE.
-
-
-
-    /*
-    private void Start(){
-        var testTarget = new Vector3(100,100,100);
-        _target.position = testTarget;
-    }*/
-
-
-
     private void Update()
     {
+        
         //Debug.Log(_target.name);
+        //QUizas mecanica adicional
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _hasTarget = true;
@@ -33,9 +16,12 @@ public class TargetProjectil : Projectil
         }
         
         if (!_hasTarget) return;
-
-        Debug.Log(_target.name);
-        if (_target) MovementTarget();
+        
+        MovementTarget();
+        
+        //TIMER PARA QUE MUERA.
+        //HACER DAÑO SI O SI SI FIJA TARGET Y SIEMPRE DA.
+        //NO HACER DAÑO SI PUEDES ESQUIVAR T < 1 en SLERP
     }
 
     
@@ -44,11 +30,18 @@ public class TargetProjectil : Projectil
     {
         _dire = _target.position - transform.position;
         _dire.Normalize();
-
+        Debug.Log(Time.deltaTime);
+        //ES DIRE DIRECTAMENTE
         var QuatLookRot = Quaternion.LookRotation(_target.position - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, QuatLookRot, rotSpeed * Time.deltaTime);
+        Debug.DrawRay(transform.position, _dire);
+        
+        transform.rotation = Quaternion.Slerp(transform.rotation, QuatLookRot, _rotSpeed * Time.deltaTime);
+        
+        //1 para nunca fallar
+        //0 para nunca dar.
         
         transform.position += transform.forward * _speed * Time.deltaTime;
+        //transform.Translate(transform.forward * _speed * Time.deltaTime);
 
 
     }
@@ -58,7 +51,7 @@ public class TargetProjectil : Projectil
         
         if (other.CompareTag(PaperConstants.TAG_WALLS))
         {
-           // Die();
+           Die();
         }
         
         if (other.CompareTag(PaperConstants.TAG_PLAYER))
@@ -92,13 +85,12 @@ public class TargetProjectil : Projectil
                     {
                         Debug.Log("ERROR EN ALGO BALL SCRIPT");
                     }
-                    //Die();
-                }else{
-                    Debug.Log("HOLA");
+
+                    Die();
+
                 }
             }
         }
-    
     }
     
 }

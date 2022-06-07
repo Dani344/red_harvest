@@ -252,7 +252,7 @@ public class PlayerMovement : Character
         _coolDownR = PaperConstants.COOLDOWN_R;
         
         
-        ShowCharacterInformation();
+        //ShowCharacterInformation();
         
         _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_FRIENDLY);
         
@@ -379,7 +379,6 @@ public class PlayerMovement : Character
         {
             _isOnCoolDownQ = true;
             _abilityQ.fillAmount = 1f;
-            Debug.Log("HOLA");
             if (_ballPrefab)
             {
                 var spellQ = Instantiate(_ballPrefab, transform.position + new Vector3(0f, 0.5f, 0f), Quaternion.identity);

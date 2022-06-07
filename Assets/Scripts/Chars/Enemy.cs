@@ -21,10 +21,9 @@ public class Enemy : Character
   
     public void ActiveEnemy(GameObject miTarget)
     {
-        
-        _targetGO = miTarget;
-        if (_targetGO)
+        if (miTarget)
         {
+            _targetGO = miTarget;
             _isActive = true;
             var newTargetPlayer = _targetGO.transform;
             _targetPos = newTargetPlayer;
@@ -35,9 +34,6 @@ public class Enemy : Character
             FollowTarget(_targetPos.position);
             _barManagement.BarUpdateColor(PaperConstants.HP_BAR_COMBAT);
         }
-        //SetTarget();
-        //_navMesh.SetDestination(_targetPos);
-        
     }
     
     protected float GetDistanceToTarget(Vector3 target)

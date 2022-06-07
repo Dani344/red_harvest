@@ -173,19 +173,11 @@ MonoBehaviour:
   _currentSpeed: 0
   _currentHp: 0
   _currentMana: 0
-  _anim: {fileID: 0}
-  _rb: {fileID: 0}
-  _healthBar: {fileID: 0}
-  _hpBarTextNumber: {fileID: 269805527360662163}
-  _navMesh: {fileID: 0}
-  _isActive: 0
-  _targetPos: {x: 0, y: 0, z: 0}
   _isRange: 0
+  _isActive: 0
   _targetGO: {fileID: 0}
-  _playerScript: {fileID: 0}
-  _spawnPoint: {x: 0, y: 0, z: 0}
   _isReturning: 0
-  _projectilPrefab: {fileID: 2604597369965400599, guid: 54d023a535c3f244897672c363140ec9,
+  _projectilPrefab: {fileID: 2604597369965400599, guid: 88cbdb01d8292e84f808471a5e751820,
     type: 3}
 --- !u!1 &2260129794535968603
 GameObject:

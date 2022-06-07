@@ -23,9 +23,9 @@ public class EnemyFrontal : Enemy
     private void Start()
     { 
         NormalSetUp("DUMMY", 100, 300,5.5f,11f, 25f,30f,
-            56f, 1.75f, 10, 0, 4,
+            56f, 1.75f, 15, 0, 4,
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
-        ShowCharacterInformation();
+        //ShowCharacterInformation();
         
         _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_NEUTRAL);
         
@@ -116,15 +116,24 @@ public class EnemyFrontal : Enemy
         if (_projectilPrefab)
         {
             var temp = Instantiate(_projectilPrefab, transform.position, Quaternion.identity);
+            temp.transform.LookAt(_targetPos);
             var newProjectil = temp.GetComponent<Projectil>();
             //COMPROBAR EL DAÑO YA QUE DE MOMENTO ES CONSTANTE
             transform.LookAt(_targetPos);
-            //_healthBar.transform.forward = _camera.transform.forward;
             var dire = _targetPos.position - transform.position;
             dire.Normalize();
-            var targetProj = _targetPos;
-            newProjectil.ProjectilTargetSetUp(dire, _generalStats.MissileSpeed, 50f, 3f, true, targetProj);
-           
+            Debug.Log(newProjectil);
+            /*
+            newProjectil.ProjectilTargetSetUp(
+                dire,
+                _generalStats.MissileSpeed,
+                50f,
+                2f,
+                true,
+                _targetPos
+                );*/
+            newProjectil.ProjectilNoTargetSetUp(dire, _generalStats.MissileSpeed, 50f, true);
+
         }
         
     }

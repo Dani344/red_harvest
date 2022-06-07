@@ -30,7 +30,7 @@ public class Enemy_Boss : Enemy
             56f, 1.75f, 10, 0, 4,
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
         
-        ShowCharacterInformation();
+        //ShowCharacterInformation();
         
         //HpBarUpdate();
         

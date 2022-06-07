@@ -10,7 +10,7 @@ public class Projectil : MonoBehaviour
     [SerializeField] protected float _rotSpeed;
 
     [SerializeField] protected bool _isEnemyProjectil = false;
-    [SerializeField] protected float rotSpeed = 1f;
+    //[SerializeField] protected float rotSpeed = 1f;
     [SerializeField] protected Transform _target;
     [SerializeField] protected bool _hasTarget;
     protected int _dmgType;
@@ -18,10 +18,8 @@ public class Projectil : MonoBehaviour
     protected Vector3 _dire;
     
     //Setear las cosas bien. Falta declarar el tipo de daño que tiene el projectil
-    
-    
     //Falta definir un daño base de la bala y un multiplicador cuando hagamos
-    //El set up al invocarla.
+    
     public void ProjectilNoTargetSetUp(Vector3 dire, float speed, float dmg, bool isEnemyProjectil)
     {
         //dmg = _dmg * dmg;
@@ -29,11 +27,12 @@ public class Projectil : MonoBehaviour
         SetSpeed(speed);
         SetDamage(dmg);
         _isEnemyProjectil = isEnemyProjectil;
-        Debug.Log("NO TARGET SET UP");
+        //Debug.Log("NO TARGET SET UP");
     }
 
     public void ProjectilTargetSetUp(Vector3 dire, float speed, float dmg, float rotSpeed, bool isEnemyProjectil, Transform target)
     {
+        if (!target) Debug.LogError("ERROR TARGET SET UP");
         SetDirection(dire);
         SetSpeed(speed);
         SetDamage(30f);
@@ -45,14 +44,13 @@ public class Projectil : MonoBehaviour
     
     
     protected void MovementNoTarget(float factor = 1f){
-        
         transform.position += new Vector3(_dire.x * _speed * factor * Time.deltaTime, 0f, _dire.z * _speed * factor *  Time.deltaTime);
-        
     }
 
 
     protected void Die()
     {
+        Debug.Log("MUERE PROJECTIL");
         Destroy(gameObject);
     }
     public void SetDirection(Vector3 dire)
@@ -78,14 +76,10 @@ public class Projectil : MonoBehaviour
 
     public void SetTargetProjectil(Transform target)
     {
-        _target = target;
-
-        Debug.Log(_target.gameObject.name);
-        
-        if (_target)
+        if (target)
         {
             _hasTarget = true;
-            Debug.Log("TRUUUUE");
+            _target = target;
         }
     }    
     public float GetBaseDmg()
