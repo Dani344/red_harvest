@@ -12,7 +12,7 @@ public class Projectil : MonoBehaviour
     [SerializeField] protected bool _isEnemyProjectil = false;
     [SerializeField] protected float rotSpeed = 1f;
     [SerializeField] protected Transform _target;
-    protected bool _hasTarget;
+    [SerializeField] protected bool _hasTarget;
     protected int _dmgType;
     protected float _count;
     protected Vector3 _dire;
@@ -38,8 +38,9 @@ public class Projectil : MonoBehaviour
         SetSpeed(speed);
         SetDamage(30f);
         SetRotSpeed(rotSpeed);
-        SetTargetProjectil(target);
         _isEnemyProjectil = isEnemyProjectil;
+        SetTargetProjectil(target);
+        
     }
     
     
@@ -78,11 +79,15 @@ public class Projectil : MonoBehaviour
     public void SetTargetProjectil(Transform target)
     {
         _target = target;
+
+        Debug.Log(_target.gameObject.name);
+        
         if (_target)
         {
             _hasTarget = true;
+            Debug.Log("TRUUUUE");
         }
-    }
+    }    
     public float GetBaseDmg()
     {
         return _dmg;

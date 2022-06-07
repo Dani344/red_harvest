@@ -123,7 +123,8 @@ public class EnemyFrontal : Enemy
             var dire = _targetPos.position - transform.position;
             dire.Normalize();
             var targetProj = _targetPos;
-            newProjectil.ProjectilTargetSetUp(dire, _generalStats.MissileSpeed, 50f, 3f, true, _targetPos);
+            newProjectil.ProjectilTargetSetUp(dire, _generalStats.MissileSpeed, 50f, 3f, true, targetProj);
+           
         }
         
     }

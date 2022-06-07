@@ -13,9 +13,19 @@ public class TargetProjectil : Projectil
     //HAY QUE CONTROlAR QUE EL PROJECTIL QUE PUEDES ESQUIVAR LO hAGA BIEN
     //INCORPORAR TIMER EN CASO DE QUE NUNCA DE.
 
-    
+
+
+    /*
+    private void Start(){
+        var testTarget = new Vector3(100,100,100);
+        _target.position = testTarget;
+    }*/
+
+
+
     private void Update()
     {
+        //Debug.Log(_target.name);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _hasTarget = true;
@@ -24,7 +34,8 @@ public class TargetProjectil : Projectil
         
         if (!_hasTarget) return;
 
-        MovementTarget();
+        Debug.Log(_target.name);
+        if (_target) MovementTarget();
     }
 
     
@@ -44,9 +55,10 @@ public class TargetProjectil : Projectil
     
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.CompareTag(PaperConstants.TAG_WALLS))
         {
-            Die();
+           // Die();
         }
         
         if (other.CompareTag(PaperConstants.TAG_PLAYER))
@@ -62,7 +74,7 @@ public class TargetProjectil : Projectil
                 {
                     Debug.Log("ERROR EN ALGO BALL SCRIPT");
                 }
-                Die();
+                //Die();
             }
         }
         else
@@ -80,7 +92,9 @@ public class TargetProjectil : Projectil
                     {
                         Debug.Log("ERROR EN ALGO BALL SCRIPT");
                     }
-                    Die();
+                    //Die();
+                }else{
+                    Debug.Log("HOLA");
                 }
             }
         }
