@@ -99,6 +99,11 @@ public class Enemy : Character
         {
             
         }
+    }
+
+    //******
+    public void Init()
+    {
         
     }
 }

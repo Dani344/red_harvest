@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Combat : MonoBehaviour
+public class Boss_Combat : Enemy
 {
     private Boss_Patrol _bs;
 
@@ -10,21 +10,18 @@ public class Boss_Combat : MonoBehaviour
     {
         
     }
-    
     private void Start()
     {
-        
+        _navMesh.speed = 4f;
     }
     
-    void Update()
+
+    public void Combat()
     {
-        //Combate
+        Debug.Log("PIU");
     }
 
-    public void ChangeStateToPatrol()
-    {
-        Debug.Log("Cambiamos a ptrol");
-    }
+    
     
     
 }

@@ -1,29 +1,70 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ControlStateBoss : MonoBehaviour
 {
-    private Boss_Patrol _bp;
-    private Boss_Combat _bc;
+    [SerializeField] private Boss_Patrol _bp;
+    [SerializeField] private Boss_Combat _bc;
+
+    [SerializeField] private Enemy[] states;
+    [SerializeField] private Enemy _currentState;
+    
+    private Collider _col;
+    
+    
+    
     private void Awake()
     {
-        _bp = GetComponent<Boss_Patrol>();
-        _bc = GetComponent<Boss_Combat>();
+        states = new Enemy[2];
+        states[0] = new Boss_Patrol();
+        states[1] = new Boss_Combat();
+    }
+
+    private void Start()
+    {
+        _currentState = states[0];
+        
+    }
+
+    private void Update()
+    {
+        
+        TestControl();
+
     }
     
-    public void Combat()
+
+    private void RefreshInfo()
     {
-        Debug.Log("Activar Estado Combate");
+        for (int i = 0; i < states.Length; i++)
+        {
+            states[i] = _currentState;
+        }
     }
 
-    public void Patrol()
+    private void ChangeState(int newState)
     {
-        Debug.Log("Acticar Estado Patrol");
+        RefreshInfo();
+        _currentState = states[newState];
     }
 
-    public void GameOverBoss()
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("FIN BOSS");
+        if (other.CompareTag(PaperConstants.TAG_PLAYER))
+        {
+            //COMBAT
+        }
+    }
+    
+    
+    private void TestControl()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //Combat();
+            //_indexState = 1;
+        }
     }
 }
