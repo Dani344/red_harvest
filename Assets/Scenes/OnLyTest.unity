@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10425,10 +10425,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 857629878538066483, guid: f1f4948418a25ea4e96f0dbc0fd072e2,
+    - target: {fileID: 1609577375, guid: f1f4948418a25ea4e96f0dbc0fd072e2, type: 3}
+      propertyPath: _AoePrefab
+      value: 
+      objectReference: {fileID: 6023937025087150159, guid: 25a726d59dbe1fe41ac52f285f2b665b,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 1
+    - target: {fileID: 1609577375, guid: f1f4948418a25ea4e96f0dbc0fd072e2, type: 3}
+      propertyPath: _targetGO
+      value: 
+      objectReference: {fileID: 897393613}
+    - target: {fileID: 1609577375, guid: f1f4948418a25ea4e96f0dbc0fd072e2, type: 3}
+      propertyPath: _projectilPrefab
+      value: 
+      objectReference: {fileID: 2604597369965400599, guid: 88cbdb01d8292e84f808471a5e751820,
+        type: 3}
+    - target: {fileID: 1609577376, guid: f1f4948418a25ea4e96f0dbc0fd072e2, type: 3}
+      propertyPath: _targetGO
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 857629878538066483, guid: f1f4948418a25ea4e96f0dbc0fd072e2,
         type: 3}
@@ -10447,11 +10460,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 857629878538066483, guid: f1f4948418a25ea4e96f0dbc0fd072e2,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 857629878538066483, guid: f1f4948418a25ea4e96f0dbc0fd072e2,
-        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -10464,6 +10472,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 857629878538066483, guid: f1f4948418a25ea4e96f0dbc0fd072e2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 857629878538066483, guid: f1f4948418a25ea4e96f0dbc0fd072e2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 857629878538066483, guid: f1f4948418a25ea4e96f0dbc0fd072e2,
         type: 3}
@@ -10484,6 +10502,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boss_Dummy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942334510682063477, guid: f1f4948418a25ea4e96f0dbc0fd072e2,
+        type: 3}
+      propertyPath: _targetGO
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1f4948418a25ea4e96f0dbc0fd072e2, type: 3}

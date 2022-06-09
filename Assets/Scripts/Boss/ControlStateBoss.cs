@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlStateBoss : MonoBehaviour
+public class ControlStateBoss : Enemy
 {
     [SerializeField] private Boss_Patrol _bp;
     [SerializeField] private Boss_Combat _bc;
@@ -18,20 +18,34 @@ public class ControlStateBoss : MonoBehaviour
     private void Awake()
     {
         states = new Enemy[2];
-        states[0] = new Boss_Patrol();
-        states[1] = new Boss_Combat();
+        //states[0] = new Boss_Patrol();
+        //states[1] = new Boss_Combat();
+
     }
 
     private void Start()
     {
+
+        states[0] = _bp;
+        states[1] = _bc;
+
         _currentState = states[0];
+
+        _currentState.Init();
+
+        //RefreshInfo();
+        
         
     }
 
     private void Update()
     {
-        
         TestControl();
+        _currentState.Movement();
+
+        //Si detecta enemigo cambio a combate
+    
+
 
     }
     
@@ -63,8 +77,19 @@ public class ControlStateBoss : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //Combat();
-            //_indexState = 1;
+            if (_currentState == states[1]){
+                _currentState = _bp;
+            }else{
+                _currentState = _bc;
+            }
+            
         }
     }
+
+    //TEST OVERRIDE
+    public override void Init(){
+        Debug.Log("INIT BOSS");
+        //base.Init();
+    }
+
 }

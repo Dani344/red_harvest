@@ -13,7 +13,7 @@ public class Enemy : Character
     
     //CUIDADO POR QUE SOLO CONTEMPLAMOS AL PLAYER
     
-  protected void SetSpawnPoint()
+    protected void SetSpawnPoint()
     {
         var pos = transform.position;
         _spawnPoint = pos;
@@ -101,9 +101,16 @@ public class Enemy : Character
         }
     }
 
-    //******
-    public void Init()
+    //******TEST OVERRIDE
+    public override void Init()
     {
-        
+        Debug.Log("INIT ENEMY");
+        //base.Init();
+        //Init();
+    }
+    
+    //VIRTUAL AND OVERRIDE CLASSES
+    public override void Movement(){
+        Debug.Log("MOVEMENT ENEMY");
     }
 }

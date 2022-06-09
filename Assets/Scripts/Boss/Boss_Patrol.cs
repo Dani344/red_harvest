@@ -32,8 +32,6 @@ public class Boss_Patrol : Enemy
           InitBoss();
     }*/
 
-    
-    
 
     public void InitBoss()
     {
@@ -60,7 +58,7 @@ public class Boss_Patrol : Enemy
         return nextPos;
     }
 
-    public void MovementPatrol()
+    public override void Movement()
     {
         if (_navMesh.remainingDistance < 0.15f && !_hasArrived)
         {
@@ -79,6 +77,12 @@ public class Boss_Patrol : Enemy
                 FollowTarget(_destination);
             }
         }
+    }
+
+    public override void Init(){
+        
+        Debug.Log("INIT BOSS pATROL");
+        InitBoss();
     }
     
         

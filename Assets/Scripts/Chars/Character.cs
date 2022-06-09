@@ -179,6 +179,13 @@ public class Character : MonoBehaviour
         _barManagement.UpdateLifeBar(_currentHp, _generalStats.Health);
     }
     
+    //TEST OVERIDE INIT
+    public virtual void Init(){
+        Debug.Log("INIT CHARACTER");
+    }
 
+    public virtual void Movement(){
+        
+    }
 
 }
