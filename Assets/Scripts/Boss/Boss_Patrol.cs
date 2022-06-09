@@ -15,7 +15,7 @@ public class Boss_Patrol : Enemy
     private bool _hasArrived = false;
     //private Boss_Combat _bc;
 
-    private void Awake()
+    /*private void Awake()
     {
         //Cogemos las referencias de los puntos para patrullar o ya las asignamos por el inspector.
         _anim = GetComponent<Animator>();
@@ -25,27 +25,28 @@ public class Boss_Patrol : Enemy
 
         //_bc = GetComponent<Boss_Combat>();
 
-    }
+    }*/
     
-    /*private void Start()
+    private void Start()
     {
           InitBoss();
-    }*/
+    }
 
 
     public void InitBoss()
     {
-        NormalSetUp("DUMMY", 100, 300,5.5f,11f, 25f,30f,
+        
+        /*NormalSetUp("DUMMY", 100, 300,5.5f,11f, 25f,30f,
             56f, 1.75f, 15, 0, 4,
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
         
-        _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_NEUTRAL);
-        //ShowCharacterInformation();
+        //_barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_NEUTRAL);
+        ShowCharacterInformation();*/
         
         _destination = GenerateNextDestination();
-        _navMesh.speed = 2f; 
+        //_navMesh.speed = 2f; 
         
-        FollowTarget(_destination);
+        //FollowTarget(_destination);
     }
 
     private Vector3 GenerateNextDestination()

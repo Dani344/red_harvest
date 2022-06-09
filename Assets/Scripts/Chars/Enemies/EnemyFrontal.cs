@@ -11,6 +11,7 @@ public class EnemyFrontal : Enemy
     [SerializeField] private GameObject _projectilPrefab;
     private float _count;
     
+    /*
     private void Awake()
     {
         _camera = Camera.main;
@@ -18,7 +19,7 @@ public class EnemyFrontal : Enemy
         _navMesh = GetComponent<NavMeshAgent>();
         _gm = FindObjectOfType<GameManager>();
         _barManagement = GetComponentInChildren<SpriteBarManagement>();
-    }
+    }*/
     
     private void Start()
     { 

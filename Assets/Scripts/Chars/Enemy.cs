@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class Enemy : Character
@@ -12,6 +13,17 @@ public class Enemy : Character
     protected float _timeForUpdatePath = 2f;
     
     //CUIDADO POR QUE SOLO CONTEMPLAMOS AL PLAYER
+
+
+    private void Awake()
+    {
+        _camera = Camera.main;
+        _anim = GetComponent<Animator>();
+        _navMesh = GetComponent<NavMeshAgent>();
+        _gm = FindObjectOfType<GameManager>();
+        _barManagement = GetComponentInChildren<SpriteBarManagement>();
+    }
+    
     
     protected void SetSpawnPoint()
     {
@@ -88,7 +100,18 @@ public class Enemy : Character
     public bool isEnemyReturning(){
         return _isReturning;
     }
-    
+
+    public GameObject GetTargetGO()
+    {
+        return _targetGO;
+    }
+
+    public void SetTargetGO(GameObject target)
+    {
+        
+        _targetGO = target;
+        _targetPos = target.GetComponent<Transform>();
+    }
     
     //Para plantear que se active si recibe daño -> probablemente evento.
     public void EnemyTakeDamage(int dmg, int what)
@@ -113,4 +136,7 @@ public class Enemy : Character
     public override void Movement(){
         Debug.Log("MOVEMENT ENEMY");
     }
+    
+    
+    
 }

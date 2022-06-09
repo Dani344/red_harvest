@@ -180,12 +180,14 @@ public class Character : MonoBehaviour
     }
     
     //TEST OVERIDE INIT
-    public virtual void Init(){
+    public virtual void Init()
+    {
         Debug.Log("INIT CHARACTER");
     }
 
-    public virtual void Movement(){
+    public virtual void Movement()
+    {
         
     }
-
+    
 }

@@ -162,6 +162,12 @@ MonoBehaviour:
   _isActive: 0
   _targetGO: {fileID: 0}
   _isReturning: 0
+  _AoePrefab: {fileID: 6023937025087150159, guid: 25a726d59dbe1fe41ac52f285f2b665b,
+    type: 3}
+  _projectilPrefab: {fileID: 2604597369965400599, guid: 88cbdb01d8292e84f808471a5e751820,
+    type: 3}
+  _shootPrefab: {fileID: 2604597369965400599, guid: 54d023a535c3f244897672c363140ec9,
+    type: 3}
 --- !u!114 &1609577376
 MonoBehaviour:
   m_ObjectHideFlags: 0

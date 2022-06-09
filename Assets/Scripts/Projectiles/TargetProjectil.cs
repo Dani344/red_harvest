@@ -30,7 +30,6 @@ public class TargetProjectil : Projectil
     {
         _dire = _target.position - transform.position;
         _dire.Normalize();
-        Debug.Log(Time.deltaTime);
         //ES DIRE DIRECTAMENTE
         var QuatLookRot = Quaternion.LookRotation(_target.position - transform.position);
         Debug.DrawRay(transform.position, _dire);
