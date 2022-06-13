@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,6 +9,8 @@ public class Boss_Combat : Enemy
     [SerializeField] private GameObject _AoePrefab;
     [SerializeField] private GameObject _projectilPrefab;
     [SerializeField] private GameObject _shootPrefab;
+
+    [SerializeField] private Enemy _bp;
     
 
     private float _aoe_timer = 0f;
@@ -21,16 +23,30 @@ public class Boss_Combat : Enemy
 
     private int tripleShootNum = 0;
 
+    private void Awake(){
+        
+    }
+
+
     private void Start()
     {
-        _targetPos = _targetGO.transform;
+        _bp = GetComponent<Boss_Patrol>();
+        
         tripleShootNum = 0;
+        _targetGO = _bp.GetTargetGO();
+        _targetPos = _targetGO.transform;
     }
 
 
     public override void Movement(){
         
+        RefreshStats();
+        _targetPos = _targetGO.transform;
         CombatManagement();
+
+        Debug.Log(_generalStats.Health);
+        Debug.Log(_generalStats.Name);
+        
 
     }
     //HAY QUE PLANTEAR EL ASUNTO BIEN
@@ -134,6 +150,13 @@ public class Boss_Combat : Enemy
             
         }
         
+    }
+
+    public void RefreshStats(){
+        this.GenerateStatsEmpty();
+        var stats = _bp.GetGeneralStats();
+        this.RefreshGeneralStats(stats);
+        //this._generalStats
     }
     
 }

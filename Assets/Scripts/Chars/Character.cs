@@ -189,5 +189,17 @@ public class Character : MonoBehaviour
     {
         
     }
+
+    public void GenerateStatsEmpty(){
+        _generalStats = new GeneralStats();
+    }
+
+    public void RefreshGeneralStats(GeneralStats gs){
+        _generalStats = gs;
+    }
+
+    public GeneralStats GetGeneralStats(){
+        return _generalStats;
+    }
     
 }

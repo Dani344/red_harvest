@@ -36,6 +36,7 @@ public class ControlStateBoss : MonoBehaviour
     private void Update()
     {
         UpdateCurrentState(_currentState);
+
     }
 
     private void UpdateCurrentState(Enemy _miestado)
@@ -43,13 +44,16 @@ public class ControlStateBoss : MonoBehaviour
         //Movement
         if (_miestado.isEnemyActive())
         {
-            _miestado.Movement();
+            
         }
 
-        if (_miestado.GetTargetGO())
-        {
+        _miestado.Movement();         
+        TestControl();
+
+        //if (_miestado.GetTargetGO())
+        //{
             //Atacar
-        }
+        //}
 
         /*
          if (_ficha.!isAlive)
@@ -59,14 +63,14 @@ public class ControlStateBoss : MonoBehaviour
          }
          */
     }
-}
 
-        TestControl();
+
+        //TestControl();
         //_currentState.Movement();
 
         //Si detecta enemigo cambio a combate
         
-    }
+    
     
 
     private void RefreshInfo()

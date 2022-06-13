@@ -32,7 +32,6 @@ public class GeneralStats
     public int Experience = 0;
     
 
-   
     /*
     public void EarnExperience(int exp)
     {
