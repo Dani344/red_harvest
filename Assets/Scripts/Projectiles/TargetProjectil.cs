@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TargetProjectil : Projectil
 {
+    private float _count = 0f;
+    [SerializeField] private float _maxTimeAliveProjectil = 7f;
     private void Update()
     {
         
@@ -16,9 +18,14 @@ public class TargetProjectil : Projectil
         }
         
         if (!_hasTarget) return;
-        
+        _count += Time.deltaTime;
+        if (_count > _maxTimeAliveProjectil)
+        {
+            //Quizas nos interese explotar cuatro bolitas o lo del boss
+            Die();
+        }
         MovementTarget();
-        
+
         //TIMER PARA QUE MUERA.
         //HACER DAÑO SI O SI SI FIJA TARGET Y SIEMPRE DA.
         //NO HACER DAÑO SI PUEDES ESQUIVAR T < 1 en SLERP
@@ -66,7 +73,7 @@ public class TargetProjectil : Projectil
                 {
                     Debug.Log("ERROR EN ALGO BALL SCRIPT");
                 }
-                //Die();
+                Die();
             }
         }
         else

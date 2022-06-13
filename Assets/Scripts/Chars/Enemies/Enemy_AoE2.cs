@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Enemy_Aoe : Enemy
+public class Enemy_AoE2 : Enemy
 {
-    [SerializeField] private GameObject _AoE_Prefab;
+    [SerializeField] private GameObject _projectil_prefab;
     private float _count;
     
     private void Start()
     { 
-        NormalSetUp("DUMMY AOE", 100, 300,5.5f,11f, 25f,30f,
+        NormalSetUp("DUMMY_AOE_PIUPUIU", 100, 300,5.5f,11f, 25f,30f,
             56f, 1.75f, 15, 0, 4,
-            1.7f, 0.15f, 0f, 0f, 10, 1, 100, 0);
+            1.5f, 0.15f, 0f, 0f, 10, 1, 100, 0);
         //ShowCharacterInformation();
         
         _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_NEUTRAL);
@@ -83,7 +80,7 @@ public class Enemy_Aoe : Enemy
             _count += Time.deltaTime;
             if (_count > _generalStats.BaseAttackSpeed)
             {
-                Attack();
+                ShootAoE();
                 _count = 0f;
             }
         }
@@ -101,12 +98,20 @@ public class Enemy_Aoe : Enemy
     }
     
     //AoE instanciation
-    private void Attack()
-    {
-        var aoe = Instantiate(_AoE_Prefab, _targetPos.position, Quaternion.identity);
+    private void ShootAoE(){
+        var rot = 0;
+        
+        for (int i = 0; i < 8; i++){
+            var projGO = Instantiate(_projectil_prefab, transform.position , Quaternion.Euler(0, rot,0));
+            var proj = projGO.GetComponent<Projectil>();
+            
+
+            var dire = projGO.transform.forward;
+
+            //DEBERIA ESTAR EN RADIANES!!! 2PI = 360
+            //var dire = new Vector3( Mathf.Cos(45º),0f,Mathf.Sin(30º));
+            proj.ProjectilNoTargetSetUp(dire, 8f, 10f, true);
+            rot += 45;
+        }
     }
-
-
-
-
 }

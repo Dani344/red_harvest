@@ -15,14 +15,19 @@ public class GameManager : MonoBehaviour
     //CREAR LAS FUNCIONES NECESARIAS PUBLICAS Y PENSAR EN EL ESQUEMA
     
     [SerializeField] private CameraMovement _cameraMove;
+    [SerializeField] private PlayerMovement _playerScript;
+    [SerializeField] private ControlStateBoss _controlStateBoss;
+    
+    
     
     
     #region Prefabs
     [SerializeField] private GameObject _map;
 
-    [SerializeField] private GameObject _player;
-    [SerializeField] public Transform _playerSpawnPoint;
+    [SerializeField] private GameObject _playerGO;
     
+    [SerializeField] public Transform _playerSpawnPoint;
+
     [SerializeField] private GameObject[] _enemiesSpawns;
     [SerializeField] private GameObject[] _enemiesPrefabs;
     
@@ -52,7 +57,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _cameraMove = FindObjectOfType<CameraMovement>();
-        
+
     }
     
     private void Start()
@@ -71,7 +76,7 @@ public class GameManager : MonoBehaviour
         
         SpawnPlayer();
         SpawnEnemies();
-        SpawnBoss();
+        //SpawnBoss();
         
         ProgressInGame();
     }
@@ -89,20 +94,31 @@ public class GameManager : MonoBehaviour
             TimerGameText();
         }
         
-    }
-
-
-
-    private void GenerateMap()
-    {
+        TestGM();
+        
+        if (!_playerScript.isPlayerAlive())
+        {
+            Debug.Log("MUERTO GM");
+            _controlStateBoss.PlayerDied();
+        }
         
     }
 
+    private void TestGM()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            SpawnBoss();
+        }
+    }
+    
+    
     private void SpawnPlayer()
     {
-        Instantiate(_player, _playerSpawnPoint.position, Quaternion.identity);
+        var player = Instantiate(_playerGO, _playerSpawnPoint.position, Quaternion.identity);
         _cameraMove.Center();
-
+        _playerScript = player.GetComponent<PlayerMovement>();
+        _playerScript.SetPlayerAlive();
     }
     
     private void SpawnEnemies()
@@ -112,15 +128,17 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < _enemiesSpawns.Length; i++)
         {
-            if (_enemiesPrefabs[0])
+            var enemigo = Random.Range(0, 3);
+            if (_enemiesPrefabs[enemigo])
             {
                 //TENER EN CUENTA SI EL SETUP LO HACEMOS AQUI SI QUEREMOS ALGO ESPECIAL??
-                Instantiate(_enemiesPrefabs[0], _enemiesSpawns[i].transform.position, Quaternion.identity);
+                Instantiate(_enemiesPrefabs[enemigo], _enemiesSpawns[i].transform.position, Quaternion.identity);
                 _totalNumEnemies += 1;
             }
             
         }
-
+        //Instantiate(_enemiesPrefabs[1], )
+        
         _currentNumEnemies = _totalNumEnemies;
     }
 
@@ -131,6 +149,8 @@ public class GameManager : MonoBehaviour
             
             var boss = Instantiate(_bossPrefab, _bossSpawn.position, Quaternion.identity);
             boss.transform.localScale = new Vector3(2f, 2f, 2f);
+            boss.name = "Boss";
+            _controlStateBoss = boss.GetComponent<ControlStateBoss>();
 
         }
     }
@@ -176,7 +196,23 @@ public class GameManager : MonoBehaviour
     public void MonoliteActivated()
     {
         _monolitesActivated += 1;
+        if (_monolitesActivated == 3)
+        {
+            SpawnBoss();
+        }
+        else
+        {
+            Debug.Log("MONGOLITO");
+        }
+        
     }
+
+    public int GetMonolitesActives()
+    {
+        return _monolitesActivated;
+    }
+    
+    
     
     
     

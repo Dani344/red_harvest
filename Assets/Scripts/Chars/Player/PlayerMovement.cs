@@ -471,6 +471,11 @@ public class PlayerMovement : Character
         return _isSafeZone;
     }
 
+    public void SetPlayerAlive()
+    {
+        _isPlayerAlive = true;
+    }
+
     public bool isPlayerAlive()
     {
         return _isPlayerAlive;

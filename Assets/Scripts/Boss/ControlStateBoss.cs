@@ -10,13 +10,16 @@ public class ControlStateBoss : MonoBehaviour
 
     [SerializeField] private Enemy[] states;
     [SerializeField] private Enemy _currentState;
+
+    private bool _playerAlive = true;
+    private bool _activated = false; 
     
     private Collider _col;
     private GameManager _gm;
     private void Awake()
     {
         states = new Enemy[2];
-        _gm = GetComponent<GameManager>();
+        _gm = FindObjectOfType<GameManager>(); 
         //states[0] = new Boss_Patrol();
         //states[1] = new Boss_Combat();
 
@@ -30,25 +33,43 @@ public class ControlStateBoss : MonoBehaviour
         _currentState = states[0];
         _currentState.Init();
 
+        _playerAlive = true;
         //RefreshInfo();
     }
 
     private void Update()
     {
-        UpdateCurrentState(_currentState);
-
+        
+        if (_playerAlive)
+        {
+            UpdateCurrentState(_currentState);
+        }
+        else
+        {
+            Debug.Log("PLAYER STATE ALVIE");
+            //SI BOSS ALIVE O PLAYER ALIVE
+            _gm.FinishGame();
+        }
+        
+        
+        
     }
 
     private void UpdateCurrentState(Enemy _miestado)
     {
         //Movement
-        if (_miestado.isEnemyActive())
+        
+        //if player esta vivo o boss vivo
+        if (_miestado.isEnemyActive() && !_activated)
         {
+            ChangeState();
+            _miestado.Movement();  
             
         }
+         _miestado.Movement();
+        
 
-        _miestado.Movement();         
-        TestControl();
+        
 
         //if (_miestado.GetTargetGO())
         //{
@@ -64,14 +85,10 @@ public class ControlStateBoss : MonoBehaviour
          */
     }
 
-
-        //TestControl();
-        //_currentState.Movement();
-
-        //Si detecta enemigo cambio a combate
-        
-    
-    
+    public void PlayerDied()
+    {
+        _playerAlive = false;
+    }
 
     private void RefreshInfo()
     {
@@ -97,10 +114,11 @@ public class ControlStateBoss : MonoBehaviour
     }
     
     
-    private void TestControl()
+    private void ChangeState()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+            _activated = true;
             if (_currentState == states[1]){
                 _currentState = _bp;
             }else
@@ -114,7 +132,7 @@ public class ControlStateBoss : MonoBehaviour
                 
             }
             
-        }
+        //}
     }
 
     

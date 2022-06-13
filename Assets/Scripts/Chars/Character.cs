@@ -142,8 +142,17 @@ public class Character : MonoBehaviour
         
         if (!gameObject.CompareTag("Player"))
         {
-            _gm.EnemyKilled();
-            Destroy(gameObject);
+            if (gameObject.name == "Boss")
+            {
+                Debug.Log("HEMOS MATADO BOSS");
+                _gm.FinishGame();
+            }
+            else
+            {
+                _gm.EnemyKilled();
+                Destroy(gameObject);
+            }
+            
         }
         else
         {
@@ -189,7 +198,7 @@ public class Character : MonoBehaviour
     {
         
     }
-
+    
     public void GenerateStatsEmpty(){
         _generalStats = new GeneralStats();
     }

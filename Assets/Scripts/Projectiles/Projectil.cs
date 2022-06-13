@@ -50,7 +50,6 @@ public class Projectil : MonoBehaviour
 
     protected void Die()
     {
-        Debug.Log("MUERE PROJECTIL");
         Destroy(gameObject);
     }
     public void SetDirection(Vector3 dire)

@@ -35,6 +35,7 @@ public class Boss_Combat : Enemy
         tripleShootNum = 0;
         _targetGO = _bp.GetTargetGO();
         _targetPos = _targetGO.transform;
+        this.GenerateStatsEmpty();
     }
 
 
@@ -43,15 +44,7 @@ public class Boss_Combat : Enemy
         RefreshStats();
         _targetPos = _targetGO.transform;
         CombatManagement();
-
-        Debug.Log(_generalStats.Health);
-        Debug.Log(_generalStats.Name);
         
-
-    }
-    //HAY QUE PLANTEAR EL ASUNTO BIEN
-    public void Shoot(){
-
     }
 
     private void TripleShoot()
@@ -153,7 +146,7 @@ public class Boss_Combat : Enemy
     }
 
     public void RefreshStats(){
-        this.GenerateStatsEmpty();
+        //this.GenerateStatsEmpty();
         var stats = _bp.GetGeneralStats();
         this.RefreshGeneralStats(stats);
         //this._generalStats

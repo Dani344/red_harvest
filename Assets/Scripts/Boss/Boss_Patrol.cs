@@ -30,6 +30,7 @@ public class Boss_Patrol : Enemy
     private void Start()
     {
           InitBoss();
+          Debug.Log("START BOSS PATROL");
     }
 
 
@@ -40,7 +41,7 @@ public class Boss_Patrol : Enemy
             56f, 1.75f, 15, 0, 4,
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
         
-        ShowCharacterInformation();
+        //ShowCharacterInformation();
         _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_NEUTRAL);
         _destination = GenerateNextDestination();
         //_navMesh.speed = 2f; 

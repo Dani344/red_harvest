@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 2035387743723010946}
   - component: {fileID: 5500999480608946112}
   - component: {fileID: 8071228700065002173}
-  - component: {fileID: 2883527305646580835}
+  - component: {fileID: 8829666009075292707}
   m_Layer: 0
-  m_Name: Enemy_AoE
+  m_Name: Enemy_instAoE
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2883527305646580835
+--- !u!114 &8829666009075292707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 857629878538066487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5edfb4b133c3d66488cfbb8aec0c420d, type: 3}
+  m_Script: {fileID: 11500000, guid: 44a35526ad168c3439063b1226826cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _currentSpeed: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
   _isActive: 0
   _targetGO: {fileID: 0}
   _isReturning: 0
-  _AoE_Prefab: {fileID: 6023937025087150159, guid: 25a726d59dbe1fe41ac52f285f2b665b,
+  _projectil_prefab: {fileID: 2604597369965400599, guid: 88cbdb01d8292e84f808471a5e751820,
     type: 3}
 --- !u!1 &1935473151176180979
 GameObject:
@@ -365,7 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2809414644986713676}
   - component: {fileID: 4020067964752191970}
-  - component: {fileID: 3139203129933295513}
+  - component: {fileID: 5395574102706243679}
   m_Layer: 0
   m_Name: HpBar
   m_TagString: Untagged
@@ -438,7 +438,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3139203129933295513
+--- !u!114 &5395574102706243679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -590,7 +590,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4f78e3a1761db8045ad5c09584729b57, type: 2}
+      objectReference: {fileID: 2100000, guid: c230f1cdd9d52cf458a5ac2efe96ac19, type: 2}
     - target: {fileID: 919132149155446097, guid: 3e5325c249f0cf443a30ae2055e22621,
         type: 3}
       propertyPath: m_Name
