@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TargetProjectil : Projectil
 {
-    private float _count = 0f;
+    //private float _count = 0f;
+    
     [SerializeField] private float _maxTimeAliveProjectil = 7f;
     private void Update()
     {
