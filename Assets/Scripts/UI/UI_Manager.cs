@@ -8,6 +8,14 @@ public class UI_Manager : MonoBehaviour
 {
     [SerializeField] private GameObject _canvas;
 
+    #region REFERENCES
+
+    [SerializeField] private Image _healthBarMain;
+    [SerializeField] private Image[] _playerAbilities;
+    [SerializeField] private Image _castBar;
+
+    #endregion
+
     public UI_Events _uiEvents;
 
     /*private void Update()
@@ -22,6 +30,15 @@ public class UI_Manager : MonoBehaviour
     private void Awake()
     {
         _uiEvents = FindObjectOfType<UI_Events>();
+
+        var mainHp = GameObject.FindWithTag(PaperConstants.TAG_MAIN_HPBAR);
+        _healthBarMain = mainHp.GetComponent<Image>();
+
+        var castBar = GameObject.FindWithTag(PaperConstants.TAG_CAST_BAR);
+        _castBar = castBar.GetComponent<Image>();
+
+        _playerAbilities = GameObject.FindGameObjectsWithTag(PaperConstants.TAG_ABILITIES_ICONS);
+
     }
 
     private void Start()
