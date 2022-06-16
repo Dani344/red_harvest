@@ -135,7 +135,7 @@ public class Enemy : Character
     //******TEST OVERRIDE
     public override void Init()
     {
-        Debug.Log("INIT ENEMY");
+        //Debug.Log("INIT ENEMY");
         //base.Init();
         //Init();
     }

@@ -18,9 +18,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerMovement _playerScript;
     [SerializeField] private ControlStateBoss _controlStateBoss;
     
-    
-    
-    
     #region Prefabs
     [SerializeField] private GameObject _map;
 
@@ -38,25 +35,28 @@ public class GameManager : MonoBehaviour
     #region PlayerInterfaceInfo
 
     [SerializeField] private int _totalPlayerCoins;
-    [SerializeField] private TMP_Text _coinText;
     [SerializeField] private float _inGameProgress = 0f;
-    [SerializeField] private TMP_Text _progressText;
-    [SerializeField] private bool _playerDead;
-
+    //[SerializeField] private bool _playerDead;
     [SerializeField] private TMP_Text _totalGameTimeText;
+    [SerializeField] private int _monolitesActivated = 0;
 
     #endregion
 
     [SerializeField] private int _totalNumEnemies = 0;
     [SerializeField] private int _currentNumEnemies = 0;
-
-    [SerializeField] private int _monolitesActivated = 0;
+    
 
     private float _totalGameTime = 0f;
     private float _count = 0f;
+
+    [SerializeField] private UI_Manager _uiManager;
+    
+    
+    
     private void Awake()
     {
         _cameraMove = FindObjectOfType<CameraMovement>();
+        _uiManager = FindObjectOfType<UI_Manager>();
 
     }
     
@@ -65,8 +65,6 @@ public class GameManager : MonoBehaviour
         _totalNumEnemies = 0;
         _currentNumEnemies = 0;
         
-        var temp = "Coins: 0";
-        _coinText.text = temp;
         _totalPlayerCoins = 0;
         _inGameProgress = 0f;
         _totalGameTime = 0f;
@@ -81,9 +79,7 @@ public class GameManager : MonoBehaviour
         ProgressInGame();
     }
     
-    
     //CONTADOR TIMER TOTAL
-    
     private void Update()
     {
         _count += Time.deltaTime;
@@ -111,7 +107,6 @@ public class GameManager : MonoBehaviour
             SpawnBoss();
         }
     }
-    
     
     private void SpawnPlayer()
     {
@@ -157,8 +152,9 @@ public class GameManager : MonoBehaviour
     public void RecolectCoin(int ammount)
     {
         _totalPlayerCoins += ammount;
-        var newCoinsText = "Coins: " + _totalPlayerCoins;
-        _coinText.text = newCoinsText;
+        _uiManager._uiEvents._changeTotalCoins?.Invoke(_totalPlayerCoins);
+        //var newCoinsText = "Coins: " + _totalPlayerCoins;
+        //_coinText.text = newCoinsText;
     }
 
     public void ProgressInGame()
@@ -166,9 +162,9 @@ public class GameManager : MonoBehaviour
         //Debug.Log(_currentNumEnemies + "CURRENT E");
         var porcentajeRestante = (float) _currentNumEnemies / _totalNumEnemies;
         _inGameProgress = (1f - porcentajeRestante) * 100f;
-        //Debug.Log(_inGameProgress + "PROG");
-        var texto = _inGameProgress + " %";
-        _progressText.text = texto;
+        
+        _uiManager._uiEvents._changeTotalProgress?.Invoke(_inGameProgress);
+        
     }
 
     public void EnemyKilled()
@@ -200,10 +196,7 @@ public class GameManager : MonoBehaviour
         {
             SpawnBoss();
         }
-        else
-        {
-            Debug.Log("MONGOLITO");
-        }
+        _uiManager._uiEvents._monoliteActivated?.Invoke(_monolitesActivated);
         
     }
 

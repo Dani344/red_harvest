@@ -44,6 +44,8 @@ public class PlayerMovement : Character
     [SerializeField] private GameObject _baseParticlePrefab;
     [SerializeField] private bool _isSafeZone;
     [SerializeField] private bool _isPlayerAlive;
+
+    [SerializeField] private UI_Manager _uiManager;
     
     private void Awake()
     {
@@ -82,6 +84,11 @@ public class PlayerMovement : Character
         
         //ZONA NEW
         _navMesh = GetComponent<NavMeshAgent>();
+        
+        
+        ////NEEEWWWW UII
+        _uiManager = GameObject.FindObjectOfType<UI_Manager>();
+        //Seteamos la vida y la estructura.
 
     }
     
@@ -228,7 +235,11 @@ public class PlayerMovement : Character
         UtilityInput();
         
         //PORQUE EL VALOR BASE DE LA IMAGEN DE ENCIMA DEL CHARACTER ES 3 por eso * 0.33f.
-        _healthBarMain.fillAmount = _barManagement.GetSizeBar();
+        //_healthBarMain.fillAmount = _barManagement.GetSizeBar();
+        
+        var fill = _barManagement.GetSizeBar();
+        //_uiManager._uiEvents._changeHealthPlayer?.Invoke(fill);
+        _uiManager.ChangeHealthImage(fill);
     }
 
     private void InitPlayer()
@@ -340,6 +351,10 @@ public class PlayerMovement : Character
         
         if (_isOnCoolDownR)
         {
+            var difAmount = 1 / _coolDownR * Time.deltaTime;
+            _uiManager.RefreshCooldownImage(3, difAmount);
+            
+            
             _abilityR.fillAmount -= 1 / _coolDownR * Time.deltaTime;
             if (_abilityR.fillAmount <= 0)
             {

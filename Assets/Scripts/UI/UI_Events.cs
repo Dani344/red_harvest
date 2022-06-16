@@ -6,8 +6,14 @@ using UnityEngine;
 public class UI_Events : MonoBehaviour
 {
 
-    public Action<int> _changeHealthPlayer;
-    public Action _monoliteActivated;
+    //COmo se llama en cada fotograma no necesitamos este evento
+    //public Action<float> _changeHealthPlayer;
+    //public Action<float> _changeCooldownImage;
+
+    public Action<int> _changeTotalCoins;
+    public Action<float> _changeTotalProgress;
+    public Action<int> _monoliteActivated;
+    
     public Action _canUpgradeAbility;
 
 }

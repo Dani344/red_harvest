@@ -30,7 +30,7 @@ public class Boss_Patrol : Enemy
     private void Start()
     {
           InitBoss();
-          Debug.Log("START BOSS PATROL");
+          //Debug.Log("START BOSS PATROL");
     }
 
 
@@ -82,7 +82,7 @@ public class Boss_Patrol : Enemy
 
     public override void Init(){
         
-        Debug.Log("INIT BOSS pATROL");
+        //Debug.Log("INIT BOSS pATROL");
         InitBoss();
     }
     

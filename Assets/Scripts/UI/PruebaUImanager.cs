@@ -15,7 +15,7 @@ public class PruebaUImanager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            uiManager._uiEvents._changeHealthPlayer?.Invoke(100);
+            //uiManager._uiEvents._changeHealthPlayer?.Invoke(100);
             //_changeHealthPlayer?.Invoke(100);n
             
         }
