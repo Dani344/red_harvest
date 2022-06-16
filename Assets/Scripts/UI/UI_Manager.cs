@@ -13,14 +13,21 @@ public class UI_Manager : MonoBehaviour
     #region REFERENCES
 
     [SerializeField] private GameManager _gm;
+    
+    //Player Info Canvas
     [SerializeField] private Image _healthBarMain;
     [SerializeField] private Image[] _playerAbilities;
     [SerializeField] private Image _castBar;
     
-    //TExtos Pros ASIGNADO INSPECTOR
+    //PlayerINFO TMP
     [SerializeField] private TMP_Text _totalCoinsText;
     [SerializeField] private TMP_Text _totalProgressText;
     [SerializeField] private TMP_Text _totalMonolites;
+    
+    //Selected Info
+    [SerializeField] private Image _healthBarSelectedChar;
+    [SerializeField] private TMP_Text _percentageHealthSelectedText;
+    [SerializeField] private TMP_Text _nameSelectedText;
     #endregion
 
     public UI_Events _uiEvents;
@@ -86,6 +93,8 @@ public class UI_Manager : MonoBehaviour
         _uiEvents._changeTotalCoins += ChangeTotalCoins;
         _uiEvents._changeTotalProgress += ChangeTotalProgress;
         _uiEvents._monoliteActivated += MonoliteActivated;
+        _uiEvents._RefreshCharSelected += RefreshCharSelected;
+        _uiEvents._ShowCharInfo += ShowCharInfo;
 
     }
 
@@ -107,10 +116,27 @@ public class UI_Manager : MonoBehaviour
         var monolitesText = "Monolites: " + totalMonolites;
         _totalMonolites.text = monolitesText;
     }
+
+    private void RefreshCharSelected(string name, float percentageHealth)
+    {
+        Debug.Log("REFRESH INFO");
+    }
+
+    private void ShowCharInfo(string name, float percentageHealth)
+    {
+        Debug.Log("SHOW INFO");
+    }
+    
+    
     //PUBLIC METHOD
     public void ChangeHealthImage(float fillAmount)
     {
         _healthBarMain.fillAmount = fillAmount;
+    }
+
+    public void RefreshCastBar(float fillAmount)
+    {
+        _castBar.fillAmount = fillAmount;
     }
 
     public void InitCooldownImage(int abilityIndex)

@@ -32,8 +32,8 @@ public class PlayerMovement : Character
     
     private float _coolDownQ, _coolDownW, _coolDownE, _coolDownR;
     private float _countQ, _countW, _countE, _countR;
+    private float _countCastBar;
     
-    private Image _castBar;
     [SerializeField] private bool _isGoingBase = false;
     
     private bool _isOnCoolDownQ, _isOnCoolDownW, _isOnCoolDownE, _isOnCoolDownR;
@@ -54,10 +54,7 @@ public class PlayerMovement : Character
         
         //HP BAR CHILDREN
         _barManagement = GetComponentInChildren<SpriteBarManagement>();
-        
-        var castBar = GameObject.FindWithTag(PaperConstants.TAG_CAST_BAR);
-        _castBar = castBar.GetComponent<Image>();
-        
+
         ///ZONA SHIELD
         _shield = GameObject.FindWithTag(PaperConstants.TAG_SHIELD);
 
@@ -102,7 +99,10 @@ public class PlayerMovement : Character
                 //Si es enemigo, seleccionarlo ¿?
                 if (hit.collider.CompareTag(PaperConstants.TAG_ENEMY))
                 {
-                    Debug.Log("Selecciono Enemy");
+                    Debug.Log("Selecciono Char");
+                    Debug.Log(hit.collider.name);
+                    _uiManager._uiEvents._ShowCharInfo?.Invoke("Antonio", 65f);
+                    
                 }
                 //Si es terreno, no hacer nada.
 
@@ -123,7 +123,9 @@ public class PlayerMovement : Character
         if (Input.GetMouseButtonDown(1))
         {
             _isGoingBase = false;
-            _castBar.fillAmount = 0f;
+            _countCastBar = 0f;
+            _uiManager.RefreshCastBar(_countCastBar);
+            //_castBar.fillAmount = 0f;
             RaycastHit hit;
             LayerMask mask = LayerMask.GetMask(PaperConstants.LAYER_GROUND);
             var ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -139,11 +141,10 @@ public class PlayerMovement : Character
                 _destination = new Vector3(hit.point.x, 0f, hit.point.z);
                 _direction = _destination - transform.position;
 
+                //Si cambiamos de direccion drasticamente, paramos y redirigimos
                 if (CheckAngleNewDestination(transform.forward, _direction) > 45f)
                 {
                     StopMove();
-                    Debug.Log("SE APLICA STOP MOVE");
-                    
                 }
                 
                 
@@ -193,12 +194,16 @@ public class PlayerMovement : Character
 
         if (_isGoingBase)
         {
-            _castBar.fillAmount += Time.deltaTime / 5; //quiero que sean 3 segundos aprox de casteo
-            if (_castBar.fillAmount > 0.99f)
+            //_castBar.fillAmount += Time.deltaTime / 5;
+            _countCastBar += Time.deltaTime / 5f; //quiero que sean 3 segundos aprox de casteo
+            _uiManager.RefreshCastBar(_countCastBar);
+            if (_countCastBar > 0.99f)
             {
                 //var particle = Instantiate(_baseParticlePrefab, transform.position, Quaternion.identity);
                 _isGoingBase = false;
-                _castBar.fillAmount = 0f;
+                _countCastBar = 0f;
+                _uiManager.RefreshCastBar(_countCastBar);
+                //_castBar.fillAmount = 0f;
                 RespawnBase();
                 StopMove();
             }
@@ -249,14 +254,13 @@ public class PlayerMovement : Character
         
         _barManagement.InitializeBar(_generalStats.Health, PaperConstants.HP_BAR_FRIENDLY);
         
-        _castBar.fillAmount = 0f;
+        _countCastBar = 0f;
         _currentSpeed = _generalStats.MoveSpeed;
         _shieldCol.enabled = false;
         _shieldRender.enabled = false;
 
         _isPlayerAlive = true;
     }
-    
     
     private float DistanceToPoint(Vector3 destination)
     {

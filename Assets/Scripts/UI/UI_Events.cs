@@ -13,6 +13,9 @@ public class UI_Events : MonoBehaviour
     public Action<int> _changeTotalCoins;
     public Action<float> _changeTotalProgress;
     public Action<int> _monoliteActivated;
+
+    public Action<string, float> _RefreshCharSelected;
+    public Action<string, float> _ShowCharInfo;
     
     public Action _canUpgradeAbility;
 
