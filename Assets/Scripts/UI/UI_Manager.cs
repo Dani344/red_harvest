@@ -70,6 +70,11 @@ public class UI_Manager : MonoBehaviour
 
         var monolites = "Mongolites: 0";
         _totalMonolites.text = monolites;
+
+        for (int i = 0; i < _playerAbilities.Length; i++)
+        {
+            _playerAbilities[i].fillAmount = 0f;
+        }
         
     }
 
@@ -108,16 +113,25 @@ public class UI_Manager : MonoBehaviour
         _healthBarMain.fillAmount = fillAmount;
     }
 
+    public void InitCooldownImage(int abilityIndex)
+    {
+        if (_playerAbilities[abilityIndex])
+        {
+            _playerAbilities[abilityIndex].fillAmount = 1f;
+        }
+    }
+    
     public void RefreshCooldownImage(int abilityIndex, float diferencialFillAmmount)
     {
         if (_playerAbilities[abilityIndex])
         {
             _playerAbilities[abilityIndex].fillAmount -= diferencialFillAmmount;
+            if (_playerAbilities[abilityIndex].fillAmount < 0f)
+            {
+                _playerAbilities[abilityIndex].fillAmount = 0f;
+            }
         }
     }
-    
-    
-    
     
     
     //FALTA SUSCRIBIR TODOS LOS QUE HAYA
@@ -133,21 +147,7 @@ public class UI_Manager : MonoBehaviour
     {
         Debug.Log("Refresh Enemy Selected");
     }
-
-    public void RefreshTotalPlayerCoins()
-    {
-        Debug.Log("TOTAL COINS REFRESH");
-    }
-
-    public void RefreshPlayerProgression()
-    {
-        Debug.Log("TOTAL PROGRESSION PLAYER");
-    }
-
-    public void RefreshTotalMonolites()
-    {
-        Debug.Log("Refresh Total monolites");
-    }
+    
 
     public void ShowOptionMenu()
     {
@@ -158,12 +158,6 @@ public class UI_Manager : MonoBehaviour
     {
         Debug.Log("GAME OVER OR VICTORY");
     }
-
-    public void RefreshIconCooldown(Image icon, float cd = 1f)
-    {
-        Debug.Log("COOLDOWN");
-    }
-    
     
     
 }

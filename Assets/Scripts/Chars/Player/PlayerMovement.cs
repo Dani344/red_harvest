@@ -29,10 +29,9 @@ public class PlayerMovement : Character
     #endregion
     
     #region CoolDownsAndUI
-
-    private Image _abilityQ, _abilityW, _abilityE, _abilityR;
-    private Image _healthBarMain;
+    
     private float _coolDownQ, _coolDownW, _coolDownE, _coolDownR;
+    private float _countQ, _countW, _countE, _countR;
     
     private Image _castBar;
     [SerializeField] private bool _isGoingBase = false;
@@ -56,22 +55,8 @@ public class PlayerMovement : Character
         //HP BAR CHILDREN
         _barManagement = GetComponentInChildren<SpriteBarManagement>();
         
-        //MAIN HP BAR REFEERENCE
-        var mainHp = GameObject.FindWithTag(PaperConstants.TAG_MAIN_HPBAR);
-        _healthBarMain = mainHp.GetComponent<Image>();
-
         var castBar = GameObject.FindWithTag(PaperConstants.TAG_CAST_BAR);
         _castBar = castBar.GetComponent<Image>();
-
-        //ZONA COOLDOWN INIT/UI
-        var icons = GameObject.FindGameObjectsWithTag(PaperConstants.TAG_ABILITIES_ICONS);
-
-        _abilityQ = icons[0].GetComponent<Image>();
-        _abilityW = icons[1].GetComponent<Image>();
-        _abilityE = icons[2].GetComponent<Image>();
-        _abilityR = icons[3].GetComponent<Image>();
-        //END ZONA CD
-        
         
         ///ZONA SHIELD
         _shield = GameObject.FindWithTag(PaperConstants.TAG_SHIELD);
@@ -235,24 +220,16 @@ public class PlayerMovement : Character
         UtilityInput();
         
         //PORQUE EL VALOR BASE DE LA IMAGEN DE ENCIMA DEL CHARACTER ES 3 por eso * 0.33f.
-        //_healthBarMain.fillAmount = _barManagement.GetSizeBar();
         
         var fill = _barManagement.GetSizeBar();
-        //_uiManager._uiEvents._changeHealthPlayer?.Invoke(fill);
         _uiManager.ChangeHealthImage(fill);
     }
 
     private void InitPlayer()
     {
-        //------ABILITIES-----
-        _abilityQ.fillAmount = 0f;
-        _abilityW.fillAmount = 0f;
-        _abilityE.fillAmount = 0f;
-        _abilityR.fillAmount = 0f;
-
+        
         _isOnCoolDownQ = false;
-        //!!!!!//
-        //this.SetUpDefaultForTest();
+        
         this.NormalSetUp("DK", 500, 300,5.5f,11f, 25f,30f,
             56f, 1.75f, 450, 0, 4,
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
@@ -261,6 +238,11 @@ public class PlayerMovement : Character
         _coolDownW = PaperConstants.COOLDOWN_W;
         _coolDownE = PaperConstants.COOLDOWN_E;
         _coolDownR = PaperConstants.COOLDOWN_R;
+
+        _countQ = 0f;
+        _countW = 0f;
+        _countE = 0f;
+        _countR = 0f;
         
         
         //ShowCharacterInformation();
@@ -316,53 +298,59 @@ public class PlayerMovement : Character
         if (Input.GetKeyDown(KeyCode.R)){
             AbilityR();
         }
-
-        //---COOLDOWNS MANAGEMENT---
-        //HACER UNA CLASE GLOBAL QUE PASEMOS Q CD y EL BOoLEANO
+        
         if (_isOnCoolDownQ)
         {
-            _abilityQ.fillAmount -= 1 / _coolDownQ * Time.deltaTime;
-            if (_abilityQ.fillAmount <= 0)
+            var difAmount = 1 / _coolDownQ * Time.deltaTime;
+            _uiManager.RefreshCooldownImage(0, difAmount);
+            _countQ += Time.deltaTime;
+
+            if (_countQ > _coolDownQ)
             {
-                _abilityQ.fillAmount = 0f;
+                _countQ = 0f;
                 _isOnCoolDownQ = false;
             }
         }
         
         if (_isOnCoolDownW)
         {
-            _abilityW.fillAmount -= 1 / _coolDownW * Time.deltaTime;
-            if (_abilityW.fillAmount <= 0)
+            var difAmount = 1 / _coolDownW * Time.deltaTime;
+            _uiManager.RefreshCooldownImage(1, difAmount);
+            _countW += Time.deltaTime;
+
+            if (_countW > _coolDownW)
             {
-                _abilityW.fillAmount = 0f;
+                _countW = 0f;
                 _isOnCoolDownW = false;
             }
         }
         
         if (_isOnCoolDownE)
         {
-            _abilityE.fillAmount -= 1 / _coolDownE * Time.deltaTime;
-            if (_abilityE.fillAmount <= 0)
+            var difAmount = 1 / _coolDownE * Time.deltaTime;
+            _uiManager.RefreshCooldownImage(2, difAmount);
+            _countE += Time.deltaTime;
+
+            if (_countE > _coolDownE)
             {
-                _abilityE.fillAmount = 0f;
+                _countE = 0f;
                 _isOnCoolDownE = false;
             }
+            
         }
         
         if (_isOnCoolDownR)
         {
             var difAmount = 1 / _coolDownR * Time.deltaTime;
             _uiManager.RefreshCooldownImage(3, difAmount);
-            
-            
-            _abilityR.fillAmount -= 1 / _coolDownR * Time.deltaTime;
-            if (_abilityR.fillAmount <= 0)
+            _countR += Time.deltaTime;
+
+            if (_countR > _coolDownR)
             {
-                _abilityR.fillAmount = 0f;
+                _countR = 0f;
                 _isOnCoolDownR = false;
             }
         }
-
     }
 
     private Vector3 AbilityDirection()
@@ -393,7 +381,8 @@ public class PlayerMovement : Character
         if (_isOnCoolDownQ == false)
         {
             _isOnCoolDownQ = true;
-            _abilityQ.fillAmount = 1f;
+            //_abilityQ.fillAmount = 1f;
+            _uiManager.InitCooldownImage(0);
             if (_ballPrefab)
             {
                 var spellQ = Instantiate(_ballPrefab, transform.position + new Vector3(0f, 0.5f, 0f), Quaternion.identity);
@@ -416,7 +405,8 @@ public class PlayerMovement : Character
         if (_isOnCoolDownW == false)
         {
             _isOnCoolDownW = true;
-            _abilityW.fillAmount = 1f;
+            //_abilityW.fillAmount = 1f;
+            _uiManager.InitCooldownImage(1);
             if (_poisonPrefab)
             {
                 RaycastHit hit;
@@ -438,7 +428,8 @@ public class PlayerMovement : Character
         if (_isOnCoolDownE == false)
         {
             _isOnCoolDownE = true;
-            _abilityE.fillAmount = 1f;
+            //_abilityE.fillAmount = 1f;
+            _uiManager.InitCooldownImage(2);
             _shieldCol.enabled = true;
             _shieldRender.enabled = true;
             StartCoroutine(CoolDown());
@@ -451,7 +442,8 @@ public class PlayerMovement : Character
         if (_isOnCoolDownR == false)
         {
             _isOnCoolDownR = true;
-            _abilityR.fillAmount = 1f;
+            //_abilityR.fillAmount = 1f;
+            _uiManager.InitCooldownImage(3);
             if (_ultiPrefab)
             {
                 var playerRot = transform.rotation;
