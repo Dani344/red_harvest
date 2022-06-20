@@ -37,7 +37,7 @@ public class PaperConstants
     //===== LAYERS =====
     public const string LAYER_GROUND = "Ground";
     public const string LAYER_PLAYER = "Player";
-    public const string LAYER_ENEMY = "Enemey";
+    public const string LAYER_ENEMY = "Enemy";
     
     
     //===== PLAYER =====

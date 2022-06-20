@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5500999480608946112}
   - component: {fileID: 8071228700065002173}
   - component: {fileID: 2883527305646580835}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy_AoE
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -590,7 +590,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4f78e3a1761db8045ad5c09584729b57, type: 2}
+      objectReference: {fileID: 5629084884208175553, guid: 3e5325c249f0cf443a30ae2055e22621,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 3e5325c249f0cf443a30ae2055e22621,
         type: 3}
       propertyPath: m_Name

@@ -1,7 +1,9 @@
 ﻿
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
 {
@@ -124,10 +126,29 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < _enemiesSpawns.Length; i++)
         {
             var enemigo = Random.Range(0, 3);
+            
             if (_enemiesPrefabs[enemigo])
             {
                 //TENER EN CUENTA SI EL SETUP LO HACEMOS AQUI SI QUEREMOS ALGO ESPECIAL??
-                Instantiate(_enemiesPrefabs[enemigo], _enemiesSpawns[i].transform.position, Quaternion.identity);
+                var enemy = Instantiate(_enemiesPrefabs[enemigo], _enemiesSpawns[i].transform.position, Quaternion.identity);
+                var name = "Default";
+                switch (enemigo)
+                {
+                    case 0:
+                        name = "DummyShoot";
+                        break;
+                    case 1:
+                        name = "DummyAoE";
+                        break;
+                    case 2:
+                        name = "DummyMultiShoot";
+                        break;
+                        default:
+                            Debug.Log("FUERA DE RANGO SPAWNENEMIES GM"); 
+                            break;
+                }
+
+                enemy.name = name;
                 _totalNumEnemies += 1;
             }
             

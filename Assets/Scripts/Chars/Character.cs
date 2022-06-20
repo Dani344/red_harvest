@@ -25,11 +25,13 @@ public class Character : MonoBehaviour
     protected PlayerMovement _playerScript;
     protected GeneralStats _generalStats;
     protected GameManager _gm;
+    protected UI_Manager _uiManager;
     
     #endregion
     
     protected Transform _targetPos;
     protected Vector3 _spawnPoint;
+    protected bool _isSelected = false;
     
     protected void NormalSetUp(string name, int health, int mana, float healthReg, float manaReg, float armor,
         float magicResist, float attackDamage, float critDamage, int attackRange, int abilityPower, int moveSpeed, float baseAttackSpeed,
@@ -186,6 +188,23 @@ public class Character : MonoBehaviour
         }
         //TakePhysicDamage(dmg);
         _barManagement.UpdateLifeBar(_currentHp, _generalStats.Health);
+        if (_isSelected)
+        {
+            var percentage = _currentHp / _generalStats.Health;
+            _uiManager._uiEvents._RefreshCharSelected?.Invoke(this.name, percentage);
+        }
+        
+    }
+
+    public float GetCurrentHp()
+    {
+        return _currentHp;
+    }
+
+    public float PercentageActualHp()
+    {
+        var perc = _currentHp / _generalStats.Health;
+        return perc;
     }
     
     //TEST OVERIDE INIT
@@ -209,6 +228,16 @@ public class Character : MonoBehaviour
 
     public GeneralStats GetGeneralStats(){
         return _generalStats;
+    }
+    
+    public void Selected(bool isSelected)
+    {
+        _isSelected = isSelected;
+    }
+
+    public bool isSelected()
+    {
+        return _isSelected;
     }
     
 }

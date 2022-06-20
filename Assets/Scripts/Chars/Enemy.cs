@@ -11,6 +11,8 @@ public class Enemy : Character
     [SerializeField] protected bool _isReturning = false;
     protected float _newPathCount;
     protected float _timeForUpdatePath = 2f;
+
+    
     
     //CUIDADO POR QUE SOLO CONTEMPLAMOS AL PLAYER
 
@@ -23,12 +25,11 @@ public class Enemy : Character
         _navMesh = GetComponent<NavMeshAgent>();
         _gm = FindObjectOfType<GameManager>();
         _barManagement = GetComponentInChildren<SpriteBarManagement>();
-
-        //PROBAR ASI
-        Debug.Log(this.name + ": INITTT");
+        
         _targetGO = GameObject.FindWithTag("Player");
         _targetPos = _targetGO.transform;
-
+        
+        _uiManager = FindObjectOfType<UI_Manager>();
         
     }
     
@@ -144,7 +145,19 @@ public class Enemy : Character
     public override void Movement(){
         Debug.Log("MOVEMENT ENEMY");
     }
+
     
     
+    
+    //SE PUEDE AHORRAR COMPLETAMENTEEEEEEEEE NO ES NECESARIO
+    public void Selected(bool isSelected)
+    {
+        _isSelected = isSelected;
+    }
+
+    public bool isSelected()
+    {
+        return _isSelected;
+    }
     
 }

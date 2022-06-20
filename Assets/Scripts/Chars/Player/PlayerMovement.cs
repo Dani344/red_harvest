@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : Character
 {
-    [SerializeField] private float _distanceRaycast = 200f;
+    [SerializeField] private float _distanceRaycast = 25f;
     
     [SerializeField] private Vector3 _direction;
     [SerializeField] private Vector3 _destination;
@@ -44,7 +44,9 @@ public class PlayerMovement : Character
     [SerializeField] private bool _isSafeZone;
     [SerializeField] private bool _isPlayerAlive;
 
-    [SerializeField] private UI_Manager _uiManager;
+    private Enemy _enemySelected;
+
+    //[SerializeField] private UI_Manager _uiManager;
     
     private void Awake()
     {
@@ -69,7 +71,7 @@ public class PlayerMovement : Character
         
         
         ////NEEEWWWW UII
-        _uiManager = GameObject.FindObjectOfType<UI_Manager>();
+        _uiManager = FindObjectOfType<UI_Manager>();
         //Seteamos la vida y la estructura.
 
     }
@@ -93,23 +95,44 @@ public class PlayerMovement : Character
         {
             RaycastHit hit;
             //LayerMask mask = LayerMask.GetMask("Ground");
+            LayerMask mask = LayerMask.GetMask(PaperConstants.LAYER_ENEMY + PaperConstants.LAYER_GROUND);
             var ray = _camera.ScreenPointToRay(Input.mousePosition);
+            
             if (Physics.Raycast(ray, out hit, _distanceRaycast))
             {
-                //Si es enemigo, seleccionarlo ¿?
+                Debug.DrawLine(_camera.transform.position, ray.GetPoint(25f), Color.red, 5f);
+                
+                //COSA DE CARLOS
+                print(hit.ToString()); // <---- OJO!!! NO DETECTA NADA, NI HACE EL RAYCAST. HUELE RARO.....
+                
                 if (hit.collider.CompareTag(PaperConstants.TAG_ENEMY))
                 {
-                    Debug.Log("Selecciono Char");
-                    Debug.Log(hit.collider.name);
-                    _uiManager._uiEvents._ShowCharInfo?.Invoke("Antonio", 65f);
-                    
+                    if (_enemySelected)
+                    {
+                        _enemySelected.Selected(false);
+                    }
+                    var enemy = hit.collider.gameObject;
+                    var character = enemy.GetComponent<Character>();
+                    _enemySelected = character.GetComponent<Enemy>();
+                    var percentage = character.PercentageActualHp();
+                    var name = character.name;
+                    _enemySelected.Selected(true);
+                    _uiManager._uiEvents._ShowCharInfo?.Invoke(name, percentage);
+
                 }
                 //Si es terreno, no hacer nada.
 
                 if (hit.collider.CompareTag(PaperConstants.TAG_GROUND))
                 {
-                    Debug.Log("TERRENO CLICK IZQ");
+                    if (_enemySelected)
+                    {
+                        _enemySelected.Selected(false);
+                        _uiManager._uiEvents._hideCharInfo?.Invoke();
+                    }
+                    
                 }
+                
+                
                 
                 //Si es objeto, informar qué es.
                 //Si es player, mostrar info tmb.??

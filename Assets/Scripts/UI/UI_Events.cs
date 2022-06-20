@@ -16,6 +16,7 @@ public class UI_Events : MonoBehaviour
 
     public Action<string, float> _RefreshCharSelected;
     public Action<string, float> _ShowCharInfo;
+    public Action _hideCharInfo;
     
     public Action _canUpgradeAbility;
 

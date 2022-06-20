@@ -25,6 +25,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private TMP_Text _totalMonolites;
     
     //Selected Info
+    [SerializeField] private CanvasGroup _charSelectedInfo;
     [SerializeField] private Image _healthBarSelectedChar;
     [SerializeField] private TMP_Text _percentageHealthSelectedText;
     [SerializeField] private TMP_Text _nameSelectedText;
@@ -83,6 +84,21 @@ public class UI_Manager : MonoBehaviour
             _playerAbilities[i].fillAmount = 0f;
         }
         
+        HideCharInfo();
+        
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            ActiveSelectedCharInfo();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            ShowCharInfo(name, 0.4f);
+        }
     }
 
     private void SubscribeEvents()
@@ -95,6 +111,7 @@ public class UI_Manager : MonoBehaviour
         _uiEvents._monoliteActivated += MonoliteActivated;
         _uiEvents._RefreshCharSelected += RefreshCharSelected;
         _uiEvents._ShowCharInfo += ShowCharInfo;
+        _uiEvents._hideCharInfo += HideCharInfo;
 
     }
 
@@ -119,16 +136,42 @@ public class UI_Manager : MonoBehaviour
 
     private void RefreshCharSelected(string name, float percentageHealth)
     {
-        Debug.Log("REFRESH INFO");
+        _nameSelectedText.text = name;
+        var percentage = percentageHealth * 100 + "%";
+        _percentageHealthSelectedText.text = percentage;
+        _healthBarSelectedChar.fillAmount = percentageHealth;
     }
 
     private void ShowCharInfo(string name, float percentageHealth)
     {
-        Debug.Log("SHOW INFO");
+        ActiveSelectedCharInfo();
+        var percentage = percentageHealth * 100f + "%";
+        _percentageHealthSelectedText.text = percentage;
+        _healthBarSelectedChar.fillAmount = percentageHealth;
+        _nameSelectedText.text = name;
+    }
+
+    
+
+    
+    
+    
+    //METHOD NO EVENTS
+    private void ActiveSelectedCharInfo()
+    {
+        _charSelectedInfo.alpha = 1f;
+        _charSelectedInfo.interactable = true;
+        _charSelectedInfo.blocksRaycasts = true;
     }
     
     
     //PUBLIC METHOD
+    public void HideCharInfo()
+    {
+        _charSelectedInfo.alpha = 0f;
+        _charSelectedInfo.interactable = false;
+        _charSelectedInfo.blocksRaycasts = false;
+    }
     public void ChangeHealthImage(float fillAmount)
     {
         _healthBarMain.fillAmount = fillAmount;
@@ -166,6 +209,9 @@ public class UI_Manager : MonoBehaviour
         _uiEvents._changeTotalCoins -= ChangeTotalCoins;
         _uiEvents._changeTotalProgress -= ChangeTotalProgress;
         _uiEvents._monoliteActivated -= MonoliteActivated;
+        _uiEvents._RefreshCharSelected -= RefreshCharSelected;
+        _uiEvents._ShowCharInfo -= ShowCharInfo;
+        _uiEvents._hideCharInfo -= HideCharInfo;
     }
     
 
