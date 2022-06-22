@@ -29,18 +29,10 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private Image _healthBarSelectedChar;
     [SerializeField] private TMP_Text _percentageHealthSelectedText;
     [SerializeField] private TMP_Text _nameSelectedText;
+
     #endregion
 
     public UI_Events _uiEvents;
-
-    /*private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            _changeHealthPlayer?.Invoke(100);
-            
-        }
-    }*/
     
     private void Awake()
     {
