@@ -29,6 +29,9 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private Image _healthBarSelectedChar;
     [SerializeField] private TMP_Text _percentageHealthSelectedText;
     [SerializeField] private TMP_Text _nameSelectedText;
+    
+    //Monolites
+    [SerializeField] private Image[] _monolites;
 
     #endregion
 
@@ -62,7 +65,7 @@ public class UI_Manager : MonoBehaviour
     {
         SubscribeEvents();
         
-        var coinTextInit = "Coins: 0";
+        var coinTextInit = "0";
         _totalCoinsText.text = coinTextInit;
 
         var progressTextInit = "0%";
@@ -110,7 +113,7 @@ public class UI_Manager : MonoBehaviour
     //EVENTS METHODS
     private void ChangeTotalCoins(int totalPlayerCoins)
     {
-        var newCoinsText = "Coins: " + totalPlayerCoins;
+        var newCoinsText = totalPlayerCoins.ToString();
         _totalCoinsText.text = newCoinsText;
     }
 
@@ -142,10 +145,6 @@ public class UI_Manager : MonoBehaviour
         _healthBarSelectedChar.fillAmount = percentageHealth;
         _nameSelectedText.text = name;
     }
-
-    
-
-    
     
     
     //METHOD NO EVENTS
@@ -206,12 +205,10 @@ public class UI_Manager : MonoBehaviour
         _uiEvents._hideCharInfo -= HideCharInfo;
     }
     
-
     public void RefreshSelectedInfoEnemy()
     {
         Debug.Log("Refresh Enemy Selected");
     }
-    
 
     public void ShowOptionMenu()
     {
@@ -222,6 +219,15 @@ public class UI_Manager : MonoBehaviour
     {
         Debug.Log("GAME OVER OR VICTORY");
     }
-    
-    
+
+    public void MonoliteNovi(int monolite)
+    {
+        if (monolite > _monolites.Length) return;
+        
+        for (int i = 0; i < monolite; i++)
+        {
+            var mongColor = _monolites[i].color;
+            _monolites[i].color = new Color(mongColor.r, mongColor.g, mongColor.b, 255f);
+        }
+    }
 }

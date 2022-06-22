@@ -22,7 +22,6 @@ public class ControlStateBoss : MonoBehaviour
         _gm = FindObjectOfType<GameManager>(); 
         //states[0] = new Boss_Patrol();
         //states[1] = new Boss_Combat();
-
     }
 
     private void Start()

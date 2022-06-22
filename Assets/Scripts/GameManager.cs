@@ -217,7 +217,10 @@ public class GameManager : MonoBehaviour
         {
             SpawnBoss();
         }
+        
         _uiManager._uiEvents._monoliteActivated?.Invoke(_monolitesActivated);
+        //Se puede hacer en el evento pero de momento lo dejamos separado.
+        _uiManager.MonoliteNovi(_monolitesActivated);
         
     }
 
