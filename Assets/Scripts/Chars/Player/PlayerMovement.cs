@@ -189,17 +189,6 @@ public class PlayerMovement : Character
         }
         //_________________________________________________
         //Mechanical Test for Dmg
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            TakePhysicDamage(55);
-            
-            Debug.Log("Vida Actual: " + _currentHp);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            var temp = Instantiate(_AoePrefab, transform.position, Quaternion.identity);
-        }
 
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
@@ -298,17 +287,8 @@ public class PlayerMovement : Character
         {
             StopMove();
         }
-        
-        //Mapa con M
-        
-        //AutoAttack con A
-        
-        //Flash con F
-        
-        //MovementSpeed con D
     }
     
-    //Permitir instaHechizo o previsualizar.
     private void AttacksInputs(){
         if (Input.GetKeyDown(KeyCode.Q)){
             AbilityQ();
@@ -432,7 +412,6 @@ public class PlayerMovement : Character
         if (_isOnCoolDownW == false)
         {
             _isOnCoolDownW = true;
-            //_abilityW.fillAmount = 1f;
             _uiManager.InitCooldownImage(1);
             if (_poisonPrefab)
             {
@@ -455,7 +434,6 @@ public class PlayerMovement : Character
         if (_isOnCoolDownE == false)
         {
             _isOnCoolDownE = true;
-            //_abilityE.fillAmount = 1f;
             _uiManager.InitCooldownImage(2);
             _shieldCol.enabled = true;
             _shieldRender.enabled = true;
@@ -469,7 +447,6 @@ public class PlayerMovement : Character
         if (_isOnCoolDownR == false)
         {
             _isOnCoolDownR = true;
-            //_abilityR.fillAmount = 1f;
             _uiManager.InitCooldownImage(3);
             if (_ultiPrefab)
             {
@@ -493,9 +470,6 @@ public class PlayerMovement : Character
     private float CheckAngleNewDestination(Vector3 currentDestination, Vector3 newDestination)
     {
         var angle = Vector3.Angle(currentDestination, newDestination);
-        
-        //Debug.Log(angle);
-        
         return angle;
     }
     
@@ -539,7 +513,7 @@ public class PlayerMovement : Character
     }
     //Global cooldown ??
 
-    public void TestFinishGame()
+    private void TestFinishGame()
     {
         _gm.FinishGame();
     }
