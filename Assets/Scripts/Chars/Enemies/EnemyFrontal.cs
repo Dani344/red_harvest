@@ -36,12 +36,12 @@ public class EnemyFrontal : Enemy
     private void Update()
     {
         //TEST//
-
+        /*
         if (Input.GetKeyDown(KeyCode.R))
         {
             ReturnSpawnPoint();
         }
-        
+        */
         //END TEST///
         
         if (!_isActive) return;

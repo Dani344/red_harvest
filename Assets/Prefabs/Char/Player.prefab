@@ -1097,11 +1097,9 @@ MonoBehaviour:
     type: 3}
   _AoePrefab: {fileID: 6023937025087150159, guid: 25a726d59dbe1fe41ac52f285f2b665b,
     type: 3}
-  _ultiPrefab: {fileID: 3676826003120861624, guid: edfc37de5ac6e4449b5bf2563b8951b4,
+  _ultiPrefab: {fileID: 2604597369965400599, guid: 88cbdb01d8292e84f808471a5e751820,
     type: 3}
   _shield: {fileID: 0}
-  _shieldCol: {fileID: 0}
-  _shieldRender: {fileID: 0}
   _isGoingBase: 0
   _baseParticlePrefab: {fileID: 1149436831323858933, guid: 4410dc9aad25c604b9e47e1371b856e7,
     type: 3}

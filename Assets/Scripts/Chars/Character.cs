@@ -146,7 +146,6 @@ public class Character : MonoBehaviour
         {
             if (gameObject.name == "Boss")
             {
-                Debug.Log("HEMOS MATADO BOSS");
                 _gm.FinishGame();
             }
             else

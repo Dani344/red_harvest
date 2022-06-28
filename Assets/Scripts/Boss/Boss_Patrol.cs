@@ -37,7 +37,7 @@ public class Boss_Patrol : Enemy
     public void InitBoss()
     {
         
-        NormalSetUp("BOSSSS", 100, 300,5.5f,11f, 25f,30f,
+        NormalSetUp("BOSSSS", 777, 300,5.5f,11f, 25f,30f,
             56f, 1.75f, 15, 0, 4,
             0.9f, 0.15f, 0f, 0f, 10, 1, 100, 0);
         

@@ -3,18 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="a0c50c6f-f5ca-4f0e-b9a7-4a0f94519537" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.red_harvest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.red_harvest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameResume.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameResume.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boss/ControlStateBoss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boss/ControlStateBoss.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AOEground/Poison.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AOEground/Poison.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Char/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Char/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayingScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayingScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boss/Boss_Combat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boss/Boss_Combat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boss/Boss_Patrol.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boss/Boss_Patrol.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chars/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chars/Character.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chars/Enemies/EnemyFrontal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chars/Enemies/EnemyFrontal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chars/Enemies/Enemy_AoE2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chars/Enemies/Enemy_AoE2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chars/Enemies/Enemy_Aoe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chars/Enemies/Enemy_Aoe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chars/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chars/Player/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chars/Player/ShieldScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chars/Player/ShieldScript.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu/ResumeMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu/ResumeMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PaperConstants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PaperConstants.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/BackgroundMenuVictory.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/BackgroundMenuVictory.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Projectiles/Ball.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Projectiles/Ball.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Projectiles/Projectil.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Projectiles/Projectil.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,6 +147,7 @@
       <workItem from="1656350869705" duration="1831000" />
       <workItem from="1656424108087" duration="1205000" />
       <workItem from="1656425351867" duration="5675000" />
+      <workItem from="1656432015992" duration="4557000" />
     </task>
     <servers />
   </component>

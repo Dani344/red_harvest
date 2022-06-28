@@ -9,6 +9,10 @@ public class ShieldScript : MonoBehaviour
     {
         if (other.CompareTag(PaperConstants.TAG_PROJECTIL))
         {
+            var proj = other.GetComponent<Projectil>();
+            var isProjectilPlayer = proj.isPlayerProjectil();
+            if (isProjectilPlayer) return;
+            
             Destroy(other.gameObject);
         }
     }

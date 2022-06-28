@@ -37,6 +37,7 @@ public class Ball : Projectil
             var temp = other.gameObject.GetComponent<Enemy>();
             if (temp)
             {
+                //temp.ActiveEnemy();
                 temp.TakeDamage((int) _dmg, 0);
             }
             else

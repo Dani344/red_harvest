@@ -23,11 +23,7 @@ public class Boss_Combat : Enemy
 
     private int tripleShootNum = 0;
 
-    private void Awake(){
-        
-    }
-
-
+    
     private void Start()
     {
         _bp = GetComponent<Boss_Patrol>();
@@ -60,7 +56,7 @@ public class Boss_Combat : Enemy
                 //Debug.Log("PROJ1: " + dire);
                 //dire.Normalize();
                 
-                proj.ProjectilTargetSetUp(dire, 3f, 40f, 3f, true, _targetPos);
+                proj.ProjectilTargetSetUp(dire, 3f, 70f, 3f, true, _targetPos);
                 
                 /*
                 //DERECHO 30º
@@ -103,7 +99,7 @@ public class Boss_Combat : Enemy
 
             //DEBERIA ESTAR EN RADIANES!!! 2PI = 360
             //var dire = new Vector3( Mathf.Cos(45º),0f,Mathf.Sin(30º));
-            proj.ProjectilNoTargetSetUp(dire, 8f, 10f, true);
+            proj.ProjectilNoTargetSetUp(dire, 8f, 45f, true);
             rot += 45;
         }
     }

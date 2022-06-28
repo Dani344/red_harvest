@@ -13,7 +13,9 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float _distance;
 
     private float _distanceMin = 5f;
-    private float _distanceMax = 20f; 
+    private float _distanceMax = 20f;
+
+    private GameObject _player;
     
     
     
@@ -27,9 +29,14 @@ public class CameraMovement : MonoBehaviour
         //CenterAtPlayer();
     }
 
-    private void Update(){
+    private void Update()
+    {
+        if (!_player) return;
+        
         if (Input.GetKey(KeyCode.Space)){
+            
             CenterAtPlayer();
+            //CenterAtPlayer();
         }
         MoveCamera();
         
@@ -38,13 +45,17 @@ public class CameraMovement : MonoBehaviour
         if (scrollMouse.y < 0f)
         {
             _distance += Time.deltaTime * PaperConstants.ZOOM_CAMERA_SENSIVITY;
+            _distance = Mathf.Clamp(_distance, PaperConstants.ZOOM_CAMERA_MIN_DISTANCE, PaperConstants.ZOOM_CAMERA_MAX_DISTANCE);
+            CenterAtPlayer();
         }
         else if (scrollMouse.y > 0f)
         {
             _distance -= Time.deltaTime * PaperConstants.ZOOM_CAMERA_SENSIVITY;
+            _distance = Mathf.Clamp(_distance, PaperConstants.ZOOM_CAMERA_MIN_DISTANCE, PaperConstants.ZOOM_CAMERA_MAX_DISTANCE);
+            CenterAtPlayer();
         }
 
-        _distance = Mathf.Clamp(_distance, PaperConstants.ZOOM_CAMERA_MIN_DISTANCE, PaperConstants.ZOOM_CAMERA_MAX_DISTANCE);
+        //_distance = Mathf.Clamp(_distance, PaperConstants.ZOOM_CAMERA_MIN_DISTANCE, PaperConstants.ZOOM_CAMERA_MAX_DISTANCE);
         
         
         //Debug.Log(_distance);
@@ -78,7 +89,7 @@ public class CameraMovement : MonoBehaviour
     }
 
     private void CenterAtPlayer(){
-        GameObject player = GameObject.FindGameObjectWithTag(PaperConstants.TAG_PLAYER);
+        //GameObject player = GameObject.FindGameObjectWithTag(PaperConstants.TAG_PLAYER);
 
         float angleRad = Mathf.Deg2Rad * (90 - _angle);
 
@@ -86,8 +97,8 @@ public class CameraMovement : MonoBehaviour
         float x = Mathf.Sin(angleRad) * _distance;
 
         float h = _distance / Mathf.Sqrt(2);
-        transform.position = player.transform.position + new Vector3(x, y, 0);
-        transform.LookAt(player.transform);
+        transform.position = _player.transform.position + new Vector3(x, y, 0);
+        transform.LookAt(_player.transform);
 
     }
 
@@ -96,6 +107,12 @@ public class CameraMovement : MonoBehaviour
         CenterAtPlayer();
         //var temp = FindObjectOfType<PlayerMovement>();
         //temp.HealthBarLookCamera(transform);
+    }
+
+    public void GetPlayerReference()
+    {
+        _player = GameObject.FindGameObjectWithTag(PaperConstants.TAG_PLAYER);
+        CenterAtPlayer();
     }
 
 }

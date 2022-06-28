@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     
     //CREAR LAS FUNCIONES NECESARIAS PUBLICAS Y PENSAR EN EL ESQUEMA
     
-    [SerializeField] private CameraMovement _cameraMove;
+    //[SerializeField] private CameraMovement _cameraMove;
     [SerializeField] private PlayerMovement _playerScript;
     [SerializeField] private ControlStateBoss _controlStateBoss;
     
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
-        _cameraMove = FindObjectOfType<CameraMovement>();
+        //_cameraMove = FindObjectOfType<CameraMovement>();
         _uiManager = FindObjectOfType<UI_Manager>();
 
     }
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
     private void SpawnPlayer()
     {
         var player = Instantiate(_playerGO, _playerSpawnPoint.position, Quaternion.identity);
-        _cameraMove.Center();
+        //_cameraMove.Center();
         _playerScript = player.GetComponent<PlayerMovement>();
         _playerScript.SetPlayerAlive();
     }

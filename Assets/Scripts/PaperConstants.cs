@@ -77,8 +77,8 @@ public class PaperConstants
     
     
     //===== CAMERA =====
-    public const float HIGH_SCREEN_PERCENTAGE = 0.3f;
-    public const float VERTICAL_SCREEN_PERCENTAGE = 0.2f;
+    public const float HIGH_SCREEN_PERCENTAGE = 0.1f;
+    public const float VERTICAL_SCREEN_PERCENTAGE = 0.1f;
 
     public const float ZOOM_CAMERA_SENSIVITY = 10f;
     public const float ZOOM_CAMERA_MIN_DISTANCE = 5f;

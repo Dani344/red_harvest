@@ -73,11 +73,16 @@ public class PlayerMovement : Character
         ////NEEEWWWW UII
         _uiManager = FindObjectOfType<UI_Manager>();
         //Seteamos la vida y la estructura.
+        
 
     }
     
     private void Start()
     {
+        //Activamos la ref de camara
+        var cam = FindObjectOfType<CameraMovement>();
+        cam.GetPlayerReference();
+        
         _direction = Vector3.zero;
         _destination = transform.position;
         InitPlayer();
@@ -444,7 +449,7 @@ public class PlayerMovement : Character
     private void AbilityR()
     {
         Debug.Log("R Attack");
-        if (_isOnCoolDownR == false)
+        /*if (_isOnCoolDownR == false)
         {
             _isOnCoolDownR = true;
             _uiManager.InitCooldownImage(3);
@@ -457,7 +462,32 @@ public class PlayerMovement : Character
                 //Falta gestionar el daño que le enviaremos al projectil
                 temp.ProjectilNoTargetSetUp(transform.forward, _generalStats.MissileSpeed, 10, false);
             }
+        }*/
+
+        if (_isOnCoolDownR == false)
+        {
+            _isOnCoolDownR = true;
+            _uiManager.InitCooldownImage(3);
+            if (_ultiPrefab)
+            {
+                var rot = 0;
+        
+                for (int i = 0; i < 8; i++){
+                    var projGO = Instantiate(_ultiPrefab, transform.position , Quaternion.Euler(0, rot,0));
+                    var proj = projGO.GetComponent<Projectil>();
+            
+
+                    var dire = projGO.transform.forward;
+
+                    //DEBERIA ESTAR EN RADIANES!!! 2PI = 360
+                    //var dire = new Vector3( Mathf.Cos(45º),0f,Mathf.Sin(30º));
+                    proj.ProjectilNoTargetSetUp(dire, 8f, 20f, false);
+                    rot += 45;
+                }
+            }
+            
         }
+        
     }
 
     public void StopMove()

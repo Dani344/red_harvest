@@ -85,6 +85,11 @@ public class Projectil : MonoBehaviour
     {
         return _dmg;
     }
+
+    public bool isPlayerProjectil()
+    {
+        return !_isEnemyProjectil;
+    }
     
 
 }

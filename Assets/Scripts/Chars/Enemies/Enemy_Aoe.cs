@@ -34,14 +34,15 @@ public class Enemy_Aoe : Enemy
     
     private void Update()
     {
-        //TEST//
+        /*/TEST//
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             ReturnSpawnPoint();
         }
         
-        //END TEST///
+        //END TEST//
+        */
         
         if (!_isActive) return;
         
