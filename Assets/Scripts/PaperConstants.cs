@@ -13,7 +13,7 @@ public class PaperConstants
     public const string SCENE_MAIN_MENU = "MainMenu";
     public const string SCENE_PLAYING = "PlayingScene";
     public const string SCENE_RESUME = "GameResume";
-
+    
     //===== TAGS =====
     public const string TAG_GROUND = "Ground";
     public const string TAG_GAME_MANAGER = "GameManager";
@@ -29,8 +29,7 @@ public class PaperConstants
     public const string TAG_SPAWN_ENEMY = "SpawnEnemy";
     public const string TAG_SHIELD = "Shield";
     public const string TAG_MAIN_HPBAR = "MainHpBar";
-    public const string TAG_CAST_BAR = "CastBar";
-    
+    public const string TAG_CAST_BAR = "CastBar"; 
     public const string TAG_PLAYER = "Player";
     //public const string TAG_MAIN_CAMERA = "MainCamera";
     
@@ -44,6 +43,10 @@ public class PaperConstants
     public const string ANIM_PLAYER_F_MOVING = "isMoving";
     public const string ANIM_TRIG_PLAYER_DEATH = "Die";
     
+    //===== PLAYER PREFS =====
+    public const string PLAYER_PREFS_TOTAL_COINS = "Coins";
+    public const string PLAYER_PREFS_ENEMIES_KILLED = "EnemiesKilled";
+    public const string PLAYER_PREFS_RESUME_GAME = "Resume";
     
     //Animation
     public const string ANIM_Q = "asdhfjsdf";
@@ -74,8 +77,8 @@ public class PaperConstants
     
     
     //===== CAMERA =====
-    public const float HIGH_SCREEN_PERCENTAGE = 0.1f;
-    public const float VERTICAL_SCREEN_PERCENTAGE = 0.1f;
+    public const float HIGH_SCREEN_PERCENTAGE = 0.3f;
+    public const float VERTICAL_SCREEN_PERCENTAGE = 0.2f;
 
     public const float ZOOM_CAMERA_SENSIVITY = 10f;
     public const float ZOOM_CAMERA_MIN_DISTANCE = 5f;

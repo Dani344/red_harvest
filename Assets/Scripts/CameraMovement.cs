@@ -58,7 +58,7 @@ public class CameraMovement : MonoBehaviour
     private void MoveCamera(){
         Vector3 mousePos = Input.mousePosition;
         int w = Screen.currentResolution.width;
-        int h = Screen.currentResolution.height;
+        int h = Screen.currentResolution.height; 
 
         //Debug.Log(mousePos.x + "," + mousePos.y);
         

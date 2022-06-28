@@ -33,6 +33,8 @@ public class ControlStateBoss : MonoBehaviour
         _currentState.Init();
 
         _playerAlive = true;
+        
+        _gm.GetReferenceControlStateBoss();
         //RefreshInfo();
     }
 
@@ -47,6 +49,7 @@ public class ControlStateBoss : MonoBehaviour
         {
             Debug.Log("PLAYER STATE ALVIE");
             //SI BOSS ALIVE O PLAYER ALIVE
+            _gm.KillPlayer();
             _gm.FinishGame();
         }
         

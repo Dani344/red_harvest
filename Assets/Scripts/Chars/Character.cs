@@ -161,6 +161,7 @@ public class Character : MonoBehaviour
             var player = gameObject.GetComponent<PlayerMovement>();
             player.StopMove();
             player.PlayerDeath();
+            _gm.KillPlayer();
             //player.Die();
         }
     }

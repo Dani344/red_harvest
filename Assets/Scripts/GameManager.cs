@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int _totalPlayerCoins;
     [SerializeField] private float _inGameProgress = 0f;
-    //[SerializeField] private bool _playerDead;
+    [SerializeField] private bool _playerDead;
     [SerializeField] private TMP_Text _totalGameTimeText;
     [SerializeField] private int _monolitesActivated = 0;
 
@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
+        _playerDead = false;
+        
         _totalNumEnemies = 0;
         _currentNumEnemies = 0;
         
@@ -79,6 +81,8 @@ public class GameManager : MonoBehaviour
         //SpawnBoss();
         
         ProgressInGame();
+        
+        InitPrefs();
     }
     
     //CONTADOR TIMER TOTAL
@@ -94,10 +98,24 @@ public class GameManager : MonoBehaviour
         
         TestGM();
         
+        /*
         if (!_playerScript.isPlayerAlive())
         {
             Debug.Log("MUERTO GM");
             _controlStateBoss.PlayerDied();
+        }*/
+
+        if (_playerDead)
+        {
+            if (_controlStateBoss)
+            {
+                _controlStateBoss.PlayerDied();
+            }
+            else
+            {
+                FinishGame();
+            }
+            
         }
         
     }
@@ -207,6 +225,19 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame()
     {
+        PlayerPrefs.SetInt(PaperConstants.PLAYER_PREFS_TOTAL_COINS, _totalPlayerCoins);
+        PlayerPrefs.SetInt(PaperConstants.PLAYER_PREFS_RESUME_GAME, _totalNumEnemies -_currentNumEnemies);
+        //1 - Victory 0- Defeat
+        if (_playerDead)
+        {
+            PlayerPrefs.SetInt(PaperConstants.PLAYER_PREFS_RESUME_GAME, 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt(PaperConstants.PLAYER_PREFS_RESUME_GAME, 1);
+        }
+        
+
         SceneManager.LoadScene(PaperConstants.SCENE_RESUME);
     }
 
@@ -224,11 +255,24 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public int GetMonolitesActives()
+    public void KillPlayer()
     {
-        return _monolitesActivated;
+        _playerDead = true;
     }
-    
+
+    private void InitPrefs()
+    {
+        PlayerPrefs.SetInt(PaperConstants.PLAYER_PREFS_TOTAL_COINS, 0);
+        PlayerPrefs.SetInt(PaperConstants.PLAYER_PREFS_RESUME_GAME, 0);
+        
+        //1 - Victory 0- Defeat
+        PlayerPrefs.SetInt(PaperConstants.PLAYER_PREFS_RESUME_GAME, 1);
+    }
+
+    public void GetReferenceControlStateBoss()
+    {
+        _controlStateBoss = FindObjectOfType<ControlStateBoss>();
+    }
     
     
     
