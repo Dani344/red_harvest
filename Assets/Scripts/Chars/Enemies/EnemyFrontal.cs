@@ -106,14 +106,14 @@ public class EnemyFrontal : Enemy
     {
         if (_projectilPrefab)
         {
-            var temp = Instantiate(_projectilPrefab, transform.position, Quaternion.identity);
+            var temp = Instantiate(_projectilPrefab, transform.position + transform.forward, Quaternion.identity);
             temp.transform.LookAt(_targetPos);
             var newProjectil = temp.GetComponent<Projectil>();
             //COMPROBAR EL DAÑO YA QUE DE MOMENTO ES CONSTANTE
             transform.LookAt(_targetPos);
             var dire = _targetPos.position - transform.position;
             dire.Normalize();
-            Debug.Log(newProjectil);
+            //Debug.Log(newProjectil);
             /*
             newProjectil.ProjectilTargetSetUp(
                 dire,
@@ -123,7 +123,7 @@ public class EnemyFrontal : Enemy
                 true,
                 _targetPos
                 );*/
-            newProjectil.ProjectilNoTargetSetUp(dire, _generalStats.MissileSpeed, 50f, true);
+            newProjectil.ProjectilNoTargetSetUp(dire, _generalStats.MissileSpeed, 40f, true);
 
         }
         

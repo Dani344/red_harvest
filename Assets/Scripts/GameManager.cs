@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
                         name = "DummyShoot";
                         break;
                     case 1:
-                        name = "DummyAoE";
+                        name = "DummyShootTarget";
                         break;
                     case 2:
                         name = "DummyMultiShoot";
@@ -209,6 +209,7 @@ public class GameManager : MonoBehaviour
     public void EnemyKilled()
     {
         _currentNumEnemies -= 1;
+        Debug.Log(_currentNumEnemies + "JOIJJIJI");
         if (_currentNumEnemies == 0)
         {
             Debug.Log("NO QUEDAN ENEMIGOS EN EL MAPA");
@@ -226,7 +227,8 @@ public class GameManager : MonoBehaviour
     public void FinishGame()
     {
         PlayerPrefs.SetInt(PaperConstants.PLAYER_PREFS_TOTAL_COINS, _totalPlayerCoins);
-        PlayerPrefs.SetInt(PaperConstants.PLAYER_PREFS_RESUME_GAME, _totalNumEnemies -_currentNumEnemies);
+        var enemiesKilled = _totalNumEnemies - _currentNumEnemies;
+        PlayerPrefs.SetInt(PaperConstants.PLAYER_PREFS_ENEMIES_KILLED, enemiesKilled);
         //1 - Victory 0- Defeat
         if (_playerDead)
         {

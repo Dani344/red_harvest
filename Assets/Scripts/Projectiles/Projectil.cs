@@ -35,7 +35,7 @@ public class Projectil : MonoBehaviour
         if (!target) Debug.LogError("ERROR TARGET SET UP");
         SetDirection(dire);
         SetSpeed(speed);
-        SetDamage(30f);
+        SetDamage(dmg);
         SetRotSpeed(rotSpeed);
         _isEnemyProjectil = isEnemyProjectil;
         SetTargetProjectil(target);

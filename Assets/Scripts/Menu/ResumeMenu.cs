@@ -33,7 +33,7 @@ public class ResumeMenu : MonoBehaviour
             //_backgroundVictory.color = _victoryColor;
             //_backgroundVictory.color = new Color(192f, 241f, 192f);
             _backgroundDefeat.enabled = false;
-            StartCoroutine(nameof(MuestraImagen));
+            //StartCoroutine(nameof(MuestraImagen));
 
         }
         
