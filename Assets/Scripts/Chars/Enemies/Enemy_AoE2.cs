@@ -110,7 +110,7 @@ public class Enemy_AoE2 : Enemy
 
             //DEBERIA ESTAR EN RADIANES!!! 2PI = 360
             //var dire = new Vector3( Mathf.Cos(45º),0f,Mathf.Sin(30º));
-            proj.ProjectilNoTargetSetUp(dire, 8f, 35f, true);
+            proj.ProjectilNoTargetSetUp(dire, 8f, 50f, true);
             rot += 45;
         }
     }

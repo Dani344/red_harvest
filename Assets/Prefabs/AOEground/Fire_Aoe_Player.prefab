@@ -4777,6 +4777,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 25492785d22da034b8820775249e9aa6, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9588,6 +9589,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 25492785d22da034b8820775249e9aa6, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14417,6 +14419,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5817849b192a076438315fd357492e13, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14470,9 +14473,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6023937025087150158}
   - component: {fileID: 779571772546450231}
-  - component: {fileID: -1622560660122348921}
+  - component: {fileID: 7692655934685859080}
   m_Layer: 0
-  m_Name: Fire_Aoe
+  m_Name: Fire_Aoe_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14508,7 +14511,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-1622560660122348921
+--- !u!114 &7692655934685859080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14517,7 +14520,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6023937025087150159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 957c92c9ea13b194c854915da14a95ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 8acb1755daa7e6b49b657b4d03349a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeForExplo: 4.75
+  _timeForExplo: 4.55

@@ -48,17 +48,14 @@ public class UI_Manager : MonoBehaviour
         var castBar = GameObject.FindWithTag(PaperConstants.TAG_CAST_BAR);
         _castBar = castBar.GetComponent<Image>();
         
-        
-
-        var icons = GameObject.FindGameObjectsWithTag(PaperConstants.TAG_ABILITIES_ICONS);
-        _playerAbilities = new Image[icons.Length];
-        
+        //var icons = GameObject.FindGameObjectsWithTag(PaperConstants.TAG_ABILITIES_ICONS);
+        //_playerAbilities = new Image[icons.Length];
+        /*
         for (int i = 0; i < icons.Length; i++)
         {
             _playerAbilities[i] = icons[i].GetComponent<Image>();
         }
-        
-        //FALTA COINS/PROGRESSION/MONGOLITES/
+        */
     }
 
     private void Start()

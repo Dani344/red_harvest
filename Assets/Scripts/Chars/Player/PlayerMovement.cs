@@ -470,20 +470,8 @@ public class PlayerMovement : Character
             _uiManager.InitCooldownImage(3);
             if (_ultiPrefab)
             {
-                var rot = 0;
-        
-                for (int i = 0; i < 8; i++){
-                    var projGO = Instantiate(_ultiPrefab, transform.position , Quaternion.Euler(0, rot,0));
-                    var proj = projGO.GetComponent<Projectil>();
-            
-
-                    var dire = projGO.transform.forward;
-
-                    //DEBERIA ESTAR EN RADIANES!!! 2PI = 360
-                    //var dire = new Vector3( Mathf.Cos(45º),0f,Mathf.Sin(30º));
-                    proj.ProjectilNoTargetSetUp(dire, 8f, 20f, false);
-                    rot += 45;
-                }
+                Instantiate(_ultiPrefab, transform.position , Quaternion.identity, this.transform);
+                
             }
             
         }

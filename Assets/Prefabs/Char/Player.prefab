@@ -1097,7 +1097,7 @@ MonoBehaviour:
     type: 3}
   _AoePrefab: {fileID: 6023937025087150159, guid: 25a726d59dbe1fe41ac52f285f2b665b,
     type: 3}
-  _ultiPrefab: {fileID: 2604597369965400599, guid: 88cbdb01d8292e84f808471a5e751820,
+  _ultiPrefab: {fileID: 6023937025087150159, guid: 6aec3966a63d9e9459d8e4e38ce913dc,
     type: 3}
   _shield: {fileID: 0}
   _isGoingBase: 0

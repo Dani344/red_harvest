@@ -74,12 +74,6 @@ public class Character : MonoBehaviour
         //BOSS
     }
 
-    protected void SetUpDefaultForTest()
-    {
-        _generalStats = new GeneralStats();
-        Debug.Log("Health: "  + _generalStats.Health + "mana: " + _generalStats.Mana);
-    }
-    
     //MEJORAR LOS TAKE DAMAGE!!!!
     //Tenemos en cuenta el armor
     protected void TakePhysicDamage(int damage)
@@ -92,7 +86,6 @@ public class Character : MonoBehaviour
             {
                 _currentHp = 0f;
                 Die();
-                return;
             }
         }
     }
@@ -109,7 +102,6 @@ public class Character : MonoBehaviour
                 Die();
                 
             }
-            //HpBarUpdate();
         }
     }
 
@@ -122,9 +114,7 @@ public class Character : MonoBehaviour
             if (_currentHp < 1)
             {
                 Die();
-                return;
             }
-            //HpBarUpdate();
         }
     }
 

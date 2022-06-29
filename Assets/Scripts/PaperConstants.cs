@@ -53,10 +53,10 @@ public class PaperConstants
     public const string ANIM_W = "jlasdfjasdf";
     
     //COOLDOWNS PLAYER
-    public const float COOLDOWN_Q = 0.5f;
+    public const float COOLDOWN_Q = 2f;
     public const float COOLDOWN_W = 5f;
     public const float COOLDOWN_E = 7f;
-    public const float COOLDOWN_R = 11f;
+    public const float COOLDOWN_R = 10f;
 
     public const float COOLDOWN_D = 20f;
     public const float COOLDOWN_F = 300f;

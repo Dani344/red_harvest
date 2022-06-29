@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8071228700065002173}
   - component: {fileID: 2883527305646580835}
   m_Layer: 10
-  m_Name: Enemy_AoE
+  m_Name: Enemy_ShootTarget
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,6 +178,8 @@ MonoBehaviour:
   _targetGO: {fileID: 0}
   _isReturning: 0
   _AoE_Prefab: {fileID: 6023937025087150159, guid: 25a726d59dbe1fe41ac52f285f2b665b,
+    type: 3}
+  _shootTargetPrefab: {fileID: 2604597369965400599, guid: 54d023a535c3f244897672c363140ec9,
     type: 3}
 --- !u!1 &1935473151176180979
 GameObject:
@@ -590,7 +592,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2a6b64223936be14782135609f52d73b, type: 2}
+      objectReference: {fileID: 2100000, guid: 503cfa2406d581f4eb9d14237abbae2b, type: 2}
     - target: {fileID: 919132149155446097, guid: 3e5325c249f0cf443a30ae2055e22621,
         type: 3}
       propertyPath: m_Name

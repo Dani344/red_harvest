@@ -42,7 +42,7 @@ public class DebuffAoeBehaviour : MonoBehaviour
         _count += Time.deltaTime;
         if (_count > 1f)
         {
-            algo.TakeDamage(_dmgPerSecond, 1);
+            algo.TakeDamage(_dmgPerSecond, 0);
             _count = 0f;
         }
     }

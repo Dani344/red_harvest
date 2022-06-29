@@ -8,6 +8,7 @@ using UnityEngine.AI;
 public class Enemy_Aoe : Enemy
 {
     [SerializeField] private GameObject _AoE_Prefab;
+    [SerializeField] private GameObject _shootTargetPrefab;
     private float _count;
     
     private void Start()
@@ -104,7 +105,15 @@ public class Enemy_Aoe : Enemy
     //AoE instanciation
     private void Attack()
     {
-        var aoe = Instantiate(_AoE_Prefab, _targetPos.position, Quaternion.identity);
+        //var aoe = Instantiate(_AoE_Prefab, _targetPos.position, Quaternion.identity);
+        //Frontal
+        var projGO = Instantiate(_shootTargetPrefab, transform.position, Quaternion.identity);
+        var proj = projGO.GetComponent<Projectil>();
+        var dire = _targetPos.position - transform.position;
+        //Debug.Log("PROJ1: " + dire);
+        //dire.Normalize();
+                
+        proj.ProjectilTargetSetUp(dire, 3f, 75f, 3f, true, _targetPos);
     }
 
 
