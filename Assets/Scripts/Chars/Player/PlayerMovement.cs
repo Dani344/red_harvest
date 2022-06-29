@@ -389,7 +389,7 @@ public class PlayerMovement : Character
     }
     private void AbilityQ()
     {
-        Debug.Log("Q Attack");
+        //Debug.Log("Q Attack");
         if (_isOnCoolDownQ == false)
         {
             _isOnCoolDownQ = true;
@@ -413,7 +413,7 @@ public class PlayerMovement : Character
 
     private void AbilityW()
     {
-        Debug.Log("W Attack");
+        //Debug.Log("W Attack");
         if (_isOnCoolDownW == false)
         {
             _isOnCoolDownW = true;
@@ -435,7 +435,7 @@ public class PlayerMovement : Character
 
     private void AbilityE()
     {
-        Debug.Log("E Shield");
+        //Debug.Log("E Shield");
         if (_isOnCoolDownE == false)
         {
             _isOnCoolDownE = true;
@@ -448,22 +448,8 @@ public class PlayerMovement : Character
 
     private void AbilityR()
     {
-        Debug.Log("R Attack");
-        /*if (_isOnCoolDownR == false)
-        {
-            _isOnCoolDownR = true;
-            _uiManager.InitCooldownImage(3);
-            if (_ultiPrefab)
-            {
-                var playerRot = transform.rotation;
-                var ulti = Instantiate(_ultiPrefab, transform.position + Vector3.up/2f, playerRot);
-                var temp = ulti.GetComponent<Projectil>();
-            
-                //Falta gestionar el daño que le enviaremos al projectil
-                temp.ProjectilNoTargetSetUp(transform.forward, _generalStats.MissileSpeed, 10, false);
-            }
-        }*/
-
+        //Debug.Log("R Attack");
+        
         if (_isOnCoolDownR == false)
         {
             _isOnCoolDownR = true;

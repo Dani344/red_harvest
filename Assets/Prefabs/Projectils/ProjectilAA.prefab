@@ -113,3 +113,4 @@ MonoBehaviour:
   _isEnemyProjectil: 0
   _target: {fileID: 0}
   _hasTarget: 0
+  _maxTimeAliveProjectil: 4

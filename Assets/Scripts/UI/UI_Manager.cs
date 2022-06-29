@@ -128,10 +128,16 @@ public class UI_Manager : MonoBehaviour
 
     private void RefreshCharSelected(string name, float percentageHealth)
     {
+        
         _nameSelectedText.text = name;
         var percentage = percentageHealth * 100 + "%";
         _percentageHealthSelectedText.text = percentage;
         _healthBarSelectedChar.fillAmount = percentageHealth;
+        
+        if (percentageHealth <= 0)
+        {
+            HideCharInfo();
+        }
     }
 
     private void ShowCharInfo(string name, float percentageHealth)

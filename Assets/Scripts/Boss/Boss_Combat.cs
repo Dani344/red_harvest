@@ -56,7 +56,7 @@ public class Boss_Combat : Enemy
                 //Debug.Log("PROJ1: " + dire);
                 //dire.Normalize();
                 
-                proj.ProjectilTargetSetUp(dire, 3f, 100f, 3f, true, _targetPos);
+                proj.ProjectilTargetSetUp(dire, 4.5f, 100f, 3f, true, _targetPos);
                 
                 /*
                 //DERECHO 30º

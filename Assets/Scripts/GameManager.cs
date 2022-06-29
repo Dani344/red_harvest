@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
     public void EnemyKilled()
     {
         _currentNumEnemies -= 1;
-        Debug.Log(_currentNumEnemies + "JOIJJIJI");
+        
         if (_currentNumEnemies == 0)
         {
             Debug.Log("NO QUEDAN ENEMIGOS EN EL MAPA");

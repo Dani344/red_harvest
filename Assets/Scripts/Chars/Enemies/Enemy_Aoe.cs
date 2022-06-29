@@ -113,7 +113,7 @@ public class Enemy_Aoe : Enemy
         //Debug.Log("PROJ1: " + dire);
         //dire.Normalize();
                 
-        proj.ProjectilTargetSetUp(dire, 3f, 75f, 3f, true, _targetPos);
+        proj.ProjectilTargetSetUp(dire, 4f, 75f, 3f, true, _targetPos);
     }
 
 
